@@ -7,7 +7,7 @@ How it works, we are implementing a basic Windows Portable Executable (Windows P
 In theory and more investigation is need the binary should be almost identifical if not identical to a Windows binary.
 So we can make a basic PE loader that will load the binary and replace all the Xbox specific imports with Windows alternatives or reimplementations.
 
-![Process](https://user-images.githubusercontent.com/1505374/213362181-869519f4-1920-4c3b-bb1b-364207d79e25.png)
+![Process](https://user-images.githubusercontent.com/1505374/213362265-a37457b2-96c2-4ddf-bf11-3b7b9a715a77.png)
 
 # STATE
 Currently as far as I am aware the are no Xbox One games that have been dump and decrypted. 
