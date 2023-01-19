@@ -90,13 +90,33 @@ BOOL FixImportAddressTable(const PVOID modulePtr)
 
 		if (lib_desc->OriginalFirstThunk == NULL && lib_desc->FirstThunk == NULL) break;
 
-		const auto libName = reinterpret_cast<LPSTR>(reinterpret_cast<ULONGLONG>(modulePtr) + lib_desc->Name);
+		auto libName = reinterpret_cast<LPSTR>(reinterpret_cast<ULONGLONG>(modulePtr) + lib_desc->Name);
 
-		// TODO: Replace any Xbox specific libraries with their Windows counterparts.
+		if (strcmp(libName, "PIXEvt.dll"))
+		{
+			// TODO: Need to get a Windows equivalent.
+		}
+		else if (strcmp(libName, "kernelx.dll") == 0) 
+		{
+			libName = const_cast<LPSTR>("kernel32.dll");
+		}
+		else if (strcmp(libName, "d3d11_x.ddl") == 0)
+		{
+			// TODO: d3d11.dll is not getting loading or the Windows dll is not equivalent enough.
+			libName = const_cast<LPSTR>("d3d11.dll");
+		}
+		else if (strcmp(libName, "vccorlib110d.DLL") == 0)
+		{
+			// TODO: Need to get a Windows equivalent.
+		}
+		else if (strcmp(libName, "MSVCR110D.dll"))
+		{
+			// TODO: Need to get a Windows equivalent.
+		}
 
 		printf("    [+] Import DLL: %s\n", libName);
 
-		size_t callVia = lib_desc->FirstThunk;
+		const size_t callVia = lib_desc->FirstThunk;
 		size_t thunkAddress = lib_desc->OriginalFirstThunk;
 
 		if (thunkAddress == NULL) thunkAddress = lib_desc->FirstThunk;
@@ -106,7 +126,38 @@ BOOL FixImportAddressTable(const PVOID modulePtr)
 
 		while (true)
 		{
-			
+			const auto fieldThunk = reinterpret_cast<IMAGE_THUNK_DATA*>(reinterpret_cast<size_t>(modulePtr) + offsetField + callVia);
+			const auto orginThunk = reinterpret_cast<IMAGE_THUNK_DATA*>(reinterpret_cast<size_t>(modulePtr) + offsetThunk + thunkAddress);
+
+			// check if using ordinal (both x86 && x64)
+			if (orginThunk->u1.Ordinal & IMAGE_ORDINAL_FLAG32 || orginThunk->u1.Ordinal & IMAGE_ORDINAL_FLAG64) 
+			{
+				const auto address = reinterpret_cast<size_t>(
+					GetProcAddress(LoadLibraryA(libName),
+						reinterpret_cast<char*>(orginThunk->u1.Ordinal & 0xFFFF)));
+
+				printf("        [V] API %llu at %llu\n", orginThunk->u1.Ordinal, address);
+
+				fieldThunk->u1.Function = printf("        [V] API %llu at %llu\n", orginThunk->u1.Ordinal, address);
+			}
+
+			if (fieldThunk->u1.Function == NULL) break;
+
+			if (fieldThunk->u1.Function == orginThunk->u1.Function) {
+				const auto by_name = reinterpret_cast<PIMAGE_IMPORT_BY_NAME>(reinterpret_cast<size_t>(modulePtr) + orginThunk->u1.AddressOfData);
+
+				const auto func_name = static_cast<LPSTR>(by_name->Name);
+
+				auto address = reinterpret_cast<size_t>(GetProcAddress(LoadLibraryA(libName), func_name));
+					
+
+				printf("        [V] API %s at %llu\n", func_name, address);
+
+				fieldThunk->u1.Function = address;
+			}
+
+			offsetField += sizeof(IMAGE_THUNK_DATA);
+			offsetThunk += sizeof(IMAGE_THUNK_DATA);
 		}
 	}
 
@@ -241,6 +292,7 @@ BOOL PELoader(const char* exePath)
 
 	// masqueradeCmdline(cmdline);
 	// fixIAT(pImageBase);
+	FixImportAddressTable(pImageBase);
 
 	if (pImageBase != preferAddress)
 		if (ApplyRelocation(reinterpret_cast<size_t>(pImageBase), reinterpret_cast<size_t>(preferAddress),
