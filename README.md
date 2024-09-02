@@ -1,6 +1,8 @@
 # XBOXEmu
 The worlds first Xbox One compatibility layer for Windows.
 
+<a href="https://discord.gg/mHN2BgH7MR">Discord</a>
+
 # HOW IT WORKS
 The idea for this project is to provide a compatiability layer allowing you run binaries compiled for the Xbox One Development Kit (XDK).
 How it works, we are implementing a basic Windows Portable Executable (Windows PE) loader that will load the .exe for Xbox One application.
