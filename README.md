@@ -3,7 +3,7 @@
 [![GitHub Latest Release](https://img.shields.io/badge/Latest-Release-green)](https://github.com/WinDurango/WinDurango/releases)
 ![View stargazers](https://img.shields.io/github/stars/WinDurango/WinDurango)
    
-The worlds first Xbox One compatibility layer for Windows.
+The (apparently not) worlds first Xbox One compatibility layer for Windows.
 
 # Legal
 
