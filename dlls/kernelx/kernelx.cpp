@@ -5,7 +5,7 @@
 // ReSharper disable CppClangTidyClangDiagnosticInconsistentDllimport
 #include "pch.h"
 #include "framework.h"
-
+#include "kernelx.h"
 
 
 
@@ -36,19 +36,27 @@ PVOID XMemAllocDefault_X(ULONG_PTR a1, UINT64 a2)
 	return nullptr;
 }
 
-// Should be in ntdll.dll reimplementation since it seems to be only on the xbox dll right now i'm just testing things
+PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes)
+{
+    return XMemAllocDefault_X(dwSize, dwAttributes);
+}
+
+
+
+// !!!!!
+// Should be in ntdll.dll reimplementation, right now i'm just testing things with DLLMain entryPoint
 PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter)
 {
 	return EncodePointer(ExceptionFilter);
 }
 
 
-PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes)
-{
-	return XMemAllocDefault_X(dwSize, dwAttributes);
-}
 
 
+
+
+
+// TODO
 // absolutely temporary implementation I just want to make it work
 // sub_18001BCA0 
 char* qword_18002B880;
@@ -61,8 +69,6 @@ HANDLE qword_18002B858;
 HANDLE qword_18002B888;
 HANDLE P;
 char* dword_18002B84C;
-
-
 
 //sub_18001BB8C
 int dword_18002BF68;
@@ -141,7 +147,7 @@ __int64 sub_18001BB8C()
 
 // absolutely temporary implementation I just want to make it work
 // decompilation from ghidra (it looks horrible lol)
-char sub_18001BCA0(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved)
+NTSTATUS sub_18001BCA0(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved)
 {
     char* v0; // rax
     __int64 v1; // rdi
@@ -157,7 +163,7 @@ char sub_18001BCA0(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved)
     PVOID v11; // rbx
     HMODULE v12; // rcx
     NTSTATUS result; // al
-    PEB a;
+    
 
     v0 = (char*)qword_18002B880;
     if (qword_18002B880)

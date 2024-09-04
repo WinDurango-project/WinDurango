@@ -17,9 +17,6 @@ HINSTANCE hModule;
 
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved)
 {
-
-    
-
     BOOL v4;
 	switch (forwardReason)
 	{
@@ -50,35 +47,6 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved
 	}
 
 	return TRUE;
-
-    /*BOOL v4; // ebx
-
-    if (fdwReason == 1)
-    {
-        if (NtQuerySystemInformation(SystemBasicInformation, &unk_18002C900, 0x40u, 0LL) >= 0)
-        {
-            v4 = 1;
-            if (RtlUnicodeStringToAnsiString(&DestinationString, &NtCurrentPeb()->ProcessParameters->CommandLine, 1u) < 0)
-            {
-                *(_QWORD*)&DestinationString.Length = 0LL;
-                DestinationString.Buffer = 0LL;
-            }
-            RtlSetUnhandledExceptionFilter((PRTLP_UNHANDLED_EXCEPTION_FILTER)UnhandledExceptionFilter);
-        }
-        else
-        {
-            v4 = 0;
-        }
-        hModule = hinstDLL;
-        sub_18001BB8C();
-    }
-    else
-    {
-        v4 = 1;
-        if (!fdwReason)
-            sub_18001BCA0(hinstDLL, fdwReason, lpReserved);
-    }
-    return v4;*/
 }
 
 
