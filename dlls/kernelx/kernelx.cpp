@@ -36,11 +36,351 @@ PVOID XMemAllocDefault_X(ULONG_PTR a1, UINT64 a2)
 	return nullptr;
 }
 
+//TODO
 PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes)
 {
     return XMemAllocDefault_X(dwSize, dwAttributes);
 }
 
+//TODO
+BOOL XMemFreeDefault_X(PVOID P, unsigned __int64 a2)
+{
+    //STUB
+    return 0;
+}
+
+LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter_X(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter)
+{
+    return SetUnhandledExceptionFilter(lpTopLevelExceptionFilter);
+}
+
+BOOL TerminateProcess_X(HANDLE hProcess, UINT uExitCode)
+{
+    return TerminateProcess(hProcess, uExitCode);
+}
+
+HANDLE GetCurrentProcess_X()
+{
+    return GetCurrentProcess();
+}
+
+LONG UnhandledExceptionFilter_X(_EXCEPTION_POINTERS* ExceptionInfo)
+{
+    return UnhandledExceptionFilter(ExceptionInfo);
+}
+
+DWORD GetTickCount_X()
+{
+    return GetTickCount();
+}
+
+void RtlCaptureContext_X(PCONTEXT ContextRecord)
+{
+    return RtlCaptureContext(ContextRecord);
+}
+
+PRUNTIME_FUNCTION RtlLookupFunctionEntry_X(DWORD64 ControlPc, PDWORD64 ImageBase, PUNWIND_HISTORY_TABLE HistoryTable)
+{
+    return RtlLookupFunctionEntry(ControlPc, ImageBase, HistoryTable);
+}
+
+DWORD GetProcessId_X(HANDLE Process)
+{
+    return GetProcessId(Process);
+}
+
+void GetSystemTimeAsFileTime_X(LPFILETIME lpSystemTimeAsFileTime)
+{
+    return GetSystemTimeAsFileTime(lpSystemTimeAsFileTime);
+}
+
+DWORD WaitForSingleObjectEx_X(HANDLE hHandle, DWORD dwMilliseconds, BOOL bAlertable)
+{
+    return WaitForSingleObjectEx(hHandle, dwMilliseconds, bAlertable);
+}
+
+void GetStartupInfoW_X(LPSTARTUPINFOW lpStartupInfo)
+{
+    GetStartupInfoW(lpStartupInfo);
+}
+
+HMODULE GetModuleHandleW_X(LPCWSTR lpModuleName)
+{
+    return GetModuleHandleW(lpModuleName);
+}
+
+void GetLocalTime_X(LPSYSTEMTIME lpSystemTime)
+{
+    GetLocalTime(lpSystemTime);
+}
+
+DWORD GetLastError_X()
+{
+    return GetLastError();
+}
+
+BOOL GetFileSizeEx_X(HANDLE hFile, PLARGE_INTEGER lpFileSize)
+{
+    return GetFileSizeEx(hFile, lpFileSize);
+}
+
+DWORD GetFileAttributesW_X(LPCWSTR lpFileName)
+{
+    return GetFileAttributesW(lpFileName);
+}
+
+BOOL GetFileAttributesExW_X(LPCWSTR lpFileName, GET_FILEEX_INFO_LEVELS fInfoLevelId, LPVOID lpFileInformation)
+{
+    return GetFileAttributesExW(lpFileName, fInfoLevelId, lpFileInformation);
+}
+
+BOOL GetExitCodeThread_X(HANDLE hThread, LPDWORD lpExitCode)
+{
+    return GetExitCodeThread(hThread, lpExitCode);
+}
+
+HANDLE GetCurrentThread_X()
+{
+    return GetCurrentThread();
+}
+
+DWORD GetCurrentThreadId_X()
+{
+    return GetCurrentThreadId();
+}
+
+DWORD GetCurrentProcessId_X()
+{
+    return GetCurrentProcessId();
+}
+
+BOOL FindNextFileW_X(HANDLE hFindFile, LPWIN32_FIND_DATAW lpFindFileData)
+{
+    return FindNextFileW(hFindFile, lpFindFileData);
+}
+
+HANDLE FindFirstFileW_X(LPCWSTR lpFileName, LPWIN32_FIND_DATAW lpFindFileData)
+{
+    return FindFirstFileW(lpFileName, lpFindFileData);
+}
+
+BOOL FindClose_X(HANDLE hFindFile)
+{
+    return FindClose(hFindFile);
+}
+
+BOOL FileTimeToSystemTime_X(FILETIME* lpFileTime, LPSYSTEMTIME lpSystemTime)
+{
+    return FileTimeToSystemTime(lpFileTime, lpSystemTime);
+}
+
+void ExitProcess_X(UINT uExitCode)
+{
+    ExitProcess(uExitCode);
+}
+
+BOOL DeleteFileW_X(LPCWSTR lpFileName)
+{
+    return DeleteFileW(lpFileName);
+}
+
+void DebugBreak_X()
+{
+    return DebugBreak();
+}
+
+HANDLE CreateThread_X(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId)
+{
+    return CreateThread(lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, lpThreadId);
+}
+
+HANDLE CreateFileW_X(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
+{
+    return CreateFileW(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+}
+
+HANDLE CreateEventW_X(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCWSTR lpName)
+{
+    return CreateEventW(lpEventAttributes, bManualReset, bInitialState, lpName);
+}
+
+HANDLE CreateEventExW_X(LPSECURITY_ATTRIBUTES lpEventAttributes, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateEventExW(lpEventAttributes, lpName, dwFlags, dwDesiredAccess);
+}
+
+BOOL CreateDirectoryW_X(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+{
+    return CreateDirectoryW(lpPathName, lpSecurityAttributes);
+}
+
+BOOL CloseHandle_X(HANDLE hObject)
+{
+    return CloseHandle(hObject);
+}
+
+BOOL VirtualFree_X(LPVOID lpAddress, SIZE_T dwSize, DWORD dwFreeType)
+{
+    //Get rid of Warnings i guess TODO
+    //if (dwFreeType == 0) return;
+    return VirtualFree(lpAddress, dwSize, dwFreeType);
+}
+
+BOOL TlsSetValue_X(DWORD dwTlsIndex, LPVOID lpTlsValue)
+{
+    return TlsSetValue(dwTlsIndex, lpTlsValue);
+}
+
+LPVOID VirtualAlloc_X(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect)
+{
+    return VirtualAlloc(lpAddress, dwSize, flAllocationType, flProtect);
+}
+
+
+BOOL WriteFile_X(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped)
+{
+    return WriteFile(hFile, lpBuffer, nNumberOfBytesToWrite, lpNumberOfBytesWritten, lpOverlapped);
+}
+
+DWORD WaitForSingleObject_X(HANDLE hHandle, DWORD dwMilliseconds)
+{
+    return WaitForSingleObject(hHandle, dwMilliseconds);
+}
+
+DWORD WaitForMultipleObjects_X(DWORD nCount, HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds)
+{
+    return WaitForMultipleObjects(nCount, lpHandles, bWaitAll, dwMilliseconds);
+}
+
+LPVOID TlsGetValue_X(DWORD dwTlsIndex)
+{
+    return TlsGetValue(dwTlsIndex);
+}
+
+DWORD TlsAlloc_X()
+{
+    return TlsAlloc();
+}
+
+BOOL SystemTimeToFileTime_X(SYSTEMTIME* lpSystemTime, LPFILETIME lpFileTime)
+{
+    return SystemTimeToFileTime(lpSystemTime, lpFileTime);
+}
+
+void Sleep_X(DWORD dwMilliseconds)
+{
+    return Sleep(dwMilliseconds);
+}
+
+BOOL SetThreadPriority_X(HANDLE hThread, int nPriority)
+{
+    return SetThreadPriority(hThread, nPriority);
+}
+
+DWORD_PTR SetThreadAffinityMask_X(HANDLE hThread, DWORD_PTR dwThreadAffinityMask)
+{
+    return SetThreadAffinityMask(hThread, dwThreadAffinityMask);
+}
+
+DWORD SetFilePointer_X(HANDLE hFile, LONG lDistanceToMove, PLONG lpDistanceToMoveHigh, DWORD dwMoveMethod)
+{
+    return SetFilePointer(hFile, lDistanceToMove, lpDistanceToMoveHigh, dwMoveMethod);
+}
+
+DWORD ResumeThread_X(HANDLE hThread)
+{
+    return ResumeThread(hThread);
+}
+
+BOOL ResetEvent_X(HANDLE hEvent)
+{
+    return ResetEvent(hEvent);
+}
+
+BOOL ReadFile_X(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead, LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped)
+{
+    return ReadFile(hFile, lpBuffer, nNumberOfBytesToRead, lpNumberOfBytesRead, lpOverlapped);
+}
+
+void RaiseException_X(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, ULONG_PTR* lpArguments)
+{
+    return RaiseException(dwExceptionCode, dwExceptionFlags, nNumberOfArguments, lpArguments);
+}
+
+BOOL QueryPerformanceFrequency_X(LARGE_INTEGER* lpFrequency)
+{
+    return QueryPerformanceFrequency(lpFrequency);
+}
+
+BOOL QueryPerformanceCounter_X(LARGE_INTEGER* lpPerformanceCount)
+{
+    return QueryPerformanceCounter(lpPerformanceCount);
+}
+
+void OutputDebugStringW_X(LPCWSTR lpOutputString)
+{
+    OutputDebugStringW(lpOutputString);
+}
+
+int MultiByteToWideChar_X(UINT CodePage, DWORD dwFlags, LPCSTR lpMultiByteStr, int cbMultiByte, LPWSTR lpWideCharStr, int cchWideChar)
+{
+    return MultiByteToWideChar(CodePage, dwFlags, lpMultiByteStr, cbMultiByte, lpWideCharStr, cchWideChar);
+}
+
+BOOL IsProcessorFeaturePresent_X(DWORD ProcessorFeature)
+{
+    return IsProcessorFeaturePresent(ProcessorFeature);
+}
+
+BOOL IsDebuggerPresent_X()
+{
+    return IsDebuggerPresent();
+}
+
+BOOL InitializeCriticalSectionAndSpinCount_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount)
+{
+    return InitializeCriticalSectionAndSpinCount(lpCriticalSection, dwSpinCount);
+}
+
+GEOID GetUserGeoID_X(GEOCLASS GeoClass)
+{
+    return GetUserGeoID(GeoClass);
+}
+
+int GetUserDefaultLocaleName_X(LPWSTR lpLocaleName, int cchLocaleName)
+{
+    return GetUserDefaultLocaleName(lpLocaleName, cchLocaleName);
+}
+
+void GetSystemTime_X(LPSYSTEMTIME lpSystemTime)
+{
+    GetSystemTime(lpSystemTime);
+}
+
+
+__int64 GetConsoleType_X()
+{
+    //STUB
+    return 1;
+    /*unsigned int v5; // ecx
+
+    _RAX = 1073741837LL;
+    __asm { cpuid }
+    v5 = WORD1(_RCX);
+    if (v5 >= 0x32)
+    {
+        switch (v5)
+        {
+        case '@':
+            return 2LL;
+        case 'P':
+            return 3LL;
+        case 'X':
+            return 4LL;
+        }
+    }
+    return 1LL;*/
+}
 
 
 // !!!!!
