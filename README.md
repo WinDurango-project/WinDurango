@@ -1,9 +1,9 @@
 # WinDurango
-![Join our Discord](https://img.shields.io/discord/1280176159010848790?color=2c9510&label=WinDurango%20Discord&logo=Discord&logoColor=white)
+[![Join our Discord](https://img.shields.io/discord/1280176159010848790?color=2c9510&label=WinDurango%20Discord&logo=Discord&logoColor=white)](https://discord.gg/mHN2BgH7MR)
 [![GitHub Latest Release](https://img.shields.io/badge/Latest-Release-green)](https://github.com/WinDurango/WinDurango/releases)
-![View stargazers](https://img.shields.io/github/stars/WinDurango/WinDurango)
+[![View stargazers](https://img.shields.io/github/stars/WinDurango/WinDurango)](https://github.com/WinDurango/WinDurango/stargazers)
    
-The (apparently not) worlds first Xbox One compatibility layer for Windows.
+The worlds first Xbox One compatibility layer for Windows.
 
 # Legal
 
