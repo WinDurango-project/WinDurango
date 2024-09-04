@@ -16,6 +16,8 @@ extern "C" PVOID XMemAllocDefault_X(ULONG_PTR a1, UINT64 a2);
 
 extern "C" PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes);
 
+extern "C" BOOL XMemFree_X(PVOID P, unsigned __int64 a2);
+
 extern "C" LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter_X(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter);
 
 extern "C" BOOL TerminateProcess_X(HANDLE hProcess, UINT uExitCode);

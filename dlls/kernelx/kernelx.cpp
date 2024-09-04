@@ -43,10 +43,28 @@ PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes)
 }
 
 //TODO
-BOOL XMemFreeDefault_X(PVOID P, unsigned __int64 a2)
+BOOL XMemFreeDefault_X(PVOID P, UINT64 a2)
 {
     //STUB
     return 0;
+}
+
+//TODO
+BOOL XMemFree_X(PVOID P, UINT64 a2)
+{
+    return 0;
+    /*struct _EVENT_TRACE_HEADER v5; // [rsp+20h] [rbp-48h] BYREF
+    unsigned __int64 v6; // [rsp+50h] [rbp-18h]
+
+    if (MEMORY[0x7FFE0390])
+    {
+        v5.Class.Version = 3105;
+        v5.ProcessorTime = 0LL;
+        v6 = a2;
+        *(&v5.GuidPtr + 1) = (ULONGLONG)P;
+        NtTraceEvent(MEMORY[0x7FFE0390], 0x10402u, 0x18u, &v5);
+    }
+    return off_18002B1B0(P, a2);*/
 }
 
 LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter_X(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter)

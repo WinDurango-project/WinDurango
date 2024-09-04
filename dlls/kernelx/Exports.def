@@ -84,3 +84,4 @@ EXPORTS
 	XMemAlloc				= XMemAlloc_X					@501
 	XMemAllocDefault		= XMemAllocDefault_X			@505
 	XMemFreeDefault			= XMemFreeDefault_X				@508
+	XMemFree				= XMemFree_X					@507
