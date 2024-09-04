@@ -20,36 +20,38 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved
 	return TRUE;
 }
 
-void AcquireSRWLockExclusive(PSRWLOCK SRWLock)
+void AcquireSRWLockExclusive_X(PSRWLOCK SRWLock)
 {
-	
+	AcquireSRWLockExclusive(SRWLock);
 }
 
-void AcquireSRWLockShared(PSRWLOCK SRWLock)
+void AcquireSRWLockShared_X(PSRWLOCK SRWLock)
+{
+	AcquireSRWLockShared(SRWLock);
+}
+
+void EnterCriticalSection_X(LPCRITICAL_SECTION lpCriticalSection)
+{
+	EnterCriticalSection(lpCriticalSection);
+}
+
+HANDLE GetProcessHeap_X()
+{
+	return GetProcessHeap();
+}
+
+/*
+NTSYSAPI VOID RtlCaptureContext_X(PCONTEXT ContextRecord)
 {
 
 }
-
-void EnterCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
-{
-
-}
-
-HANDLE GetProcessHeap()
-{
-	return nullptr;
-}
-
-NTSYSAPI VOID RtlCaptureContext(PCONTEXT ContextRecord)
-{
-
-}
+*/
 
 // dwSize - size of allocated memory block that was requested.
 // dwAttributes - allocated memory block attributes.
 //
 // returns a pointer allocated memory block.
-PVOID XMemAlloc(SIZE_T dwSize, ULONGLONG dwAttributes)
+PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes)
 {
-	return nullptr;
+	return VirtualAlloc(nullptr, dwSize, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 }
