@@ -1,2 +1,0 @@
-#define ETWPLUS_API __declspec(dllexport)
-#define ETWPLUS_API __declspec(dllimport)

@@ -1,2 +1,8 @@
 LIBRARY kernelx
 EXPORTS
+	AcquireSRWLockExclusive @1
+	AcquireSRWLockShared	@2
+	EnterCriticalSection	@87
+	GetProcessHeap			@199
+	RtlCaptureContext       @378
+	XMemAlloc				@501

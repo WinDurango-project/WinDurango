@@ -1,2 +1,0 @@
-#define NTDLL_API __declspec(dllexport)
-#define NTDLL_API __declspec(dllimport)
