@@ -4,5 +4,5 @@ EXPORTS
 	AcquireSRWLockShared	= AcquireSRWLockShared_X		@2
 	EnterCriticalSection	= EnterCriticalSection_X		@87
 	GetProcessHeap			= GetProcessHeap_X				@199
-	RtlCaptureContext       = RtlCaptureContext_X			@378
 	XMemAlloc				= XMemAlloc_X					@501
+	XMemAllocDefault		= XMemAllocDefault_X			@505
