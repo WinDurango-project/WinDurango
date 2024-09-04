@@ -1,28 +1,10 @@
 # WinDurango
-The worlds first Xbox One compatibility layer for Windows.
+![Join our Discord](https://img.shields.io/discord/1280176159010848790?color=2c9510&label=WinDurango%20Discord&logo=Discord&logoColor=white)
+[![GitHub Latest Release](https://img.shields.io/badge/Latest-Release-green)](https://github.com/WinDurango/WinDurango/releases)
+![View stargazers](https://img.shields.io/github/stars/WinDurango/WinDurango)
+   
+The (apparently not) worlds first Xbox One compatibility layer for Windows.
 
-<a href="https://discord.gg/mHN2BgH7MR">Discord</a>
+# Legal
 
-# HOW IT WORKS
-The idea for this project is to provide a compatiability layer allowing you run binaries compiled for the Xbox One Development Kit (XDK).
-How it works, we are implementing a basic Windows Portable Executable (Windows PE) loader that will load the .exe for Xbox One application.
-In theory and more investigation is need the binary should be almost identifical if not identical to a Windows binary.
-So we can make a basic PE loader that will load the binary and replace all the Xbox specific imports with Windows alternatives or reimplementations.
-
-![Process](https://user-images.githubusercontent.com/1505374/213362265-a37457b2-96c2-4ddf-bf11-3b7b9a715a77.png)
-
-# STATE
-Currently as far as I am aware the are no Xbox One games that have been dump and decrypted. 
-You can learn more about the Xbox One game format [here](https://xosft.dev/wiki/xbox-virtual-drive/).
-You can however run applications that are compiled by the XDK or if they have been dumped and decrypted.
-At this time nothing currently "boots", this compatiablitly layer is in early development.
-This is like my fifth implementation and I think this is a good framework to make progress.
-So I don't see anytime in the future to being able to run retail games and unless there is a major leak in keys or decrypted dumps.
-However we can still run homebrew applications written using the XDK are loose and not bundle and decrypted allowing people to get into Xbox One development.
-
-# CONTRIBUTION
-I am looking for Contributors for this project. My Windows internal and Direct3D knowledge is limited.
-
-# REFERENCES
-
-Thank you to [dz333n](https://github.com/dz333n/) for there Windows CE Compat Layer [wcecl](https://github.com/dz333n/wcecl/).
+This project is not affiliated with Microsoft.
