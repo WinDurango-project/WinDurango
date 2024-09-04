@@ -5,12 +5,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Exports.def" />
+    <ClCompile Include="ntdll.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Exports.def" />
   </ItemGroup>
 </Project>
