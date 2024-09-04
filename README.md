@@ -1,4 +1,8 @@
 # WinDurango
 The worlds first Xbox One compatibility layer for Windows.
 
-<a href="https://discord.gg/mHN2BgH7MR">Discord</a>
+Join the <a href="https://discord.gg/mHN2BgH7MR">Discord</a>
+
+# Legal
+
+This project is not affiliated with Microsoft.
