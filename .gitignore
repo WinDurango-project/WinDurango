@@ -396,4 +396,3 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/JSON/Schemas/Catalog

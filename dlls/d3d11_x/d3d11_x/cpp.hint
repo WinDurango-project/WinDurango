@@ -1,0 +1,2 @@
+#define D3D11X_API __declspec(dllexport)
+#define D3D11X_API __declspec(dllimport)
