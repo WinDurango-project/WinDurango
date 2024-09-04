@@ -1,4 +1,4 @@
-# XBOXEmu
+# WinDurango
 The worlds first Xbox One compatibility layer for Windows.
 
 <a href="https://discord.gg/mHN2BgH7MR">Discord</a>
@@ -20,15 +20,9 @@ This is like my fifth implementation and I think this is a good framework to mak
 So I don't see anytime in the future to being able to run retail games and unless there is a major leak in keys or decrypted dumps.
 However we can still run homebrew applications written using the XDK are loose and not bundle and decrypted allowing people to get into Xbox One development.
 
-# FUTURE
-In the future I would like to rewrite the PE loader instead using the one from the [aaaddress1](https://github.com/aaaddress1).
-However my knowledge is limited and this was a good starting point for me to get started.
-
 # CONTRIBUTION
 I am looking for Contributors for this project. My Windows internal and Direct3D knowledge is limited.
 
 # REFERENCES
-
-Thank you to [aaaddress1](https://github.com/aaaddress1) for there Windows PE Loader [RunPE-In-Memory](https://github.com/aaaddress1/RunPE-In-Memory).
 
 Thank you to [dz333n](https://github.com/dz333n/) for there Windows CE Compat Layer [wcecl](https://github.com/dz333n/wcecl/).
