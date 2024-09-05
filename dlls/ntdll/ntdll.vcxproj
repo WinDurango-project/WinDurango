@@ -22,6 +22,8 @@
     <Text Include="Exports.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\dllmain.cpp" />
+    <ClCompile Include="..\kernelx\dllmain.cpp" />
     <ClCompile Include="ntdll.cpp" />
     <ClCompile Include="pch.cpp" />
   </ItemGroup>

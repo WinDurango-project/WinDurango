@@ -484,17 +484,17 @@ int dword_18002BF68;
 
 int sub_18001D528()
 {
-    //TODO
+    return 0;//TODO
 }
 
 INT16 sub_18001D768()
 {
-    //TODO
+    return 0;//TODO
 }
 
 int sub_18001D96C(int v2, unsigned short* codePageData, unsigned int p, bool t,long l)
 {
-    //TODO
+    return 0;//TODO
 }
 
 __int64 sub_18001BB8C()
