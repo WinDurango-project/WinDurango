@@ -1,9 +1,27 @@
-# WinDurango
-[![Join our Discord](https://img.shields.io/discord/1280176159010848790?color=2c9510&label=WinDurango%20Discord&logo=Discord&logoColor=white)](https://discord.gg/mHN2BgH7MR)
+<h1 align="center">WinDurango</h1>
+
+WinDurango is the worlds first Xbox One compatibility layer for Windows.
+For more information, see the
+[main WinDurango wiki](https://github.com/WinDurango/WinDurango/wiki).
+
+**Interested in supporting the core contributors?** Visit
+[WinDurango Project on Patreon](https://www.patreon.com/WinDurango).
+
+Come chat with us about **emulator-related topics** on [![Join our Discord](https://img.shields.io/discord/1280176159010848790?color=2c9510&label=WinDurango%20Discord&logo=Discord&logoColor=white)](https://discord.gg/mHN2BgH7MR).
+For developer chat join `#developer` but stay on topic. Lurking is not only fine, but encouraged!
+Please check the [FAQ](https://github.com/WinDurango/WinDurango/wiki/FAQ) page before asking questions.
+We've got jobs/lives/etc, so don't expect instant answers.
+
+Discussing illegal activities will get you banned.
+
+## Status
 [![GitHub Latest Release](https://img.shields.io/badge/Latest-Release-green)](https://github.com/WinDurango/WinDurango/releases)
 [![View stargazers](https://img.shields.io/github/stars/WinDurango/WinDurango)](https://github.com/WinDurango/WinDurango/stargazers)
-   
-The worlds first Xbox One compatibility layer for Windows.
+
+Currently no games run with the WinDurango.
+See the [Game compatibility list](https://github.com/WinDurango/WinDurango-game-compatibility/issues)
+for currently tracked games, and feel free to contribute your own updates,
+screenshots, and information there following the [existing conventions](https://github.com/WinDurango/WinDurango-game-compatibility/blob/main/README.md).
 
 ## Disclaimer
 
@@ -16,7 +34,7 @@ with Microsoft.
 
 ## Quickstart
 
-See the [Quickstart](https://github.com/xenia-project/xenia/wiki/Quickstart) page.
+See the [Quickstart](https://github.com/WinDurango/WinDurango/wiki/Quickstart) page.
 
 ## Building
 
