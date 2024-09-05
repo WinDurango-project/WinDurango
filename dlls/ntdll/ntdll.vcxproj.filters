@@ -6,6 +6,8 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="ntdll.cpp" />
+    <ClCompile Include="..\kernelx\dllmain.cpp" />
+    <ClCompile Include="..\..\..\dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
