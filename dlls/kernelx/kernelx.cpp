@@ -67,6 +67,11 @@ BOOL XMemFree_X(PVOID P, UINT64 a2)
     return off_18002B1B0(P, a2);*/
 }
 
+BOOL InitializeCriticalSectionEx_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags)
+{
+    return InitializeCriticalSectionEx(lpCriticalSection, dwSpinCount, Flags);
+}
+
 LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter_X(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter)
 {
     return SetUnhandledExceptionFilter(lpTopLevelExceptionFilter);

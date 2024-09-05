@@ -90,6 +90,8 @@ extern "C" BOOL IsDebuggerPresent_X();
 
 extern "C" BOOL InitializeCriticalSectionAndSpinCount_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount);
 
+extern "C" BOOL InitializeCriticalSectionEx_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags);
+
 extern "C" GEOID GetUserGeoID_X(GEOCLASS GeoClass);
 
 extern "C" int GetUserDefaultLocaleName_X(LPWSTR lpLocaleName, int cchLocaleName);
