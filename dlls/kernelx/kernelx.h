@@ -16,7 +16,7 @@ extern "C" PVOID XMemAllocDefault_X(ULONG_PTR a1, UINT64 a2);
 
 extern "C" PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes);
 
-extern "C" BOOL XMemFree_X(PVOID P, unsigned __int64 a2);
+extern "C" BOOL XMemFree_X(PVOID P, UINT64 a2);
 
 extern "C" LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter_X(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter);
 
@@ -32,6 +32,12 @@ extern "C" void RtlCaptureContext_X(PCONTEXT ContextRecord);
 
 extern "C" PRUNTIME_FUNCTION RtlLookupFunctionEntry_X(DWORD64 ControlPc, PDWORD64 ImageBase, PUNWIND_HISTORY_TABLE HistoryTable);
 
+extern "C" void RtlUnwindEx_X(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue, PCONTEXT ContextRecord, PUNWIND_HISTORY_TABLE HistoryTable);
+
+extern "C" BOOL DeviceIoControl_X(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped);
+
+extern "C" HMODULE LoadLibraryExW_X(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
+
 extern "C" DWORD GetProcessId_X(HANDLE Process);
 
 extern "C" void GetSystemTimeAsFileTime_X(LPFILETIME lpSystemTimeAsFileTime);
@@ -46,7 +52,7 @@ extern "C" BOOL TlsSetValue_X(DWORD dwTlsIndex, LPVOID lpTlsValue);
 
 extern "C" LPVOID VirtualAlloc_X(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 
-extern "C" BOOL XMemFreeDefault_X(PVOID P, unsigned __int64 a2);
+extern "C" BOOL XMemFreeDefault_X(PVOID P, UINT64 a2);
 
 extern "C" BOOL WriteFile_X(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped);
 
@@ -80,6 +86,8 @@ extern "C" BOOL QueryPerformanceFrequency_X(LARGE_INTEGER* lpFrequency);
 
 extern "C" BOOL QueryPerformanceCounter_X(LARGE_INTEGER* lpPerformanceCount);
 
+extern "C" void OutputDebugStringA_X(LPCSTR lpOutputString);
+
 extern "C" void OutputDebugStringW_X(LPCWSTR lpOutputString);
 
 extern "C" int MultiByteToWideChar_X(UINT CodePage, DWORD dwFlags, LPCSTR lpMultiByteStr, int cbMultiByte, LPWSTR lpWideCharStr, int cchWideChar);
@@ -101,6 +109,8 @@ extern "C" void GetSystemTime_X(LPSYSTEMTIME lpSystemTime);
 extern "C" void GetStartupInfoW_X(LPSTARTUPINFOW lpStartupInfo);
 
 extern "C" HMODULE GetModuleHandleW_X(LPCWSTR lpModuleName);
+
+extern "C" HMODULE GetModuleHandleA_X(LPCSTR lpModuleName);
 
 extern "C" void GetLocalTime_X(LPSYSTEMTIME lpSystemTime);
 
@@ -133,6 +143,8 @@ extern "C" void ExitProcess_X(UINT uExitCode);
 extern "C" BOOL DeleteFileW_X(LPCWSTR lpFileName);
 
 extern "C" void DebugBreak_X();
+
+extern "C" BOOL SetEvent_X(HANDLE hEvent);
 
 extern "C" HANDLE CreateThread_X(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
 

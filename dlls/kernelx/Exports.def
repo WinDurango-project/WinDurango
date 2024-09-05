@@ -10,13 +10,14 @@ EXPORTS
 	CreateThread			= CreateThread_X				@60
 	DebugBreak				= DebugBreak_X					@71
 	DecodePointer			= NTDLL.RtlDecodePointer		@72
-	DeleteCriticalSection	= NTDLL.RtlDeleteCriticalSection@74
+	DeleteCriticalSection	= NTDLL.RtlDeleteCriticalSection @74
 	DeleteFileW				= DeleteFileW_X					@77
+	DeviceIoControl			= DeviceIoControl_X				@80
 	DisableThreadLibraryCalls = DisableThreadLibraryCalls_X	@81
 	EventRegister			= NTDLL.EtwEventRegister		@95
+	EnterCriticalSection	= EnterCriticalSection_X		@87
 	EventUnregister			= NTDLL.EtwEventUnregister		@97
 	EventWrite				= NTDLL.EtwEventWrite			@98
-	EnterCriticalSection	= EnterCriticalSection_X		@87
 	ExitProcess				= ExitProcess_X					@102
 	FileTimeToSystemTime	= FileTimeToSystemTime_X		@107
 	FindClose				= FindClose_X					@109
@@ -33,6 +34,7 @@ EXPORTS
 	GetFileSizeEx			= GetFileSizeEx_X				@171
 	GetLastError			= GetLastError_X				@178
 	GetLocalTime			= GetLocalTime_X				@179
+	GetModuleHandleA		= GetModuleHandleA_X			@186
 	GetModuleHandleW		= GetModuleHandleW_X			@189
 	GetProcessHeap			= GetProcessHeap_X				@199
 	GetProcessId			= GetProcessId_X				@201
@@ -53,7 +55,9 @@ EXPORTS
 	IsDebuggerPresent		= IsDebuggerPresent_X			@283
 	IsProcessorFeaturePresent = IsProcessorFeaturePresent_X @284
 	LeaveCriticalSection	= NTDLL.RtlLeaveCriticalSection @293
+	LoadLibraryExW			= LoadLibraryExW_X				@296
 	MultiByteToWideChar		= MultiByteToWideChar_X			@313
+	OutputDebugStringA		= OutputDebugStringA_X			@327
 	OutputDebugStringW		= OutputDebugStringW_X			@328
 	PeekNamedPipe			= PeekNamedPipe_X				@330
 	QueryPerformanceCounter	= QueryPerformanceCounter_X		@333
@@ -65,7 +69,9 @@ EXPORTS
 	ResumeThread			= ResumeThread_X				@377
 	RtlCaptureContext		= RtlCaptureContext_X			@378
 	RtlLookupFunctionEntry	= RtlLookupFunctionEntry		@380
+	RtlUnwindEx				= RtlUnwindEx_X					@385
 	RtlVirtualUnwind		= NTDLL.RtlVirtualUnwind		@386
+	SetEvent				= SetEvent_X					@399
 	SetFilePointer			= SetFilePointer_X				@404
 	SetLastError			= NTDLL.RtlSetLastWin32Error	@409
 	SetThreadAffinityMask	= SetThreadAffinityMask_X		@418

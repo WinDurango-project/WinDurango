@@ -107,6 +107,21 @@ PRUNTIME_FUNCTION RtlLookupFunctionEntry_X(DWORD64 ControlPc, PDWORD64 ImageBase
     return RtlLookupFunctionEntry(ControlPc, ImageBase, HistoryTable);
 }
 
+void RtlUnwindEx_X(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue, PCONTEXT ContextRecord, PUNWIND_HISTORY_TABLE HistoryTable)
+{
+    RtlUnwindEx(TargetFrame, TargetIp, ExceptionRecord, ReturnValue, ContextRecord, HistoryTable);
+}
+
+BOOL DeviceIoControl_X(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped)
+{
+    return DeviceIoControl(hDevice, dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, nOutBufferSize, lpBytesReturned, lpOverlapped);
+}
+
+HMODULE LoadLibraryExW_X(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags)
+{
+    return LoadLibraryExW(lpLibFileName, hFile, dwFlags);
+}
+
 DWORD GetProcessId_X(HANDLE Process)
 {
     return GetProcessId(Process);
@@ -130,6 +145,11 @@ void GetStartupInfoW_X(LPSTARTUPINFOW lpStartupInfo)
 HMODULE GetModuleHandleW_X(LPCWSTR lpModuleName)
 {
     return GetModuleHandleW(lpModuleName);
+}
+
+HMODULE GetModuleHandleA_X(LPCSTR lpModuleName)
+{
+    return GetModuleHandleA(lpModuleName);
 }
 
 void GetLocalTime_X(LPSYSTEMTIME lpSystemTime)
@@ -340,6 +360,11 @@ BOOL QueryPerformanceCounter_X(LARGE_INTEGER* lpPerformanceCount)
     return QueryPerformanceCounter(lpPerformanceCount);
 }
 
+void OutputDebugStringA_X(LPCSTR lpOutputString)
+{
+    OutputDebugStringA(lpOutputString);
+}
+
 void OutputDebugStringW_X(LPCWSTR lpOutputString)
 {
     OutputDebugStringW(lpOutputString);
@@ -373,6 +398,11 @@ GEOID GetUserGeoID_X(GEOCLASS GeoClass)
 int GetUserDefaultLocaleName_X(LPWSTR lpLocaleName, int cchLocaleName)
 {
     return GetUserDefaultLocaleName(lpLocaleName, cchLocaleName);
+}
+
+BOOL SetEvent_X(HANDLE hEvent)
+{
+    return SetEvent(hEvent);
 }
 
 BOOL PeekNamedPipe_X(HANDLE hNamedPipe, LPVOID lpBuffer, DWORD nBufferSize, LPDWORD lpBytesRead, LPDWORD lpTotalBytesAvail, LPDWORD lpBytesLeftThisMessage)
