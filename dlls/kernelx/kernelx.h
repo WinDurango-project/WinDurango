@@ -146,6 +146,12 @@ extern "C" BOOL CreateDirectoryW_X(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpS
 
 extern "C" BOOL CloseHandle_X(HANDLE hObject);
 
+extern "C" BOOL DisableThreadLibraryCalls_X(HMODULE hLibModule);
+
+extern "C" BOOL HeapFree_X(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem);
+
+extern "C" BOOL PeekNamedPipe_X(HANDLE hNamedPipe, LPVOID lpBuffer, DWORD nBufferSize, LPDWORD lpBytesRead, LPDWORD lpTotalBytesAvail, LPDWORD lpBytesLeftThisMessage);
+
 extern "C" __int64 GetConsoleType_X();
 
 
@@ -153,8 +159,8 @@ extern "C" __int64 GetConsoleType_X();
 // EXE EXPORTS END
 
 
-PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter);
+//PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter);
 
+//DLLMain entrypoint matching test
 __int64 sub_18001BB8C();
-
 NTSTATUS sub_18001BCA0(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved);

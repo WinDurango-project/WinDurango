@@ -375,6 +375,21 @@ int GetUserDefaultLocaleName_X(LPWSTR lpLocaleName, int cchLocaleName)
     return GetUserDefaultLocaleName(lpLocaleName, cchLocaleName);
 }
 
+BOOL PeekNamedPipe_X(HANDLE hNamedPipe, LPVOID lpBuffer, DWORD nBufferSize, LPDWORD lpBytesRead, LPDWORD lpTotalBytesAvail, LPDWORD lpBytesLeftThisMessage)
+{
+    return PeekNamedPipe(hNamedPipe, lpBuffer, nBufferSize, lpBytesRead, lpTotalBytesAvail, lpBytesLeftThisMessage);
+}
+
+BOOL DisableThreadLibraryCalls_X(HMODULE hLibModule)
+{
+    return DisableThreadLibraryCalls(hLibModule);
+}
+
+BOOL HeapFree_X(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem)
+{
+    return HeapFree(hHeap, dwFlags, lpMem);
+}
+
 void GetSystemTime_X(LPSYSTEMTIME lpSystemTime)
 {
     GetSystemTime(lpSystemTime);
@@ -407,11 +422,11 @@ __int64 GetConsoleType_X()
 
 
 // !!!!!
-// Should be in ntdll.dll reimplementation, right now i'm just testing things with DLLMain entryPoint
+/*/ Should be in ntdll.dll reimplementation, right now i'm just testing things with DLLMain entryPoint
 PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter)
 {
 	return EncodePointer(ExceptionFilter);
-}
+}*/
 
 
 
