@@ -21,10 +21,6 @@ typedef NTSTATUS(NTAPI* NtFreeVirtualMemory_t)(
 // EXE EXPORTS
 extern "C"
 {
-	void AcquireSRWLockExclusive_X(PSRWLOCK SRWLock);
-
-	void AcquireSRWLockShared_X(PSRWLOCK SRWLock);
-
 	void EnterCriticalSection_X(LPCRITICAL_SECTION lpCriticalSection);
 
 	HANDLE GetProcessHeap_X();

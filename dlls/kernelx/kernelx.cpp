@@ -11,17 +11,6 @@
 NtAllocateVirtualMemory_t NtAllocateVirtualMemory;
 NtFreeVirtualMemory_t NtFreeVirtualMemory;
 
-
-void AcquireSRWLockExclusive_X(PSRWLOCK SRWLock)
-{
-	AcquireSRWLockExclusive(SRWLock);
-}
-
-void AcquireSRWLockShared_X(PSRWLOCK SRWLock)
-{
-	AcquireSRWLockShared(SRWLock);
-}
-
 void EnterCriticalSection_X(LPCRITICAL_SECTION lpCriticalSection)
 {
 	EnterCriticalSection(lpCriticalSection);
