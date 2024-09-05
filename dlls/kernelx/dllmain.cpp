@@ -31,7 +31,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved
                 DestinationString->Buffer = 0LL;
             }
             //Probably have to change this to SetUnhandledExceptionFilter
-            RtlSetUnhandledExceptionFilter(UnhandledExceptionFilter);
+            SetUnhandledExceptionFilter(UnhandledExceptionFilter);
         }
         else
         {

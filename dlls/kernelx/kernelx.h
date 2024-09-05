@@ -18,7 +18,9 @@ extern "C"
 
 	PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes);
 
-	LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter_X(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter);
+  BOOL XMemFree_X(PVOID P, UINT64 a2);
+
+  LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter_X(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter);
 
 	BOOL TerminateProcess_X(HANDLE hProcess, UINT uExitCode);
 
@@ -32,7 +34,13 @@ extern "C"
 
 	PRUNTIME_FUNCTION RtlLookupFunctionEntry_X(DWORD64 ControlPc, PDWORD64 ImageBase, PUNWIND_HISTORY_TABLE HistoryTable);
 
-	DWORD GetProcessId_X(HANDLE Process);
+  void RtlUnwindEx_X(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue, PCONTEXT ContextRecord, PUNWIND_HISTORY_TABLE HistoryTable);
+
+  BOOL DeviceIoControl_X(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped);
+
+  HMODULE LoadLibraryExW_X(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
+
+  DWORD GetProcessId_X(HANDLE Process);
 
 	void GetSystemTimeAsFileTime_X(LPFILETIME lpSystemTimeAsFileTime);
 
@@ -46,7 +54,7 @@ extern "C"
 
 	LPVOID VirtualAlloc_X(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 
-	BOOL XMemFreeDefault_X(PVOID P, unsigned __int64 a2);
+  BOOL XMemFreeDefault_X(PVOID P, UINT64 a2);
 
 	BOOL WriteFile_X(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped);
 
@@ -80,7 +88,9 @@ extern "C"
 
 	BOOL QueryPerformanceCounter_X(LARGE_INTEGER* lpPerformanceCount);
 
-	void OutputDebugStringW_X(LPCWSTR lpOutputString);
+  void OutputDebugStringA_X(LPCSTR lpOutputString);
+
+  void OutputDebugStringW_X(LPCWSTR lpOutputString);
 
 	int MultiByteToWideChar_X(UINT CodePage, DWORD dwFlags, LPCSTR lpMultiByteStr, int cbMultiByte, LPWSTR lpWideCharStr, int cchWideChar);
 
@@ -90,7 +100,9 @@ extern "C"
 
 	BOOL InitializeCriticalSectionAndSpinCount_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount);
 
-	GEOID GetUserGeoID_X(GEOCLASS GeoClass);
+  BOOL InitializeCriticalSectionEx_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags);
+
+  GEOID GetUserGeoID_X(GEOCLASS GeoClass);
 
 	int GetUserDefaultLocaleName_X(LPWSTR lpLocaleName, int cchLocaleName);
 
@@ -100,7 +112,9 @@ extern "C"
 
 	HMODULE GetModuleHandleW_X(LPCWSTR lpModuleName);
 
-	void GetLocalTime_X(LPSYSTEMTIME lpSystemTime);
+  HMODULE GetModuleHandleA_X(LPCSTR lpModuleName);
+
+  void GetLocalTime_X(LPSYSTEMTIME lpSystemTime);
 
 	DWORD GetLastError_X();
 
@@ -132,7 +146,9 @@ extern "C"
 
 	void DebugBreak_X();
 
-	HANDLE CreateThread_X(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
+  BOOL SetEvent_X(HANDLE hEvent);
+
+  HANDLE CreateThread_X(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
 
 	HANDLE CreateFileW_X(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 
@@ -144,16 +160,21 @@ extern "C"
 
 	BOOL CloseHandle_X(HANDLE hObject);
 
-	__int64 GetConsoleType_X();
+  BOOL DisableThreadLibraryCalls_X(HMODULE hLibModule);
 
+  BOOL HeapFree_X(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem);
+
+  BOOL PeekNamedPipe_X(HANDLE hNamedPipe, LPVOID lpBuffer, DWORD nBufferSize, LPDWORD lpBytesRead, LPDWORD lpTotalBytesAvail, LPDWORD lpBytesLeftThisMessage);
+
+  __int64 GetConsoleType_X();
 
 	//BOOL TerminateProcess(HANDLE hProcess, UINT uExitCode);
 }
 // EXE EXPORTS END
 
 
-PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter);
+//PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter);
 
+//DLLMain entrypoint matching test
 __int64 sub_18001BB8C();
-
 NTSTATUS sub_18001BCA0(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved);
