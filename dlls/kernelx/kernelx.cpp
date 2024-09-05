@@ -6,8 +6,10 @@
 #include "pch.h"
 #include "framework.h"
 #include "kernelx.h"
+#include <cstdint>
 
-
+NtAllocateVirtualMemory_t NtAllocateVirtualMemory;
+NtFreeVirtualMemory_t NtFreeVirtualMemory;
 
 
 void AcquireSRWLockExclusive_X(PSRWLOCK SRWLock)
@@ -30,41 +32,131 @@ HANDLE GetProcessHeap_X()
 	return GetProcessHeap();
 }
 
-// TODO: Need to figure out this function.
-PVOID XMemAllocDefault_X(ULONG_PTR a1, UINT64 a2)
-{
-	return nullptr;
-}
+uint32_t dword_180021AA0[16];
+uint32_t dword_180021A60[16];
+int64_t qword_18002C7E0[34];
+HANDLE HeapHandle;
 
-//TODO
-PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes)
-{
-    return XMemAllocDefault_X(dwSize, dwAttributes);
-}
 
-//TODO
-BOOL XMemFreeDefault_X(PVOID P, UINT64 a2)
-{
-    //STUB
-    return 0;
-}
+bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2) {
+    if (!P) return FALSE;
 
-//TODO
-BOOL XMemFree_X(PVOID P, UINT64 a2)
-{
-    return 0;
-    /*struct _EVENT_TRACE_HEADER v5; // [rsp+20h] [rbp-48h] BYREF
-    unsigned __int64 v6; // [rsp+50h] [rbp-18h]
+    uint64_t v3 = a2 >> 29;
+    uint32_t v2 = static_cast<uint32_t>(a2);
 
-    if (MEMORY[0x7FFE0390])
-    {
-        v5.Class.Version = 3105;
-        v5.ProcessorTime = 0LL;
-        v6 = a2;
-        *(&v5.GuidPtr + 1) = (ULONGLONG)P;
-        NtTraceEvent(MEMORY[0x7FFE0390], 0x10402u, 0x18u, &v5);
+    if (!dword_180021A60[v3 & 0xF] && (v2 & 0x1F000000) <= 0x4000000 && (v2 & 0xC000) == 0) {
+        return HeapFree(HeapHandle, 0, P) ? TRUE : FALSE;
     }
-    return off_18002B1B0(P, a2);*/
+
+    uint64_t v6 = v3 & 0xF;
+    int64_t v7 = qword_18002C7E0[v6];
+
+    // Check if the memory can be freed using sub_18000EA08
+    if (!v7 || !*reinterpret_cast<uint64_t*>(v7 + 48) ||
+        *reinterpret_cast<uint64_t*>(v7 + 48) > reinterpret_cast<uint64_t>(P) ||
+        *reinterpret_cast<uint64_t*>(v7 + 56) < reinterpret_cast<uint64_t>(P)) {
+
+        v7 = qword_18002C7E0[static_cast<unsigned int>(v6 + 16)];
+        if (!v7 || !*reinterpret_cast<uint64_t*>(v7 + 48) ||
+            *reinterpret_cast<uint64_t*>(v7 + 48) > reinterpret_cast<uint64_t>(P) ||
+            *reinterpret_cast<uint64_t*>(v7 + 56) < reinterpret_cast<uint64_t>(P)) {
+            v7 = 0;
+        }
+    }
+
+    if (v7) {
+        //Bored to implement
+        //return sub_18000EA08() ? TRUE : FALSE;
+    }
+
+    SIZE_T RegionSize = 0;
+    return NtFreeVirtualMemory(
+        reinterpret_cast<HANDLE>(0xFFFFFFFFFFFFFFFF),
+        &P,
+        &RegionSize,
+        MEM_RELEASE
+    ) >= 0 ? TRUE : FALSE;
+}
+
+__int64 XMemFree_X(PVOID P, __int64 a2) {
+    return XMemFreeDefault_X(P, a2);
+}
+
+
+PVOID XMemAllocDefault_X(uint64_t size, uint64_t flags) {
+    if (size == 0) return nullptr;
+
+    int64_t v8;
+    uint32_t v7 = dword_180021A60[(flags >> 29) & 0xF];
+    if (v7 == 0 || (flags & 0x1F000000) > 0x4000000 || (flags & 0xC000) != 0) {
+        if (v7 == 0x400000) {
+            v8 = 33;
+        }
+        else {
+            uint64_t v9 = (flags >> 24) & 0x1F;
+            if (v9 > 0x10 || size > 0x20000) {
+                v8 = 33;
+            }
+            else if (v9 > 0xC || size > 0xF00) {
+                v8 = (flags >> 29) & 0xF | 0x10;
+            }
+            else {
+                v8 = 32;
+            }
+        }
+    }
+    else {
+        v8 = 32;
+    }
+
+    if (v8 == 32) {
+        return nullptr;
+    }
+
+    if (v8 == 33) {
+        uint32_t AllocationType = 1073754112;
+        if ((flags & 0x1F000000) == 285212672) {
+            AllocationType = -1073729536;
+        }
+        else if ((flags >> 14) & 0xFFFF == 1) {
+            AllocationType = 1610625024;
+        }
+        else if ((flags >> 14) & 0xFFFF == 2) {
+            AllocationType = -1073729536;
+        }
+
+        uint32_t Protect = dword_180021AA0[(flags >> 29) & 0xF];
+        if (AllocationType & (1 << 22)) {
+            AllocationType &= 0xFFBFFFFF;
+            if ((flags & 0xC000) == 0) {
+                AllocationType |= 0x20000000;
+            }
+        }
+
+        void* baseAddress = nullptr;
+        SIZE_T regionSize = size;
+        if (NtAllocateVirtualMemory(
+            INVALID_HANDLE_VALUE,
+            &baseAddress,
+            0,
+            &regionSize,
+            AllocationType,
+            Protect) >= 0) {
+            return baseAddress;
+        }
+        return nullptr;
+    }
+
+    HeapHandle = HeapCreate(v8, 0, 0);
+    if (HeapHandle) {
+        return HeapAlloc(HeapHandle, 0, size);
+    }
+    return nullptr;
+}
+
+PVOID XMemAlloc_X(ULONG64 a1, __int64 a2)
+{
+    return XMemAllocDefault_X(a1, a2);
 }
 
 BOOL InitializeCriticalSectionEx_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags)
@@ -499,6 +591,17 @@ int sub_18001D96C(int v2, unsigned short* codePageData, unsigned int p, bool t,l
 
 __int64 sub_18001BB8C()
 {
+    // I know this should be done inside dllmain.cpp entrypoint but this is litreally the same (as this is called always at attachment
+    HMODULE ntdll = LoadLibraryA("ntdll.dll");
+    if (ntdll) {
+        NtAllocateVirtualMemory =
+            (NtAllocateVirtualMemory_t)GetProcAddress(ntdll, "NtAllocateVirtualMemory");
+        NtFreeVirtualMemory =
+            (NtFreeVirtualMemory_t)GetProcAddress(ntdll, "NtFreeVirtualMemory");
+
+        FreeLibrary(ntdll);
+    }
+
     /*unsigned int v0; // ebx
     unsigned __int16* AnsiCodePageData; // rdx
     int v2; // ecx

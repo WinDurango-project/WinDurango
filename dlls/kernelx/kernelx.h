@@ -2,6 +2,22 @@
 
 #include "framework.h"
 
+typedef NTSTATUS(NTAPI* NtAllocateVirtualMemory_t)(
+	HANDLE ProcessHandle,
+	PVOID* BaseAddress,
+	ULONG_PTR ZeroBits,
+	PSIZE_T RegionSize,
+	ULONG AllocationType,
+	ULONG Protect
+	);
+
+typedef NTSTATUS(NTAPI* NtFreeVirtualMemory_t)(
+	HANDLE ProcessHandle,
+	PVOID* BaseAddress,
+	PSIZE_T RegionSize,
+	ULONG FreeType
+	);
+
 // EXE EXPORTS
 extern "C"
 {
@@ -59,7 +75,7 @@ extern "C"
 
 	LPVOID VirtualAlloc_X(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 
-  	BOOL XMemFreeDefault_X(PVOID P, UINT64 a2);
+	bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2);
 
 	BOOL WriteFile_X(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped);
 
