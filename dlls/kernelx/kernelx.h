@@ -13,12 +13,17 @@ extern "C"
 
 	HANDLE GetProcessHeap_X();
 
+	BOOL __stdcall GetDiskFreeSpaceExW_X(LPCWSTR lpDirectoryName, PULARGE_INTEGER lpFreeBytesAvailableToCaller, PULARGE_INTEGER lpTotalNumberOfBytes, PULARGE_INTEGER lpTotalNumberOfFreeBytes);
+
+	FARPROC __stdcall GetProcAddress_X(HMODULE hModule, LPCSTR lpProcName);
 	// TODO: Need to figure out this function.
 	PVOID XMemAllocDefault_X(ULONG_PTR a1, UINT64 a2);
 
 	PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes);
 
   	BOOL XMemFree_X(PVOID P, UINT64 a2);
+
+	BOOL __stdcall WriteConsoleW_X(HANDLE hConsoleOutput, const void* lpBuffer, DWORD nNumberOfCharsToWrite, LPDWORD lpNumberOfCharsWritten, LPVOID lpReserved);
 
   	LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter_X(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter);
 

@@ -625,8 +625,27 @@ __int64 sub_18001BB8C()
     return v0;*/
     return 0;
 }
+BOOL __stdcall WriteConsoleW_X(HANDLE hConsoleOutput, const void* lpBuffer, DWORD nNumberOfCharsToWrite, LPDWORD lpNumberOfCharsWritten, LPVOID lpReserved)
+{
+    return WriteConsoleW(hConsoleOutput, lpBuffer, nNumberOfCharsToWrite, lpNumberOfCharsWritten, lpReserved);
+}
 
-
+BOOL __stdcall GetDiskFreeSpaceExW_X(LPCWSTR lpDirectoryName, PULARGE_INTEGER lpFreeBytesAvailableToCaller, PULARGE_INTEGER lpTotalNumberOfBytes, PULARGE_INTEGER lpTotalNumberOfFreeBytes)
+{
+    return GetDiskFreeSpaceExW(lpDirectoryName,lpFreeBytesAvailableToCaller, lpTotalNumberOfBytes, lpTotalNumberOfFreeBytes);
+}
+UINT __stdcall GetDriveTypeW_X(LPCWSTR lpRootPathName)
+{
+    return GetDriveTypeW(lpRootPathName);
+}
+FARPROC __stdcall GetProcAddress_X(HMODULE hModule, LPCSTR lpProcName)
+{
+    return GetProcAddress(hModule, lpProcName);
+}
+BOOL __stdcall FreeLibrary_X(HMODULE hLibModule)
+{
+    return FreeLibrary(hLibModule);
+}
 // absolutely temporary implementation I just want to make it work
 // decompilation from ghidra (it looks horrible lol)
 NTSTATUS sub_18001BCA0(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved)
