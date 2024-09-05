@@ -40,7 +40,7 @@ EXPORTS
 	GetTickCount			= GetTickCount_X				@231
 	GetUserDefaultLocaleName = GetUserDefaultLocaleName_X	@242
 	GetUserGeoID			= GetUserGeoID_X				@243
-	InitializeConditionVariable	= NTDDLL.RtlInitializeConditionVariable @269
+	InitializeConditionVariable	= NTDLL.RtlInitializeConditionVariable @269
 	InitializeCriticalSection = NTDLL.RtlInitializeCriticalSection	@271
 	InitializeCriticalSectionAndSpinCount = InitializeCriticalSectionAndSpinCount_X @272
 	InitializeCriticalSectionEx = InitializeCriticalSectionEx_X @273
