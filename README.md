@@ -18,7 +18,7 @@ Discussing illegal activities will get you banned.
 [![GitHub Latest Release](https://img.shields.io/badge/Latest-Release-green)](https://github.com/WinDurango/WinDurango/releases)
 [![View stargazers](https://img.shields.io/github/stars/WinDurango/WinDurango)](https://github.com/WinDurango/WinDurango/stargazers)
 
-Currently no games run with the WinDurango.
+Currently no games run with WinDurango.
 See the [Game compatibility list](https://github.com/WinDurango/WinDurango-game-compatibility/issues)
 for currently tracked games, and feel free to contribute your own updates,
 screenshots, and information there following the [existing conventions](https://github.com/WinDurango/WinDurango-game-compatibility/blob/main/README.md).
