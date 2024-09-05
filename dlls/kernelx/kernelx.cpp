@@ -43,10 +43,33 @@ PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes)
 }
 
 //TODO
-BOOL XMemFreeDefault_X(PVOID P, unsigned __int64 a2)
+BOOL XMemFreeDefault_X(PVOID P, UINT64 a2)
 {
     //STUB
     return 0;
+}
+
+//TODO
+BOOL XMemFree_X(PVOID P, UINT64 a2)
+{
+    return 0;
+    /*struct _EVENT_TRACE_HEADER v5; // [rsp+20h] [rbp-48h] BYREF
+    unsigned __int64 v6; // [rsp+50h] [rbp-18h]
+
+    if (MEMORY[0x7FFE0390])
+    {
+        v5.Class.Version = 3105;
+        v5.ProcessorTime = 0LL;
+        v6 = a2;
+        *(&v5.GuidPtr + 1) = (ULONGLONG)P;
+        NtTraceEvent(MEMORY[0x7FFE0390], 0x10402u, 0x18u, &v5);
+    }
+    return off_18002B1B0(P, a2);*/
+}
+
+BOOL InitializeCriticalSectionEx_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags)
+{
+    return InitializeCriticalSectionEx(lpCriticalSection, dwSpinCount, Flags);
 }
 
 LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter_X(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter)
@@ -84,6 +107,21 @@ PRUNTIME_FUNCTION RtlLookupFunctionEntry_X(DWORD64 ControlPc, PDWORD64 ImageBase
     return RtlLookupFunctionEntry(ControlPc, ImageBase, HistoryTable);
 }
 
+void RtlUnwindEx_X(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue, PCONTEXT ContextRecord, PUNWIND_HISTORY_TABLE HistoryTable)
+{
+    RtlUnwindEx(TargetFrame, TargetIp, ExceptionRecord, ReturnValue, ContextRecord, HistoryTable);
+}
+
+BOOL DeviceIoControl_X(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped)
+{
+    return DeviceIoControl(hDevice, dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, nOutBufferSize, lpBytesReturned, lpOverlapped);
+}
+
+HMODULE LoadLibraryExW_X(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags)
+{
+    return LoadLibraryExW(lpLibFileName, hFile, dwFlags);
+}
+
 DWORD GetProcessId_X(HANDLE Process)
 {
     return GetProcessId(Process);
@@ -107,6 +145,11 @@ void GetStartupInfoW_X(LPSTARTUPINFOW lpStartupInfo)
 HMODULE GetModuleHandleW_X(LPCWSTR lpModuleName)
 {
     return GetModuleHandleW(lpModuleName);
+}
+
+HMODULE GetModuleHandleA_X(LPCSTR lpModuleName)
+{
+    return GetModuleHandleA(lpModuleName);
 }
 
 void GetLocalTime_X(LPSYSTEMTIME lpSystemTime)
@@ -317,6 +360,11 @@ BOOL QueryPerformanceCounter_X(LARGE_INTEGER* lpPerformanceCount)
     return QueryPerformanceCounter(lpPerformanceCount);
 }
 
+void OutputDebugStringA_X(LPCSTR lpOutputString)
+{
+    OutputDebugStringA(lpOutputString);
+}
+
 void OutputDebugStringW_X(LPCWSTR lpOutputString)
 {
     OutputDebugStringW(lpOutputString);
@@ -352,6 +400,26 @@ int GetUserDefaultLocaleName_X(LPWSTR lpLocaleName, int cchLocaleName)
     return GetUserDefaultLocaleName(lpLocaleName, cchLocaleName);
 }
 
+BOOL SetEvent_X(HANDLE hEvent)
+{
+    return SetEvent(hEvent);
+}
+
+BOOL PeekNamedPipe_X(HANDLE hNamedPipe, LPVOID lpBuffer, DWORD nBufferSize, LPDWORD lpBytesRead, LPDWORD lpTotalBytesAvail, LPDWORD lpBytesLeftThisMessage)
+{
+    return PeekNamedPipe(hNamedPipe, lpBuffer, nBufferSize, lpBytesRead, lpTotalBytesAvail, lpBytesLeftThisMessage);
+}
+
+BOOL DisableThreadLibraryCalls_X(HMODULE hLibModule)
+{
+    return DisableThreadLibraryCalls(hLibModule);
+}
+
+BOOL HeapFree_X(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem)
+{
+    return HeapFree(hHeap, dwFlags, lpMem);
+}
+
 void GetSystemTime_X(LPSYSTEMTIME lpSystemTime)
 {
     GetSystemTime(lpSystemTime);
@@ -384,11 +452,11 @@ __int64 GetConsoleType_X()
 
 
 // !!!!!
-// Should be in ntdll.dll reimplementation, right now i'm just testing things with DLLMain entryPoint
+/*/ Should be in ntdll.dll reimplementation, right now i'm just testing things with DLLMain entryPoint
 PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter)
 {
 	return EncodePointer(ExceptionFilter);
-}
+}*/
 
 
 

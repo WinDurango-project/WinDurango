@@ -16,6 +16,8 @@ extern "C" PVOID XMemAllocDefault_X(ULONG_PTR a1, UINT64 a2);
 
 extern "C" PVOID XMemAlloc_X(SIZE_T dwSize, ULONGLONG dwAttributes);
 
+extern "C" BOOL XMemFree_X(PVOID P, UINT64 a2);
+
 extern "C" LPTOP_LEVEL_EXCEPTION_FILTER SetUnhandledExceptionFilter_X(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter);
 
 extern "C" BOOL TerminateProcess_X(HANDLE hProcess, UINT uExitCode);
@@ -29,6 +31,12 @@ extern "C" DWORD GetTickCount_X();
 extern "C" void RtlCaptureContext_X(PCONTEXT ContextRecord);
 
 extern "C" PRUNTIME_FUNCTION RtlLookupFunctionEntry_X(DWORD64 ControlPc, PDWORD64 ImageBase, PUNWIND_HISTORY_TABLE HistoryTable);
+
+extern "C" void RtlUnwindEx_X(PVOID TargetFrame, PVOID TargetIp, PEXCEPTION_RECORD ExceptionRecord, PVOID ReturnValue, PCONTEXT ContextRecord, PUNWIND_HISTORY_TABLE HistoryTable);
+
+extern "C" BOOL DeviceIoControl_X(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped);
+
+extern "C" HMODULE LoadLibraryExW_X(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
 
 extern "C" DWORD GetProcessId_X(HANDLE Process);
 
@@ -44,7 +52,7 @@ extern "C" BOOL TlsSetValue_X(DWORD dwTlsIndex, LPVOID lpTlsValue);
 
 extern "C" LPVOID VirtualAlloc_X(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 
-extern "C" BOOL XMemFreeDefault_X(PVOID P, unsigned __int64 a2);
+extern "C" BOOL XMemFreeDefault_X(PVOID P, UINT64 a2);
 
 extern "C" BOOL WriteFile_X(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped);
 
@@ -78,6 +86,8 @@ extern "C" BOOL QueryPerformanceFrequency_X(LARGE_INTEGER* lpFrequency);
 
 extern "C" BOOL QueryPerformanceCounter_X(LARGE_INTEGER* lpPerformanceCount);
 
+extern "C" void OutputDebugStringA_X(LPCSTR lpOutputString);
+
 extern "C" void OutputDebugStringW_X(LPCWSTR lpOutputString);
 
 extern "C" int MultiByteToWideChar_X(UINT CodePage, DWORD dwFlags, LPCSTR lpMultiByteStr, int cbMultiByte, LPWSTR lpWideCharStr, int cchWideChar);
@@ -88,6 +98,8 @@ extern "C" BOOL IsDebuggerPresent_X();
 
 extern "C" BOOL InitializeCriticalSectionAndSpinCount_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount);
 
+extern "C" BOOL InitializeCriticalSectionEx_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags);
+
 extern "C" GEOID GetUserGeoID_X(GEOCLASS GeoClass);
 
 extern "C" int GetUserDefaultLocaleName_X(LPWSTR lpLocaleName, int cchLocaleName);
@@ -97,6 +109,8 @@ extern "C" void GetSystemTime_X(LPSYSTEMTIME lpSystemTime);
 extern "C" void GetStartupInfoW_X(LPSTARTUPINFOW lpStartupInfo);
 
 extern "C" HMODULE GetModuleHandleW_X(LPCWSTR lpModuleName);
+
+extern "C" HMODULE GetModuleHandleA_X(LPCSTR lpModuleName);
 
 extern "C" void GetLocalTime_X(LPSYSTEMTIME lpSystemTime);
 
@@ -130,6 +144,8 @@ extern "C" BOOL DeleteFileW_X(LPCWSTR lpFileName);
 
 extern "C" void DebugBreak_X();
 
+extern "C" BOOL SetEvent_X(HANDLE hEvent);
+
 extern "C" HANDLE CreateThread_X(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
 
 extern "C" HANDLE CreateFileW_X(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
@@ -142,6 +158,12 @@ extern "C" BOOL CreateDirectoryW_X(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpS
 
 extern "C" BOOL CloseHandle_X(HANDLE hObject);
 
+extern "C" BOOL DisableThreadLibraryCalls_X(HMODULE hLibModule);
+
+extern "C" BOOL HeapFree_X(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem);
+
+extern "C" BOOL PeekNamedPipe_X(HANDLE hNamedPipe, LPVOID lpBuffer, DWORD nBufferSize, LPDWORD lpBytesRead, LPDWORD lpTotalBytesAvail, LPDWORD lpBytesLeftThisMessage);
+
 extern "C" __int64 GetConsoleType_X();
 
 
@@ -149,8 +171,8 @@ extern "C" __int64 GetConsoleType_X();
 // EXE EXPORTS END
 
 
-PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter);
+//PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter);
 
+//DLLMain entrypoint matching test
 __int64 sub_18001BB8C();
-
 NTSTATUS sub_18001BCA0(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved);
