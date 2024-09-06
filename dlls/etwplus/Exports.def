@@ -1,0 +1,8 @@
+LIBRARY EtwPlus
+EXPORTS
+	EtxEventWrite           = EtxEventWrite_X          @1
+	EtxFillCommonFields_v7  = EtxFillCommonFields_v7_X @2
+	EtxRegister             = EtxRegister_X            @3
+	EtxResumeUploading      = EtxResumeUploading_X     @4
+	EtxSuspendUploading     = EtxSuspendUploading_X    @5
+	EtxUnregister           = EtxUnregister_X          @6
