@@ -2,9 +2,16 @@
 #include "pch.h"
 #include "appmodel.h"
 
-void CreateRandomAccessStreamOnFile_X() { }
+HRESULT CreateRandomAccessStreamOnFile_X(PCWSTR filePath, DWORD accessMode, REFIID riid, void **ppv) { return TRUE; }
 
-void CreateRandomAccessStreamOverStream_X() { }
+HRESULT CreateRandomAccessStreamOverStream_X(
+	// IStream      *stream,
+	// BSOS_OPTIONS options,
+	REFIID       riid,
+	void         **ppv) 
+{
+	return TRUE;
+}
 
 void DllCanUnloadNow_X() { }
 
@@ -36,7 +43,7 @@ void GetPackageFamilyName_X() { }
 
 void GetPackageFullName_X() { }
 
-void GetPackageId_X() { }
+LONG GetPackageId_X(HANDLE hProcess, UINT32 *bufferLength, BYTE *buffer) { return 0; }
 
 void GetPackagePath_X() { }
 
