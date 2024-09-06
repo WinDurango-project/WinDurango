@@ -135,8 +135,6 @@ EXPORTS
     RtlUnwind																		= NTDLL.RtlUnwind											@384
     RtlUnwindEx																		= NTDLL.RtlUnwindEx											@385
 	RtlVirtualUnwind																= NTDLL.RtlVirtualUnwind									@386
-	RtlLookupFunctionEntry															= RtlLookupFunctionEntry									@380
-	RtlUnwindEx																		= RtlUnwindEx_X												@385
 	SetCriticalSectionSpinCount														= NTDLL.RtlSetCriticalSectionSpinCount						@390
 	SetEvent																		= SetEvent_X												@399
 	SetEventWhenCallbackReturns														= NTDLL.TpCallbackSetEventOnCompletion						@400
