@@ -27,7 +27,7 @@ int64_t qword_18002C7E0[34];
 HANDLE HeapHandle;
 
 
-bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2) {
+BOOL XMemFreeDefault_X(PVOID P, UINT64 a2) {
     if (!P) return FALSE;
 
     uint64_t v3 = a2 >> 29;
@@ -67,15 +67,15 @@ bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2) {
     ) >= 0 ? TRUE : FALSE;
 }
 
-__int64 XMemFree_X(PVOID P, __int64 a2) {
+BOOL XMemFree_X(PVOID P, UINT64 a2) {
     return XMemFreeDefault_X(P, a2);
 }
 
 
-PVOID XMemAllocDefault_X(uint64_t size, uint64_t flags) {
+PVOID XMemAllocDefault_X(ULONG_PTR size, UINT64 flags) {
     if (size == 0) return nullptr;
-
-    int64_t v8;
+    
+    DWORD v8;
     uint32_t v7 = dword_180021A60[(flags >> 29) & 0xF];
     if (v7 == 0 || (flags & 0x1F000000) > 0x4000000 || (flags & 0xC000) != 0) {
         if (v7 == 0x400000) {
@@ -107,10 +107,10 @@ PVOID XMemAllocDefault_X(uint64_t size, uint64_t flags) {
         if ((flags & 0x1F000000) == 285212672) {
             AllocationType = -1073729536;
         }
-        else if ((flags >> 14) & 0xFFFF == 1) {
+        else if (((flags >> 14) & 0xFFFF) == 1) {
             AllocationType = 1610625024;
         }
-        else if ((flags >> 14) & 0xFFFF == 2) {
+        else if (((flags >> 14) & 0xFFFF) == 2) {
             AllocationType = -1073729536;
         }
 
@@ -143,9 +143,299 @@ PVOID XMemAllocDefault_X(uint64_t size, uint64_t flags) {
     return nullptr;
 }
 
-PVOID XMemAlloc_X(ULONG64 a1, __int64 a2)
+PVOID XMemAlloc_X(SIZE_T a1, ULONGLONG a2)
 {
     return XMemAllocDefault_X(a1, a2);
+}
+
+//TODO
+// I can't find any Kernel32 equivalent
+BOOL AllocateTitlePhysicalPages_X()
+{
+    return 1;
+}
+
+BOOL Beep_X(DWORD dwFreq, DWORD dwDuration)
+{
+    return Beep(dwFreq, dwDuration);
+}
+
+BOOL BindIoCompletionCallback_X(HANDLE FileHandle, LPOVERLAPPED_COMPLETION_ROUTINE Function, ULONG Flags)
+{
+    return BindIoCompletionCallback(FileHandle, Function, Flags);
+}
+
+BOOL CallbackMayRunLong_X(PTP_CALLBACK_INSTANCE pci)
+{
+    return CallbackMayRunLong(pci);
+}
+
+BOOL CancelIoEx_X(HANDLE hFile, LPOVERLAPPED lpOverlapped)
+{
+    return CancelIoEx(hFile, lpOverlapped);
+}
+
+BOOL CancelSynchronousIo_X(HANDLE hThread)
+{
+    return CancelSynchronousIo(hThread);
+}
+
+BOOL CancelWaitableTimer_X(HANDLE hTimer)
+{
+    return CancelWaitableTimer(hTimer);
+}
+
+LONG CompareFileTime_X(const FILETIME* lpFileTime1, const FILETIME* lpFileTime2)
+{
+    return CompareFileTime(lpFileTime1, lpFileTime2);
+}
+
+int CompareStringEx_X(LPCWSTR lpLocaleName, DWORD dwCmpFlags, LPCWSTR lpString1, int cchCount1, LPCWSTR lpString2, int cchCount2, LPNLSVERSIONINFO lpVersionInformation, LPVOID lpReserved, LPARAM lParam)
+{
+    return CompareStringEx(lpLocaleName, dwCmpFlags, lpString1, cchCount1, lpString2, cchCount2, lpVersionInformation, lpReserved, lParam);
+}
+
+int CompareStringOrdinal_X(LPCWCH lpString1, int cchCount1, LPCWCH lpString2, int cchCount2, BOOL bIgnoreCase)
+{
+    return CompareStringOrdinal(lpString1, cchCount1, lpString2, cchCount2, bIgnoreCase);
+}
+
+int CompareStringW_X(LCID Locale, DWORD dwCmpFlags, PCNZWCH lpString1, int cchCount1, PCNZWCH lpString2, int cchCount2)
+{
+    return CompareStringW(Locale, dwCmpFlags, lpString1, cchCount1, lpString2, cchCount2);
+}
+
+BOOL ConnectNamedPipe_X(HANDLE hNamedPipe, LPOVERLAPPED lpOverlapped)
+{
+    return ConnectNamedPipe(hNamedPipe, lpOverlapped);
+}
+
+BOOL ConvertFiberToThread_X()
+{
+    return ConvertFiberToThread();
+}
+
+LPVOID ConvertThreadToFiberEx_X(LPVOID lpParameter, DWORD dwFlags)
+{
+    return ConvertThreadToFiberEx(lpParameter, dwFlags);
+}
+
+LPVOID ConvertThreadToFiber_X(LPVOID lpParameter)
+{
+    return ConvertThreadToFiber(lpParameter);
+}
+
+BOOL CopyContext_X(PCONTEXT Destination, DWORD ContextFlags, PCONTEXT Source)
+{
+    return CopyContext(Destination, ContextFlags, Source);
+}
+
+HRESULT CopyFile2_X(PCWSTR pwszExistingFileName, PCWSTR pwszNewFileName, COPYFILE2_EXTENDED_PARAMETERS* pExtendedParameters)
+{
+    return CopyFile2(pwszExistingFileName, pwszNewFileName, pExtendedParameters);
+}
+
+BOOL CreateDirectoryA_X(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+{
+    return CreateDirectoryA(lpPathName, lpSecurityAttributes);
+}
+
+HANDLE CreateEventA_X(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCSTR lpName)
+{
+    return CreateEventA( lpEventAttributes, bManualReset, bInitialState, lpName);
+}
+
+HANDLE CreateEventExA_X(LPSECURITY_ATTRIBUTES lpEventAttributes, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateEventExA(lpEventAttributes, lpName, dwFlags, dwDesiredAccess);
+}
+
+LPVOID CreateFiberEx_X(SIZE_T dwStackCommitSize, SIZE_T dwStackReserveSize, DWORD dwFlags, LPFIBER_START_ROUTINE lpStartAddress, LPVOID lpParameter)
+{
+    return CreateFiberEx(dwStackCommitSize, dwStackReserveSize, dwFlags, lpStartAddress, lpParameter);
+}
+
+LPVOID CreateFiber_X(SIZE_T dwStackSize, LPFIBER_START_ROUTINE lpStartAddress, LPVOID lpParameter)
+{
+    return CreateFiber(dwStackSize, lpStartAddress, lpParameter);
+}
+
+//TODO
+// strange lol
+void CreateFile2_X()
+{
+    //return CreateFile2();
+}
+
+HANDLE CreateFileA_X(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
+{
+    return CreateFileA(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+}
+
+
+HANDLE CreateFileMappingW_X(HANDLE hFile, LPSECURITY_ATTRIBUTES lpFileMappingAttributes, DWORD flProtect, DWORD dwMaximumSizeHigh, DWORD dwMaximumSizeLow, LPCWSTR lpName)
+{
+    return CreateFileMappingW(hFile, lpFileMappingAttributes, flProtect, dwMaximumSizeHigh, dwMaximumSizeLow, lpName);
+}
+
+HANDLE CreateIoCompletionPort_X(HANDLE FileHandle, HANDLE ExistingCompletionPort, ULONG_PTR CompletionKey, DWORD NumberOfConcurrentThreads)
+{
+    return CreateIoCompletionPort(FileHandle, ExistingCompletionPort, CompletionKey, NumberOfConcurrentThreads);
+}
+
+HANDLE CreateMutexA_X(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCSTR lpName)
+{
+    return CreateMutexA(lpMutexAttributes, bInitialOwner, lpName);
+}
+
+HANDLE CreateMutexExA_X(LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateMutexExA(lpMutexAttributes, lpName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateMutexExW_X(LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateMutexExW(lpMutexAttributes, lpName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateMutexW_X(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCWSTR lpName)
+{
+    return CreateMutexW(lpMutexAttributes, bInitialOwner, lpName);
+}
+
+HANDLE CreateNamedPipeW_X(LPCWSTR lpName, DWORD dwOpenMode, DWORD dwPipeMode, DWORD nMaxInstances, DWORD nOutBufferSize, DWORD nInBufferSize, DWORD nDefaultTimeOut, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+{
+    return CreateNamedPipeW(lpName, dwOpenMode, dwPipeMode, nMaxInstances, nOutBufferSize, nInBufferSize, nDefaultTimeOut, lpSecurityAttributes);
+}
+
+BOOL CreatePipe_X(PHANDLE hReadPipe, PHANDLE hWritePipe, LPSECURITY_ATTRIBUTES lpPipeAttributes, DWORD nSize)
+{
+    return CreatePipe(hReadPipe, hWritePipe, lpPipeAttributes, nSize);
+}
+
+BOOL CreateProcessA_X(LPCSTR lpApplicationName, LPSTR lpCommandLine, LPSECURITY_ATTRIBUTES lpProcessAttributes, LPSECURITY_ATTRIBUTES lpThreadAttributes, BOOL bInheritHandles, DWORD dwCreationFlags, LPVOID lpEnvironment, LPCSTR lpCurrentDirectory, LPSTARTUPINFOA lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation)
+{
+    return CreateProcessA(lpApplicationName, lpCommandLine, lpProcessAttributes, lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo, lpProcessInformation);
+}
+
+BOOL CreateProcessW_X(LPCWSTR lpApplicationName, LPWSTR lpCommandLine, LPSECURITY_ATTRIBUTES lpProcessAttributes, LPSECURITY_ATTRIBUTES lpThreadAttributes, BOOL bInheritHandles, DWORD dwCreationFlags, LPVOID lpEnvironment, LPCWSTR lpCurrentDirectory, LPSTARTUPINFOW lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation)
+{
+    return CreateProcessW(lpApplicationName, lpCommandLine, lpProcessAttributes, lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo, lpProcessInformation);
+}
+
+HANDLE CreateRemoteThread_X(HANDLE hProcess, LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId)
+{
+    return CreateRemoteThread(hProcess, lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, lpThreadId);
+}
+
+HANDLE CreateSemaphoreA_X(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCSTR lpName)
+{
+    return CreateSemaphoreA(lpSemaphoreAttributes, lInitialCount, lMaximumCount, lpName);
+}
+
+HANDLE CreateSemaphoreExA_X(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateSemaphoreExA(lpSemaphoreAttributes, lInitialCount, lMaximumCount, lpName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateSemaphoreExW_X(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateSemaphoreExW(lpSemaphoreAttributes, lInitialCount, lMaximumCount, lpName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateSemaphoreW_X(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCWSTR lpName)
+{
+    return CreateSemaphoreW(lpSemaphoreAttributes, lInitialCount, lMaximumCount, lpName);
+}
+
+PTP_CLEANUP_GROUP CreateThreadpoolCleanupGroup_X()
+{
+    return CreateThreadpoolCleanupGroup();
+}
+
+PTP_IO CreateThreadpoolIo_X(HANDLE fl, PTP_WIN32_IO_CALLBACK pfnio, PVOID pv, PTP_CALLBACK_ENVIRON pcbe)
+{
+    return CreateThreadpoolIo(fl, pfnio, pv, pcbe);
+}
+
+PTP_TIMER CreateThreadpoolTimer_X(PTP_TIMER_CALLBACK pfnti, PVOID pv, PTP_CALLBACK_ENVIRON pcbe)
+{
+    return CreateThreadpoolTimer(pfnti, pv, pcbe);
+}
+
+PTP_WAIT CreateThreadpoolWait_X(PTP_WAIT_CALLBACK pfnwa, PVOID pv, PTP_CALLBACK_ENVIRON pcbe)
+{
+    return CreateThreadpoolWait(pfnwa, pv, pcbe);
+}
+
+PTP_WORK CreateThreadpoolWork_X(PTP_WORK_CALLBACK pfnwk, PVOID pv, PTP_CALLBACK_ENVIRON pcbe)
+{
+    return CreateThreadpoolWork(pfnwk, pv, pcbe);
+}
+
+PTP_POOL CreateThreadpool_X(PVOID reserved)
+{
+    return CreateThreadpool(reserved);
+}
+
+HANDLE CreateWaitableTimerA_X(LPSECURITY_ATTRIBUTES lpTimerAttributes, BOOL bManualReset, LPCSTR lpTimerName)
+{
+    return CreateWaitableTimerA(lpTimerAttributes, bManualReset, lpTimerName);
+}
+
+HANDLE CreateWaitableTimerExA_X(LPSECURITY_ATTRIBUTES lpTimerAttributes, LPCSTR lpTimerName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateWaitableTimerExA_X(lpTimerAttributes, lpTimerName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateWaitableTimerExW_X(LPSECURITY_ATTRIBUTES lpTimerAttributes, LPCWSTR lpTimerName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateWaitableTimerExW(lpTimerAttributes, lpTimerName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateWaitableTimerW_X(LPSECURITY_ATTRIBUTES lpTimerAttributes, BOOL bManualReset, LPCWSTR lpTimerName)
+{
+    return CreateWaitableTimerW_X(lpTimerAttributes, bManualReset, lpTimerName);
+}
+
+void DeleteFiber_X(LPVOID lpFiber)
+{
+    DeleteFiber(lpFiber);
+}
+
+BOOL DeleteFileA_X(LPCSTR lpFileName)
+{
+    return DeleteFileA(lpFileName);
+}
+
+BOOL DisconnectNamedPipe_X(HANDLE hNamedPipe)
+{
+    return DisconnectNamedPipe(hNamedPipe);
+}
+
+BOOL DuplicateHandle_X(HANDLE hSourceProcessHandle,HANDLE hSourceHandle, HANDLE hTargetProcessHandle, LPHANDLE lpTargetHandle, DWORD dwDesiredAccess, BOOL bInheritHandle, DWORD dwOptions)
+{
+    return DuplicateHandle(hSourceProcessHandle, hSourceHandle, hTargetProcessHandle, lpTargetHandle, dwDesiredAccess, bInheritHandle, dwOptions);
+}
+
+BOOL EnterSynchronizationBarrier_X(LPSYNCHRONIZATION_BARRIER lpBarrier, DWORD dwFlags)
+{
+    return EnterSynchronizationBarrier(lpBarrier, dwFlags);
+}
+
+BOOL EnumSystemLocalesA_X(LOCALE_ENUMPROCA lpLocaleEnumProc, DWORD dwFlags)
+{
+    return EnumSystemLocalesA(lpLocaleEnumProc, dwFlags);
+}
+
+BOOL EnumSystemLocalesEx_X(LOCALE_ENUMPROCEX lpLocaleEnumProcEx, DWORD dwFlags, LPARAM lParam, LPVOID lpReserved)
+{
+    return EnumSystemLocalesEx(lpLocaleEnumProcEx, dwFlags, lParam, lpReserved);
+}
+
+BOOL EnumSystemLocalesW_X(LOCALE_ENUMPROCW lpLocaleEnumProc, DWORD dwFlags)
+{
+    return EnumSystemLocalesW(lpLocaleEnumProc, dwFlags);
 }
 
 BOOL InitializeCriticalSectionEx_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags)
@@ -721,24 +1011,24 @@ __int64 sub_18001BB8C()
     return v0;*/
     return 0;
 }
-BOOL __stdcall WriteConsoleW_X(HANDLE hConsoleOutput, const void* lpBuffer, DWORD nNumberOfCharsToWrite, LPDWORD lpNumberOfCharsWritten, LPVOID lpReserved)
+BOOL WriteConsoleW_X(HANDLE hConsoleOutput, const void* lpBuffer, DWORD nNumberOfCharsToWrite, LPDWORD lpNumberOfCharsWritten, LPVOID lpReserved)
 {
     return WriteConsoleW(hConsoleOutput, lpBuffer, nNumberOfCharsToWrite, lpNumberOfCharsWritten, lpReserved);
 }
 
-BOOL __stdcall GetDiskFreeSpaceExW_X(LPCWSTR lpDirectoryName, PULARGE_INTEGER lpFreeBytesAvailableToCaller, PULARGE_INTEGER lpTotalNumberOfBytes, PULARGE_INTEGER lpTotalNumberOfFreeBytes)
+BOOL GetDiskFreeSpaceExW_X(LPCWSTR lpDirectoryName, PULARGE_INTEGER lpFreeBytesAvailableToCaller, PULARGE_INTEGER lpTotalNumberOfBytes, PULARGE_INTEGER lpTotalNumberOfFreeBytes)
 {
     return GetDiskFreeSpaceExW(lpDirectoryName,lpFreeBytesAvailableToCaller, lpTotalNumberOfBytes, lpTotalNumberOfFreeBytes);
 }
-UINT __stdcall GetDriveTypeW_X(LPCWSTR lpRootPathName)
+UINT GetDriveTypeW_X(LPCWSTR lpRootPathName)
 {
     return GetDriveTypeW(lpRootPathName);
 }
-FARPROC __stdcall GetProcAddress_X(HMODULE hModule, LPCSTR lpProcName)
+FARPROC GetProcAddress_X(HMODULE hModule, LPCSTR lpProcName)
 {
     return GetProcAddress(hModule, lpProcName);
 }
-BOOL __stdcall FreeLibrary_X(HMODULE hLibModule)
+BOOL FreeLibrary_X(HMODULE hLibModule)
 {
     return FreeLibrary(hLibModule);
 }
