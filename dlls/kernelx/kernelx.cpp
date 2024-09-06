@@ -318,81 +318,32 @@ __int64 XMemFree_X(PVOID P, __int64 a2) {
 }
 
 
+
+// Define PVOID for non-Windows environments if needed
+#ifndef _WINDEF_
+typedef void* PVOID;
+#endif
+
 PVOID XMemAllocDefault_X(uint64_t size, uint64_t flags) {
-    if (size == 0) return nullptr;
+    PVOID ptr = nullptr;
+    // Example flag usage: we assume if the highest bit of flags is set, we zero the memory.
+    bool shouldZeroMemory = (flags & (1ULL << 63)) != 0;
 
-    int64_t v8;
-    uint32_t v7 = dword_180021A60[(flags >> 29) & 0xF];
-    if (v7 == 0 || (flags & 0x1F000000) > 0x4000000 || (flags & 0xC000) != 0) {
-        if (v7 == 0x400000) {
-            v8 = 33;
-        }
-        else {
-            uint64_t v9 = (flags >> 24) & 0x1F;
-            if (v9 > 0x10 || size > 0x20000) {
-                v8 = 33;
-            }
-            else if (v9 > 0xC || size > 0xF00) {
-                v8 = (flags >> 29) & 0xF | 0x10;
-            }
-            else {
-                v8 = 32;
-            }
-        }
-    }
-    else {
-        v8 = 32;
+    // Allocate memory
+    ptr = malloc(size);
+
+    // Optionally zero out the memory if the flag is set
+    if (ptr && shouldZeroMemory) {
+        memset(ptr, 0, size);
     }
 
-    if (v8 == 32) {
-        return nullptr;
-    }
-
-    if (v8 == 33) {
-        uint32_t AllocationType = 1073754112;
-        if ((flags & 0x1F000000) == 285212672) {
-            AllocationType = -1073729536;
-        }
-        else if ((flags >> 14) & 0xFFFF == 1) {
-            AllocationType = 1610625024;
-        }
-        else if ((flags >> 14) & 0xFFFF == 2) {
-            AllocationType = -1073729536;
-        }
-
-        uint32_t Protect = dword_180021AA0[(flags >> 29) & 0xF];
-        if (AllocationType & (1 << 22)) {
-            AllocationType &= 0xFFBFFFFF;
-            if ((flags & 0xC000) == 0) {
-                AllocationType |= 0x20000000;
-            }
-        }
-
-        void* baseAddress = nullptr;
-        SIZE_T regionSize = size;
-        if (NtAllocateVirtualMemory(
-            INVALID_HANDLE_VALUE,
-            &baseAddress,
-            0,
-            &regionSize,
-            AllocationType,
-            Protect) >= 0) {
-            return baseAddress;
-        }
-        return nullptr;
-    }
-
-    HeapHandle = HeapCreate(v8, 0, 0);
-    if (HeapHandle) {
-        return HeapAlloc(HeapHandle, 0, size);
-    }
-    return nullptr;
+    return ptr;
 }
 
-PVOID XMemAlloc_X(ULONG64 a1, __int64 a2)
-{
-    return XMemAllocDefault_X(a1, a2);
+PVOID XMemAlloc_X(uint64_t size, uint64_t flags) {
+    return XMemAllocDefault_X(size, flags);
 }
+
 
 // TODO
 // absolutely temporary implementation I just want to make it work
