@@ -278,8 +278,165 @@ HANDLE CreateFileMappingW_X(HANDLE hFile, LPSECURITY_ATTRIBUTES lpFileMappingAtt
     return CreateFileMappingW(hFile, lpFileMappingAttributes, flProtect, dwMaximumSizeHigh, dwMaximumSizeLow, lpName);
 }
 
+HANDLE CreateIoCompletionPort_X(HANDLE FileHandle, HANDLE ExistingCompletionPort, ULONG_PTR CompletionKey, DWORD NumberOfConcurrentThreads)
+{
+    return CreateIoCompletionPort(FileHandle, ExistingCompletionPort, CompletionKey, NumberOfConcurrentThreads);
+}
 
+HANDLE CreateMutexA_X(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCSTR lpName)
+{
+    return CreateMutexA(lpMutexAttributes, bInitialOwner, lpName);
+}
 
+HANDLE CreateMutexExA_X(LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateMutexExA(lpMutexAttributes, lpName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateMutexExW_X(LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateMutexExW(lpMutexAttributes, lpName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateMutexW_X(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCWSTR lpName)
+{
+    return CreateMutexW(lpMutexAttributes, bInitialOwner, lpName);
+}
+
+HANDLE CreateNamedPipeW_X(LPCWSTR lpName, DWORD dwOpenMode, DWORD dwPipeMode, DWORD nMaxInstances, DWORD nOutBufferSize, DWORD nInBufferSize, DWORD nDefaultTimeOut, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+{
+    return CreateNamedPipeW(lpName, dwOpenMode, dwPipeMode, nMaxInstances, nOutBufferSize, nInBufferSize, nDefaultTimeOut, lpSecurityAttributes);
+}
+
+BOOL CreatePipe_X(PHANDLE hReadPipe, PHANDLE hWritePipe, LPSECURITY_ATTRIBUTES lpPipeAttributes, DWORD nSize)
+{
+    return CreatePipe(hReadPipe, hWritePipe, lpPipeAttributes, nSize);
+}
+
+BOOL CreateProcessA_X(LPCSTR lpApplicationName, LPSTR lpCommandLine, LPSECURITY_ATTRIBUTES lpProcessAttributes, LPSECURITY_ATTRIBUTES lpThreadAttributes, BOOL bInheritHandles, DWORD dwCreationFlags, LPVOID lpEnvironment, LPCSTR lpCurrentDirectory, LPSTARTUPINFOA lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation)
+{
+    return CreateProcessA(lpApplicationName, lpCommandLine, lpProcessAttributes, lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo, lpProcessInformation);
+}
+
+BOOL CreateProcessW_X(LPCWSTR lpApplicationName, LPWSTR lpCommandLine, LPSECURITY_ATTRIBUTES lpProcessAttributes, LPSECURITY_ATTRIBUTES lpThreadAttributes, BOOL bInheritHandles, DWORD dwCreationFlags, LPVOID lpEnvironment, LPCWSTR lpCurrentDirectory, LPSTARTUPINFOW lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation)
+{
+    return CreateProcessW(lpApplicationName, lpCommandLine, lpProcessAttributes, lpThreadAttributes, bInheritHandles, dwCreationFlags, lpEnvironment, lpCurrentDirectory, lpStartupInfo, lpProcessInformation);
+}
+
+HANDLE CreateRemoteThread_X(HANDLE hProcess, LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId)
+{
+    return CreateRemoteThread(hProcess, lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, lpThreadId);
+}
+
+HANDLE CreateSemaphoreA_X(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCSTR lpName)
+{
+    return CreateSemaphoreA(lpSemaphoreAttributes, lInitialCount, lMaximumCount, lpName);
+}
+
+HANDLE CreateSemaphoreExA_X(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateSemaphoreExA(lpSemaphoreAttributes, lInitialCount, lMaximumCount, lpName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateSemaphoreExW_X(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCWSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateSemaphoreExW(lpSemaphoreAttributes, lInitialCount, lMaximumCount, lpName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateSemaphoreW_X(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, LONG lInitialCount, LONG lMaximumCount, LPCWSTR lpName)
+{
+    return CreateSemaphoreW(lpSemaphoreAttributes, lInitialCount, lMaximumCount, lpName);
+}
+
+PTP_CLEANUP_GROUP CreateThreadpoolCleanupGroup_X()
+{
+    return CreateThreadpoolCleanupGroup();
+}
+
+PTP_IO CreateThreadpoolIo_X(HANDLE fl, PTP_WIN32_IO_CALLBACK pfnio, PVOID pv, PTP_CALLBACK_ENVIRON pcbe)
+{
+    return CreateThreadpoolIo(fl, pfnio, pv, pcbe);
+}
+
+PTP_TIMER CreateThreadpoolTimer_X(PTP_TIMER_CALLBACK pfnti, PVOID pv, PTP_CALLBACK_ENVIRON pcbe)
+{
+    return CreateThreadpoolTimer(pfnti, pv, pcbe);
+}
+
+PTP_WAIT CreateThreadpoolWait_X(PTP_WAIT_CALLBACK pfnwa, PVOID pv, PTP_CALLBACK_ENVIRON pcbe)
+{
+    return CreateThreadpoolWait(pfnwa, pv, pcbe);
+}
+
+PTP_WORK CreateThreadpoolWork_X(PTP_WORK_CALLBACK pfnwk, PVOID pv, PTP_CALLBACK_ENVIRON pcbe)
+{
+    return CreateThreadpoolWork(pfnwk, pv, pcbe);
+}
+
+PTP_POOL CreateThreadpool_X(PVOID reserved)
+{
+    return CreateThreadpool(reserved);
+}
+
+HANDLE CreateWaitableTimerA_X(LPSECURITY_ATTRIBUTES lpTimerAttributes, BOOL bManualReset, LPCSTR lpTimerName)
+{
+    return CreateWaitableTimerA(lpTimerAttributes, bManualReset, lpTimerName);
+}
+
+HANDLE CreateWaitableTimerExA_X(LPSECURITY_ATTRIBUTES lpTimerAttributes, LPCSTR lpTimerName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateWaitableTimerExA_X(lpTimerAttributes, lpTimerName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateWaitableTimerExW_X(LPSECURITY_ATTRIBUTES lpTimerAttributes, LPCWSTR lpTimerName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateWaitableTimerExW(lpTimerAttributes, lpTimerName, dwFlags, dwDesiredAccess);
+}
+
+HANDLE CreateWaitableTimerW_X(LPSECURITY_ATTRIBUTES lpTimerAttributes, BOOL bManualReset, LPCWSTR lpTimerName)
+{
+    return CreateWaitableTimerW_X(lpTimerAttributes, bManualReset, lpTimerName);
+}
+
+void DeleteFiber_X(LPVOID lpFiber)
+{
+    DeleteFiber(lpFiber);
+}
+
+BOOL DeleteFileA_X(LPCSTR lpFileName)
+{
+    return DeleteFileA(lpFileName);
+}
+
+BOOL DisconnectNamedPipe_X(HANDLE hNamedPipe)
+{
+    return DisconnectNamedPipe(hNamedPipe);
+}
+
+BOOL DuplicateHandle_X(HANDLE hSourceProcessHandle,HANDLE hSourceHandle, HANDLE hTargetProcessHandle, LPHANDLE lpTargetHandle, DWORD dwDesiredAccess, BOOL bInheritHandle, DWORD dwOptions)
+{
+    return DuplicateHandle(hSourceProcessHandle, hSourceHandle, hTargetProcessHandle, lpTargetHandle, dwDesiredAccess, bInheritHandle, dwOptions);
+}
+
+BOOL EnterSynchronizationBarrier_X(LPSYNCHRONIZATION_BARRIER lpBarrier, DWORD dwFlags)
+{
+    return EnterSynchronizationBarrier(lpBarrier, dwFlags);
+}
+
+BOOL EnumSystemLocalesA_X(LOCALE_ENUMPROCA lpLocaleEnumProc, DWORD dwFlags)
+{
+    return EnumSystemLocalesA(lpLocaleEnumProc, dwFlags);
+}
+
+BOOL EnumSystemLocalesEx_X(LOCALE_ENUMPROCEX lpLocaleEnumProcEx, DWORD dwFlags, LPARAM lParam, LPVOID lpReserved)
+{
+    return EnumSystemLocalesEx(lpLocaleEnumProcEx, dwFlags, lParam, lpReserved);
+}
+
+BOOL EnumSystemLocalesW_X(LOCALE_ENUMPROCW lpLocaleEnumProc, DWORD dwFlags)
+{
+    return EnumSystemLocalesW(lpLocaleEnumProc, dwFlags);
+}
 
 BOOL InitializeCriticalSectionEx_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags)
 {
@@ -781,24 +938,24 @@ __int64 sub_18001BB8C()
     return v0;*/
     return 0;
 }
-BOOL __stdcall WriteConsoleW_X(HANDLE hConsoleOutput, const void* lpBuffer, DWORD nNumberOfCharsToWrite, LPDWORD lpNumberOfCharsWritten, LPVOID lpReserved)
+BOOL WriteConsoleW_X(HANDLE hConsoleOutput, const void* lpBuffer, DWORD nNumberOfCharsToWrite, LPDWORD lpNumberOfCharsWritten, LPVOID lpReserved)
 {
     return WriteConsoleW(hConsoleOutput, lpBuffer, nNumberOfCharsToWrite, lpNumberOfCharsWritten, lpReserved);
 }
 
-BOOL __stdcall GetDiskFreeSpaceExW_X(LPCWSTR lpDirectoryName, PULARGE_INTEGER lpFreeBytesAvailableToCaller, PULARGE_INTEGER lpTotalNumberOfBytes, PULARGE_INTEGER lpTotalNumberOfFreeBytes)
+BOOL GetDiskFreeSpaceExW_X(LPCWSTR lpDirectoryName, PULARGE_INTEGER lpFreeBytesAvailableToCaller, PULARGE_INTEGER lpTotalNumberOfBytes, PULARGE_INTEGER lpTotalNumberOfFreeBytes)
 {
     return GetDiskFreeSpaceExW(lpDirectoryName,lpFreeBytesAvailableToCaller, lpTotalNumberOfBytes, lpTotalNumberOfFreeBytes);
 }
-UINT __stdcall GetDriveTypeW_X(LPCWSTR lpRootPathName)
+UINT GetDriveTypeW_X(LPCWSTR lpRootPathName)
 {
     return GetDriveTypeW(lpRootPathName);
 }
-FARPROC __stdcall GetProcAddress_X(HMODULE hModule, LPCSTR lpProcName)
+FARPROC GetProcAddress_X(HMODULE hModule, LPCSTR lpProcName)
 {
     return GetProcAddress(hModule, lpProcName);
 }
-BOOL __stdcall FreeLibrary_X(HMODULE hLibModule)
+BOOL FreeLibrary_X(HMODULE hLibModule)
 {
     return FreeLibrary(hLibModule);
 }
