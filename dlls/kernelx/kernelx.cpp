@@ -27,7 +27,7 @@ int64_t qword_18002C7E0[34];
 HANDLE HeapHandle;
 
 
-bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2) {
+BOOL XMemFreeDefault_X(PVOID P, UINT64 a2) {
     if (!P) return FALSE;
 
     uint64_t v3 = a2 >> 29;
@@ -67,15 +67,15 @@ bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2) {
     ) >= 0 ? TRUE : FALSE;
 }
 
-__int64 XMemFree_X(PVOID P, __int64 a2) {
+BOOL XMemFree_X(PVOID P, UINT64 a2) {
     return XMemFreeDefault_X(P, a2);
 }
 
 
-PVOID XMemAllocDefault_X(uint64_t size, uint64_t flags) {
+PVOID XMemAllocDefault_X(ULONG_PTR size, UINT64 flags) {
     if (size == 0) return nullptr;
-
-    int64_t v8;
+    
+    DWORD v8;
     uint32_t v7 = dword_180021A60[(flags >> 29) & 0xF];
     if (v7 == 0 || (flags & 0x1F000000) > 0x4000000 || (flags & 0xC000) != 0) {
         if (v7 == 0x400000) {
@@ -107,10 +107,10 @@ PVOID XMemAllocDefault_X(uint64_t size, uint64_t flags) {
         if ((flags & 0x1F000000) == 285212672) {
             AllocationType = -1073729536;
         }
-        else if ((flags >> 14) & 0xFFFF == 1) {
+        else if (((flags >> 14) & 0xFFFF) == 1) {
             AllocationType = 1610625024;
         }
-        else if ((flags >> 14) & 0xFFFF == 2) {
+        else if (((flags >> 14) & 0xFFFF) == 2) {
             AllocationType = -1073729536;
         }
 
@@ -143,7 +143,7 @@ PVOID XMemAllocDefault_X(uint64_t size, uint64_t flags) {
     return nullptr;
 }
 
-PVOID XMemAlloc_X(ULONG64 a1, __int64 a2)
+PVOID XMemAlloc_X(SIZE_T a1, ULONGLONG a2)
 {
     return XMemAllocDefault_X(a1, a2);
 }

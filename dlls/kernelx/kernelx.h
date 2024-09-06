@@ -186,7 +186,7 @@ extern "C"
 
 	LPVOID VirtualAlloc_X(LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect);
 
-	bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2);
+	BOOL XMemFreeDefault_X(PVOID P, UINT64 a2);
 
 	BOOL WriteFile_X(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped);
 
