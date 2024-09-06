@@ -38,8 +38,8 @@ See the [Quickstart](https://github.com/WinDurango/WinDurango/wiki/Quickstart) p
 
 ## Building
 
-See [building.md](docs/building.md) for setup. 
-When writing code, check the [style guide](docs/style_guide.md)
+See [building.md](docs/BUILDING.md) for setup. 
+When writing code, check the [style guide](docs/STYLE_GUIDE.md)
 and be sure to run clang-format!
 
 ## Contributors Wanted!
