@@ -4,13 +4,8 @@ WinDurango is the worlds first Xbox One compatibility layer for Windows.
 For more information, see the
 [main WinDurango wiki](https://github.com/WinDurango/WinDurango/wiki).
 
-**Interested in supporting the core contributors?** Visit
-[WinDurango Project on Patreon](https://www.patreon.com/WinDurango).
-
 Come chat with us about **emulator-related topics** on [![Join our Discord](https://img.shields.io/discord/1280176159010848790?color=2c9510&label=WinDurango%20Discord&logo=Discord&logoColor=white)](https://discord.gg/mHN2BgH7MR).
 For developer chat join `#developer` but stay on topic. Lurking is not only fine, but encouraged!
-Please check the [FAQ](https://github.com/WinDurango/WinDurango/wiki/FAQ) page before asking questions.
-We've got jobs/lives/etc, so don't expect instant answers.
 
 Discussing illegal activities will get you banned.
 
@@ -19,9 +14,6 @@ Discussing illegal activities will get you banned.
 [![View stargazers](https://img.shields.io/github/stars/WinDurango/WinDurango)](https://github.com/WinDurango/WinDurango/stargazers)
 
 Currently no games run with WinDurango.
-See the [Game compatibility list](https://github.com/WinDurango/WinDurango-game-compatibility/issues)
-for currently tracked games, and feel free to contribute your own updates,
-screenshots, and information there following the [existing conventions](https://github.com/WinDurango/WinDurango-game-compatibility/blob/main/README.md).
 
 ## Disclaimer
 
@@ -31,10 +23,6 @@ illegal activity**. All information is obtained via reverse engineering of
 legally purchased devices and games and information made public on the internet
 (you'd be surprised what's indexed on Google...). We are not any way affliated
 with Microsoft.
-
-## Quickstart
-
-See the [Quickstart](https://github.com/WinDurango/WinDurango/wiki/Quickstart) page.
 
 ## Building
 
