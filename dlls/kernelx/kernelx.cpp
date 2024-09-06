@@ -148,6 +148,139 @@ PVOID XMemAlloc_X(ULONG64 a1, __int64 a2)
     return XMemAllocDefault_X(a1, a2);
 }
 
+//TODO
+// I can't find any Kernel32 equivalent
+BOOL AllocateTitlePhysicalPages_X()
+{
+    return 1;
+}
+
+BOOL Beep_X(DWORD dwFreq, DWORD dwDuration)
+{
+    return Beep(dwFreq, dwDuration);
+}
+
+BOOL BindIoCompletionCallback_X(HANDLE FileHandle, LPOVERLAPPED_COMPLETION_ROUTINE Function, ULONG Flags)
+{
+    return BindIoCompletionCallback(FileHandle, Function, Flags);
+}
+
+BOOL CallbackMayRunLong_X(PTP_CALLBACK_INSTANCE pci)
+{
+    return CallbackMayRunLong(pci);
+}
+
+BOOL CancelIoEx_X(HANDLE hFile, LPOVERLAPPED lpOverlapped)
+{
+    return CancelIoEx(hFile, lpOverlapped);
+}
+
+BOOL CancelSynchronousIo_X(HANDLE hThread)
+{
+    return CancelSynchronousIo(hThread);
+}
+
+BOOL CancelWaitableTimer_X(HANDLE hTimer)
+{
+    return CancelWaitableTimer(hTimer);
+}
+
+LONG CompareFileTime_X(const FILETIME* lpFileTime1, const FILETIME* lpFileTime2)
+{
+    return CompareFileTime(lpFileTime1, lpFileTime2);
+}
+
+int CompareStringEx_X(LPCWSTR lpLocaleName, DWORD dwCmpFlags, LPCWSTR lpString1, int cchCount1, LPCWSTR lpString2, int cchCount2, LPNLSVERSIONINFO lpVersionInformation, LPVOID lpReserved, LPARAM lParam)
+{
+    return CompareStringEx(lpLocaleName, dwCmpFlags, lpString1, cchCount1, lpString2, cchCount2, lpVersionInformation, lpReserved, lParam);
+}
+
+int CompareStringOrdinal_X(LPCWCH lpString1, int cchCount1, LPCWCH lpString2, int cchCount2, BOOL bIgnoreCase)
+{
+    return CompareStringOrdinal(lpString1, cchCount1, lpString2, cchCount2, bIgnoreCase);
+}
+
+int CompareStringW_X(LCID Locale, DWORD dwCmpFlags, PCNZWCH lpString1, int cchCount1, PCNZWCH lpString2, int cchCount2)
+{
+    return CompareStringW(Locale, dwCmpFlags, lpString1, cchCount1, lpString2, cchCount2);
+}
+
+BOOL ConnectNamedPipe_X(HANDLE hNamedPipe, LPOVERLAPPED lpOverlapped)
+{
+    return ConnectNamedPipe(hNamedPipe, lpOverlapped);
+}
+
+BOOL ConvertFiberToThread_X()
+{
+    return ConvertFiberToThread();
+}
+
+LPVOID ConvertThreadToFiberEx_X(LPVOID lpParameter, DWORD dwFlags)
+{
+    return ConvertThreadToFiberEx(lpParameter, dwFlags);
+}
+
+LPVOID ConvertThreadToFiber_X(LPVOID lpParameter)
+{
+    return ConvertThreadToFiber(lpParameter);
+}
+
+BOOL CopyContext_X(PCONTEXT Destination, DWORD ContextFlags, PCONTEXT Source)
+{
+    return CopyContext(Destination, ContextFlags, Source);
+}
+
+HRESULT CopyFile2_X(PCWSTR pwszExistingFileName, PCWSTR pwszNewFileName, COPYFILE2_EXTENDED_PARAMETERS* pExtendedParameters)
+{
+    return CopyFile2(pwszExistingFileName, pwszNewFileName, pExtendedParameters);
+}
+
+BOOL CreateDirectoryA_X(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+{
+    return CreateDirectoryA(lpPathName, lpSecurityAttributes);
+}
+
+HANDLE CreateEventA_X(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCSTR lpName)
+{
+    return CreateEventA( lpEventAttributes, bManualReset, bInitialState, lpName);
+}
+
+HANDLE CreateEventExA_X(LPSECURITY_ATTRIBUTES lpEventAttributes, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess)
+{
+    return CreateEventExA(lpEventAttributes, lpName, dwFlags, dwDesiredAccess);
+}
+
+LPVOID CreateFiberEx_X(SIZE_T dwStackCommitSize, SIZE_T dwStackReserveSize, DWORD dwFlags, LPFIBER_START_ROUTINE lpStartAddress, LPVOID lpParameter)
+{
+    return CreateFiberEx(dwStackCommitSize, dwStackReserveSize, dwFlags, lpStartAddress, lpParameter);
+}
+
+LPVOID CreateFiber_X(SIZE_T dwStackSize, LPFIBER_START_ROUTINE lpStartAddress, LPVOID lpParameter)
+{
+    return CreateFiber(dwStackSize, lpStartAddress, lpParameter);
+}
+
+//TODO
+// strange lol
+void CreateFile2_X()
+{
+    //return CreateFile2();
+}
+
+HANDLE CreateFileA_X(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
+{
+    return CreateFileA(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+}
+
+
+HANDLE CreateFileMappingW_X(HANDLE hFile, LPSECURITY_ATTRIBUTES lpFileMappingAttributes, DWORD flProtect, DWORD dwMaximumSizeHigh, DWORD dwMaximumSizeLow, LPCWSTR lpName)
+{
+    return CreateFileMappingW(hFile, lpFileMappingAttributes, flProtect, dwMaximumSizeHigh, dwMaximumSizeLow, lpName);
+}
+
+
+
+
 BOOL InitializeCriticalSectionEx_X(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags)
 {
     return InitializeCriticalSectionEx(lpCriticalSection, dwSpinCount, Flags);

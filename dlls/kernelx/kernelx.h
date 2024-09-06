@@ -21,6 +21,58 @@ typedef NTSTATUS(NTAPI* NtFreeVirtualMemory_t)(
 // EXE EXPORTS
 extern "C"
 {
+
+	BOOL AllocateTitlePhysicalPages_X();
+
+	BOOL Beep_X(DWORD dwFreq, DWORD dwDuration);
+
+	BOOL BindIoCompletionCallback_X(HANDLE FileHandle, LPOVERLAPPED_COMPLETION_ROUTINE Function, ULONG Flags);
+
+	BOOL CallbackMayRunLong_X(PTP_CALLBACK_INSTANCE pci);
+
+	BOOL CancelIoEx_X(HANDLE hFile, LPOVERLAPPED lpOverlapped);
+
+	BOOL CancelSynchronousIo_X(HANDLE hThread);
+
+	BOOL CancelWaitableTimer_X(HANDLE hTimer);
+
+	LONG CompareFileTime_X(const FILETIME* lpFileTime1, const FILETIME* lpFileTime2);
+
+	int CompareStringEx_X(LPCWSTR lpLocaleName, DWORD dwCmpFlags, LPCWSTR lpString1, int cchCount1, LPCWSTR lpString2, int cchCount2, LPNLSVERSIONINFO lpVersionInformation, LPVOID lpReserved, LPARAM lParam);
+
+	int CompareStringOrdinal_X(LPCWCH lpString1, int cchCount1, LPCWCH lpString2, int cchCount2, BOOL bIgnoreCase);
+
+	int CompareStringW_X(LCID Locale, DWORD dwCmpFlags, PCNZWCH lpString1, int cchCount1, PCNZWCH lpString2, int cchCount2);
+
+	BOOL ConnectNamedPipe_X(HANDLE hNamedPipe, LPOVERLAPPED lpOverlapped);
+
+	BOOL ConvertFiberToThread_X();
+
+	LPVOID ConvertThreadToFiberEx_X(LPVOID lpParameter, DWORD dwFlags);
+
+	LPVOID ConvertThreadToFiber_X(LPVOID lpParameter);
+
+	BOOL CopyContext_X(PCONTEXT Destination, DWORD ContextFlags, PCONTEXT Source);
+
+	HRESULT CopyFile2_X(PCWSTR pwszExistingFileName, PCWSTR pwszNewFileName, COPYFILE2_EXTENDED_PARAMETERS* pExtendedParameters);
+
+	BOOL CreateDirectoryA_X(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+
+	HANDLE CreateEventA_X(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCSTR lpName);
+
+	HANDLE CreateEventExA_X(LPSECURITY_ATTRIBUTES lpEventAttributes, LPCSTR lpName, DWORD dwFlags, DWORD dwDesiredAccess);
+
+	LPVOID CreateFiberEx_X(SIZE_T dwStackCommitSize, SIZE_T dwStackReserveSize, DWORD dwFlags, LPFIBER_START_ROUTINE lpStartAddress, LPVOID lpParameter);
+
+	LPVOID CreateFiber_X(SIZE_T dwStackSize, LPFIBER_START_ROUTINE lpStartAddress, LPVOID lpParameter);
+
+	void CreateFile2_X();
+
+	HANDLE CreateFileA_X(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
+
+	HANDLE CreateFileMappingW_X(HANDLE hFile, LPSECURITY_ATTRIBUTES lpFileMappingAttributes, DWORD flProtect, DWORD dwMaximumSizeHigh, DWORD dwMaximumSizeLow, LPCWSTR lpName);
+
+
 	void EnterCriticalSection_X(LPCRITICAL_SECTION lpCriticalSection);
 
 	HANDLE GetProcessHeap_X();
