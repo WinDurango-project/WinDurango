@@ -21,10 +21,6 @@ typedef NTSTATUS(NTAPI* NtFreeVirtualMemory_t)(
 // EXE EXPORTS
 extern "C"
 {
-	void AcquireSRWLockExclusive_X(PSRWLOCK SRWLock);
-
-	void AcquireSRWLockShared_X(PSRWLOCK SRWLock);
-
 	void EnterCriticalSection_X(LPCRITICAL_SECTION lpCriticalSection);
 
 	HANDLE GetProcessHeap_X();
@@ -129,8 +125,6 @@ extern "C"
 
 	void GetSystemTime_X(LPSYSTEMTIME lpSystemTime);
 
-	void GetStartupInfoW_X(LPSTARTUPINFOW lpStartupInfo);
-
 	HMODULE GetModuleHandleW_X(LPCWSTR lpModuleName);
 
   	HMODULE GetModuleHandleA_X(LPCSTR lpModuleName);
@@ -164,6 +158,8 @@ extern "C"
 	void ExitProcess_X(UINT uExitCode);
 
 	BOOL DeleteFileW_X(LPCWSTR lpFileName);
+
+	BOOL DeleteSynchronizationBarrier_X(LPSYNCHRONIZATION_BARRIER lpBarrier);
 
 	void DebugBreak_X();
 

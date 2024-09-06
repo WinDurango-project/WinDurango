@@ -11,17 +11,6 @@
 NtAllocateVirtualMemory_t NtAllocateVirtualMemory;
 NtFreeVirtualMemory_t NtFreeVirtualMemory;
 
-
-void AcquireSRWLockExclusive_X(PSRWLOCK SRWLock)
-{
-	AcquireSRWLockExclusive(SRWLock);
-}
-
-void AcquireSRWLockShared_X(PSRWLOCK SRWLock)
-{
-	AcquireSRWLockShared(SRWLock);
-}
-
 void EnterCriticalSection_X(LPCRITICAL_SECTION lpCriticalSection)
 {
 	EnterCriticalSection(lpCriticalSection);
@@ -317,6 +306,11 @@ void ExitProcess_X(UINT uExitCode)
 BOOL DeleteFileW_X(LPCWSTR lpFileName)
 {
     return DeleteFileW(lpFileName);
+}
+
+BOOL DeleteSynchronizationBarrier_X(LPSYNCHRONIZATION_BARRIER lpBarrier)
+{
+	return DeleteSynchronizationBarrier(lpBarrier);
 }
 
 void DebugBreak_X()
