@@ -827,6 +827,7 @@ __int64 GetConsoleType_X()
 }
 
 
+
 // !!!!!
 /*/ Should be in ntdll.dll reimplementation, right now i'm just testing things with DLLMain entryPoint
 PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter)
@@ -835,9 +836,81 @@ PVOID RtlSetUnhandledExceptionFilter(PVOID ExceptionFilter)
 }*/
 
 
+LSTATUS RegCloseKey_X(HKEY hKey)
+{
+    return RegCloseKey(hKey);
+}
 
+LSTATUS RegCreateKeyExW_X(HKEY hKey, LPCWSTR lpSubKey, DWORD Reserved, LPWSTR lpClass, DWORD dwOptions,
+    REGSAM samDesired, const LPSECURITY_ATTRIBUTES lpSecurityAttributes, PHKEY phkResult, LPDWORD lpdwDisposition)
+{
+    return RegCreateKeyExW(hKey, lpSubKey, Reserved, lpClass, dwOptions, samDesired, lpSecurityAttributes, phkResult, lpdwDisposition);
+}
 
+LSTATUS RegCreateKeyW_X(HKEY hKey, LPCWSTR lpSubKey, PHKEY phkResult)
+{
+    return RegCreateKeyW(hKey, lpSubKey, phkResult);
+}
 
+LSTATUS RegDeleteKeyExW_X(HKEY hKey, LPCWSTR lpSubKey, REGSAM samDesired, DWORD Reserved)
+{
+    return RegDeleteKeyExW(hKey, lpSubKey, samDesired, Reserved);
+}
+
+LSTATUS RegDeleteKeyW_X(HKEY hKey, LPCWSTR lpSubKey)
+{
+    return RegDeleteKeyW(hKey, lpSubKey);
+}
+
+LSTATUS RegDeleteValueW_X(HKEY hKey, LPCWSTR lpValueName)
+{
+    return RegDeleteValueW(hKey, lpValueName);
+}
+
+LSTATUS RegEnumKeyExW_X(HKEY hKey, DWORD dwIndex, LPWSTR lpName, LPDWORD lpcchName, LPDWORD lpReserved, LPWSTR lpClass,
+    LPDWORD lpcchClass, PFILETIME lpftLastWriteTime)
+{
+    return RegEnumKeyExW(hKey, dwIndex, lpName, lpcchName, lpReserved, lpClass, lpcchClass, lpftLastWriteTime);
+}
+
+LSTATUS RegEnumKeyW_X(HKEY hKey, DWORD dwIndex, LPWSTR lpName, DWORD cchName)
+{
+    return RegEnumKeyW(hKey, dwIndex, lpName, cchName);
+}
+
+LSTATUS RegEnumValueW_X(HKEY hKey, DWORD dwIndex, LPWSTR lpValueName, LPDWORD lpcchValueName, LPDWORD lpReserved,
+    LPDWORD lpType, LPBYTE lpData, LPDWORD lpcbData)
+{
+    return RegEnumValueW(hKey, dwIndex, lpValueName, lpcchValueName, lpReserved, lpType, lpData, lpcbData);
+}
+
+LSTATUS RegOpenKeyExW_X(HKEY hKey, LPCWSTR lpSubKey, DWORD ulOptions, REGSAM samDesired, PHKEY phkResult)
+{
+    return RegOpenKeyExW(hKey, lpSubKey, ulOptions, samDesired, phkResult);
+}
+
+LSTATUS RegOpenKeyW_X(HKEY hKey, LPCWSTR lpSubKey, PHKEY phkResult)
+{
+    return RegOpenKeyW(hKey, lpSubKey, phkResult);
+}
+
+LSTATUS RegQueryInfoKeyW_X(HKEY hKey, LPWSTR lpClass, LPDWORD lpcchClass, LPDWORD lpReserved, LPDWORD lpcSubKeys,
+    LPDWORD lpcbMaxSubKeyLen, LPDWORD lpcbMaxClassLen, LPDWORD lpcValues, LPDWORD lpcbMaxValueNameLen,
+    LPDWORD lpcbMaxValueLen, LPDWORD lpcbSecurityDescriptor, PFILETIME lpftLastWriteTime)
+{
+    return RegQueryInfoKeyW(hKey, lpClass, lpcchClass, lpReserved, lpcSubKeys, lpcbMaxSubKeyLen, lpcbMaxClassLen, lpcValues, lpcbMaxValueNameLen, lpcbMaxValueLen, lpcbSecurityDescriptor, lpftLastWriteTime);
+}
+
+LSTATUS RegQueryValueExW_X(HKEY hKey, LPCWSTR lpValueName, LPDWORD lpReserved, LPDWORD lpType, LPBYTE lpData,
+    LPDWORD lpcbData)
+{
+    return RegQueryValueExW(hKey, lpValueName, lpReserved, lpType, lpData, lpcbData);
+}
+
+LSTATUS RegSetValueExW_X(HKEY hKey, LPCWSTR lpValueName, DWORD Reserved, DWORD dwType, const BYTE* lpData, DWORD cbData)
+{
+    return RegSetValueExW(hKey, lpValueName, Reserved, dwType, lpData, cbData);
+}
 
 
 // TODO
@@ -1071,3 +1144,4 @@ NTSTATUS sub_18001BCA0(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReser
     dword_18002B84C = 0;
     return result;
 }
+

@@ -38,8 +38,8 @@ See the [Quickstart](https://github.com/WinDurango/WinDurango/wiki/Quickstart) p
 
 ## Building
 
-See [building.md](docs/building.md) for setup. 
-When writing code, check the [style guide](docs/style_guide.md)
+See [BUILDING.md](docs/BUILDING.md) for setup. 
+When writing code, check the [STYLE_GUIDE.md](docs/STYLE_GUIDE.md)
 and be sure to run clang-format!
 
 ## Contributors Wanted!
@@ -48,7 +48,7 @@ Have some spare time, know C++ and have knowledge about Windows interals,
 and want to write code for the world's first Microsoft Xbox One compatiablity layer?
 Contribute! 
 
-**For general rules and guidelines please see [CONTRIBUTING.md](.github/CONTRIBUTING.md).**
+**For general rules and guidelines please see [CONTRIBUTING.md](docs/CONTRIBUTING.md).**
 
 See more projects [good for contributors](https://github.com/WinDurango/WinDurango/labels/good%20first%20issue). 
 It's a good idea to ask on Discord and check the issues page before beginning work on something.
