@@ -4,9 +4,6 @@ WinDurango is the worlds first Xbox One compatibility layer for Windows.
 For more information, see the
 [main WinDurango wiki](https://github.com/WinDurango/WinDurango/wiki).
 
-**Interested in supporting the core contributors?** Visit
-[WinDurango Project on Patreon](https://www.patreon.com/WinDurango).
-
 Come chat with us about **emulator-related topics** on [![Join our Discord](https://img.shields.io/discord/1280176159010848790?color=2c9510&label=WinDurango%20Discord&logo=Discord&logoColor=white)](https://discord.gg/mHN2BgH7MR).
 For developer chat join `#developer` but stay on topic. Lurking is not only fine, but encouraged!
 Please check the [FAQ](https://github.com/WinDurango/WinDurango/wiki/FAQ) page before asking questions.
