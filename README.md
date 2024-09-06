@@ -1,7 +1,7 @@
 <h1 align="center">WinDurango</h1>
 
-[![kernelx.dll Progress](https://img.shields.io/endpoint?url=https://github.com/WinDurango-project/WinDurango-docs/progress/kernelx.json)](https://img.shields.io/endpoint?url=https://github.com/WinDurango-project/WinDurango-docs/progress/kernelx.json)
-[![ntdll.dll Progress](https://img.shields.io/endpoint?url=https://github.com/WinDurango-project/WinDurango-docs/progress/ntdll.json)](https://img.shields.io/endpoint?url=https://github.com/WinDurango-project/WinDurango-docs/progress/ntdll.json)
+[![kernelx.dll Progress](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)
+[![ntdll.dll Progress](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/ntdll.json)](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/ntdll.json)
 
 WinDurango is the worlds first Xbox One compatibility layer for Windows.
 For more information, see the
