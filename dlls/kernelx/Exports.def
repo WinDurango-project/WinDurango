@@ -24,7 +24,7 @@ EXPORTS
     DecodeSystemPointer																= NTDLL.RtlDecodeSystemPointer								@73
 	DeleteCriticalSection                  											= NTDLL.RtlDeleteCriticalSection							@74
 	DeleteFileW																		= DeleteFileW_X												@77
-    DeleteSynchronizationBarrier													= NTDLL.RtlDeleteBarrier									@79
+    DeleteSynchronizationBarrier                                                    = DeleteSynchronizationBarrier_X                            @79
 	DeviceIoControl																	= DeviceIoControl_X											@80
 	DisableThreadLibraryCalls														= DisableThreadLibraryCalls_X								@81
 	DisassociateCurrentThreadFromCallback											= NTDLL.TpDisassociateCallback								@82

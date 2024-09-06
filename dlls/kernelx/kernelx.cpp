@@ -308,6 +308,11 @@ BOOL DeleteFileW_X(LPCWSTR lpFileName)
     return DeleteFileW(lpFileName);
 }
 
+BOOL DeleteSynchronizationBarrier_X(LPSYNCHRONIZATION_BARRIER lpBarrier)
+{
+	return DeleteSynchronizationBarrier(lpBarrier);
+}
+
 void DebugBreak_X()
 {
     return DebugBreak();
