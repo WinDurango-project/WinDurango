@@ -178,6 +178,11 @@ DWORD GetTickCount_X()
     return GetTickCount();
 }
 
+ULONGLONG GetTickCount64_X()
+{
+    return GetTickCount64();
+}
+
 void RtlCaptureContext_X(PCONTEXT ContextRecord)
 {
     return RtlCaptureContext(ContextRecord);

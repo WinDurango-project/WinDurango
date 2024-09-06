@@ -76,6 +76,7 @@ EXPORTS
 	GetSystemTime																	= GetSystemTime_X											@216
 	GetSystemTimeAsFileTime															= GetSystemTimeAsFileTime_X									@218
 	GetTickCount																	= GetTickCount_X											@231
+	GetTickCount64																	= GetTickCount64_X											@232
 	GetTraceEnableFlags																= NTDLL.EtwGetTraceEnableFlags								@238
     GetTraceEnableLevel																= NTDLL.EtwGetTraceEnableLevel								@239
     GetTraceLoggerHandle															= NTDLL.EtwGetTraceLoggerHandle								@240
