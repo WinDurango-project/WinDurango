@@ -162,6 +162,8 @@ extern "C"
 
 	DWORD GetTickCount_X();
 
+	ULONGLONG GetTickCount64_X();
+
 	void RtlCaptureContext_X(PCONTEXT ContextRecord);
 
 	PRUNTIME_FUNCTION RtlLookupFunctionEntry_X(DWORD64 ControlPc, PDWORD64 ImageBase, PUNWIND_HISTORY_TABLE HistoryTable);
