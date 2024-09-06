@@ -185,6 +185,33 @@ extern "C"
 
   	__int64 GetConsoleType_X();
 
+	LSTATUS RegCloseKey_X(HKEY hKey);
+
+	LSTATUS RegCreateKeyExW_X(HKEY hKey, LPCWSTR lpSubKey, DWORD Reserved, LPWSTR lpClass, DWORD dwOptions, REGSAM samDesired, const LPSECURITY_ATTRIBUTES lpSecurityAttributes, PHKEY phkResult, LPDWORD lpdwDisposition);
+
+	LSTATUS RegCreateKeyW_X(HKEY hKey, LPCWSTR lpSubKey, PHKEY phkResult);
+
+	LSTATUS RegDeleteKeyExW_X(HKEY hKey, LPCWSTR lpSubKey, REGSAM samDesired, DWORD Reserved);
+
+	LSTATUS RegDeleteKeyW_X(HKEY hKey, LPCWSTR lpSubKey);
+
+	LSTATUS RegDeleteValueW_X(HKEY hKey, LPCWSTR lpValueName);
+
+	LSTATUS RegEnumKeyExW_X(HKEY hKey, DWORD dwIndex, LPWSTR lpName, LPDWORD lpcchName, LPDWORD lpReserved, LPWSTR lpClass, LPDWORD lpcchClass, PFILETIME lpftLastWriteTime);
+
+	LSTATUS RegEnumKeyW_X(HKEY hKey, DWORD dwIndex, LPWSTR lpName, DWORD cchName);
+
+	LSTATUS RegEnumValueW_X(HKEY hKey, DWORD dwIndex, LPWSTR lpValueName, LPDWORD lpcchValueName, LPDWORD lpReserved, LPDWORD lpType, LPBYTE lpData, LPDWORD lpcbData);
+
+	LSTATUS RegOpenKeyExW_X(HKEY hKey, LPCWSTR lpSubKey, DWORD ulOptions, REGSAM samDesired, PHKEY phkResult);
+
+	LSTATUS RegOpenKeyW_X(HKEY hKey, LPCWSTR lpSubKey, PHKEY phkResult);
+
+	LSTATUS RegQueryInfoKeyW_X(HKEY hKey, LPWSTR lpClass, LPDWORD lpcchClass, LPDWORD lpReserved, LPDWORD lpcSubKeys, LPDWORD lpcbMaxSubKeyLen, LPDWORD lpcbMaxClassLen, LPDWORD lpcValues, LPDWORD lpcbMaxValueNameLen, LPDWORD lpcbMaxValueLen, LPDWORD lpcbSecurityDescriptor, PFILETIME lpftLastWriteTime);
+
+	LSTATUS RegQueryValueExW_X(HKEY hKey, LPCWSTR lpValueName, LPDWORD lpReserved, LPDWORD lpType, LPBYTE lpData, LPDWORD lpcbData);
+
+	LSTATUS RegSetValueExW_X(HKEY hKey, LPCWSTR lpValueName, DWORD Reserved, DWORD dwType, const BYTE* lpData, DWORD cbData);
 	//BOOL TerminateProcess(HANDLE hProcess, UINT uExitCode);
 }
 // EXE EXPORTS END
