@@ -1,0 +1,31 @@
+LIBRARY appmodel
+EXPORTS
+	CreateRandomAccessStreamOnFile						= CreateRandomAccessStreamOnFile_X				@1	
+	CreateRandomAccessStreamOverStream					= CreateRandomAccessStreamOverStream_X			@2		
+	DllCanUnloadNow										= DllCanUnloadNow_X								@3
+	DllGetActivationFactory								= DllGetActivationFactory_X						@4
+	DllGetClassObject									= DllGetClassObject_X							@5
+	GetApplicationUserModelId							= GetApplicationUserModelId_X					@6
+	GetApplicationXboxLiveInfo							= GetApplicationXboxLiveInfo_X					@7
+	GetCurrentApplicationUserModelId					= GetCurrentApplicationUserModelId_X			@8		
+	GetCurrentPackageFamilyName							= GetCurrentPackageFamilyName_X					@9
+	GetCurrentPackageFullName							= GetCurrentPackageFullName_X					@10
+	GetCurrentPackageId									= GetCurrentPackageId_X							@11
+	GetCurrentPackageInfo								= GetCurrentPackageInfo_X						@12
+	GetCurrentPackagePath								= GetCurrentPackagePath_X						@13
+	GetCurrentXboxLiveInfo								= GetCurrentXboxLiveInfo_X					    @14
+	GetCurrentXboxLiveTitleId							= GetCurrentXboxLiveTitleId_X					@15
+	GetPackageFamilyName								= GetPackageFamilyName_X						@16
+	GetPackageFullName									= GetPackageFullName_X							@17
+	GetPackageId										= GetPackageId_X								@18
+	GetPackagePath										= GetPackagePath_X								@19
+	GetPackageXboxLiveInfo								= GetPackageXboxLiveInfo_X					    @20
+	GetPackagesByPackageFamily							= GetPackagesByPackageFamily_X					@21
+	GetProcessXboxLiveInfo								= GetProcessXboxLiveInfo_X						@22
+	GetXboxLiveTitleId									= GetXboxLiveTitleId_X							@23
+	PsmBlockAppStateChangeCompletion					= PsmBlockAppStateChangeCompletion_X		    @24	
+	PsmRegisterAppStateChangeNotification				= PsmRegisterAppStateChangeNotification_X		@25		
+	PsmShutdownApplication								= PsmShutdownApplication_X						@26
+	PsmUnblockAppStateChangeCompletion					= PsmUnblockAppStateChangeCompletion_X			@27	
+	PsmUnregisterAppStateChangeNotification				= PsmUnregisterAppStateChangeNotification_X		@28			
+	PsmWaitForAppResume									= PsmWaitForAppResume_X							@29	
