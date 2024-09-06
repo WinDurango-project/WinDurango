@@ -1,0 +1,50 @@
+name: Generate DLL Progress JSONs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate_commit:
+    if: github.repository == 'WinDurango-project/WinDurango'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run progress.py script
+        run: python .github/scripts/progress.py
+
+      - name: Checkout WinDurango-docs Repository
+        uses: actions/checkout@v3
+        with:
+          repository: WinDurango-project/WinDurango-docs
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
+          path: docs_repo
+
+      - name: Copy progress JSONs
+        run: |
+          mkdir -p docs_repo/progress
+          cp .github/progress/*.json docs_repo/progress/
+
+      - name: Commit and Push JSONs
+        run: |
+          cd docs_repo
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Update progress JSONs"
+            git push origin main
+          else
+            echo "No changes to commit."
+            exit 0
+          fi
