@@ -1,0 +1,8 @@
+LIBRARY ntdll
+EXPORTS
+MFCreateDxvaSampleRendererX = MFCreateDxvaSampleRendererX_X @34
+MFResetDXGIDeviceManagerX = MFResetDXGIDeviceManagerX_X @117
+MFCreateDXGIDeviceManager = MFCreateDXGIDeviceManager_X @32
+MFCreateAttributes = MFCreateAttributes_X @29
+MFCreateMediaType = MFCreateMediaType_X @45
+MFStartup = MFStartup_X @125

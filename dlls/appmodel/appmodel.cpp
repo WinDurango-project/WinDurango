@@ -31,25 +31,16 @@ void GetCurrentPackageFullName_X() { }
 
 void GetCurrentPackageId_X() { }
 
-void GetCurrentPackageInfo_X() { }
 
 void GetCurrentPackagePath_X() { }
 
-void GetCurrentXboxLiveInfo_X() { }
 
-void GetCurrentXboxLiveTitleId_X() { }
 
 void GetPackageFamilyName_X() { }
-
-void GetPackageFullName_X() { }
-
-LONG GetPackageId_X(HANDLE hProcess, UINT32 *bufferLength, BYTE *buffer) { return 0; }
 
 void GetPackagePath_X() { }
 
 void GetPackageXboxLiveInfo_X() { }
-
-void GetPackagesByPackageFamily_X() { }
 
 void GetProcessXboxLiveInfo_X() { }
 
@@ -63,6 +54,18 @@ void PsmShutdownApplication_X() { }
 
 void PsmUnblockAppStateChangeCompletion_X() { }
 
-void PsmUnregisterAppStateChangeNotification_X() { }
-
 void PsmWaitForAppResume_X() { }
+
+LONG GetPackageId(HANDLE hProcess, UINT32* bufferLength, BYTE* buffer) { return 0; }
+
+LONG GetPackageFullName_X(HANDLE hProcess, UINT32* packageFullNameLength, PWSTR packageFullName) { return 0; }
+
+LONG GetCurrentPackageInfo_X(const UINT32 flags, UINT32* bufferLength, BYTE* buffer, UINT32* count) { return 0; }
+
+LONG GetPackagesByPackageFamily_X(PCWSTR packageFamilyName, UINT32* count, PWSTR* packageFullNames, UINT32* bufferLength, WCHAR* buffer) { return 0; }
+
+__int64 __fastcall GetCurrentXboxLiveTitleId_X(__int64 a) { }
+
+__int64 __fastcall GetCurrentXboxLiveInfo_X(__int64 a, __int64 b, __int64 c) { }
+
+__int64 __fastcall PsmUnregisterAppStateChangeNotification(__int64 notificationId, __int64 processId, __int64 additionalParam) { }
