@@ -1,0 +1,3 @@
+﻿LIBRARY d3d11_x
+EXPORTS
+	D3D11CreateDevice = d3d11.D3D11CreateDevice	@4

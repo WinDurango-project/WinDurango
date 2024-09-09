@@ -4,10 +4,6 @@
 // ReSharper disable CppClangTidyHicppMultiwayPathsCovered
 // ReSharper disable CppClangTidyClangDiagnosticInconsistentDllimport
 #include "pch.h"
-#include "kernelx.h"
-#include <intrin.h>
-#include <winternl.h>
-#include <cstdint>
 
 NtAllocateVirtualMemory_t NtAllocateVirtualMemory;
 NtFreeVirtualMemory_t NtFreeVirtualMemory;
@@ -316,8 +312,6 @@ bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2) {
 __int64 XMemFree_X(PVOID P, __int64 a2) {
     return XMemFreeDefault_X(P, a2);
 }
-
-
 
 // Define PVOID for non-Windows environments if needed
 #ifndef _WINDEF_
