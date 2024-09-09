@@ -46,15 +46,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-<<<<<<< HEAD
     <IncludePath>$(IncludePath);$(ProjectDir)\..\..\thirdparty\Detours\include</IncludePath>
     <LibraryPath>$(LibraryPath);$(ProjectDir)\..\..\thirdparty\Detours\lib.X64;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(IncludePath);$(SolutionPath)\thirdparty\thirdparty\Detours\includes</IncludePath>
     <LibraryPath>$(LibraryPath);$(SolutionPath)\thirdparty\thirdparty\Detours\lib.X64;</LibraryPath>
-=======
->>>>>>> 081eb70b6bd2da3cae84b94019f25a592e790f54
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
