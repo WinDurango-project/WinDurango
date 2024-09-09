@@ -3,7 +3,7 @@
 [![kernelx.dll Progress](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)
 [![ntdll.dll Progress](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/ntdll.json)](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/ntdll.json)
 
-WinDurango is the worlds first Xbox One compatibility layer for Windows.
+WinDurango (formally XBONEmu) is the worlds first Xbox One compatibility layer for Windows.
 For more information, see the
 [main WinDurango wiki](https://github.com/WinDurango/WinDurango/wiki).
 
@@ -15,7 +15,7 @@ For developer chat join `#developer` but stay on topic. Lurking is not only fine
 Please check the [FAQ](https://github.com/WinDurango/WinDurango/wiki/FAQ) page before asking questions.
 We've got jobs/lives/etc, so don't expect instant answers.
 
-Discussing illegal activities will get you banned.
+Discussing illegal activities, such as piracy, (illegal) hacking, doxxing/cyberbullying, and all other forms of copyright infringement will get you banned.
 
 ## Status
 [![GitHub Latest Release](https://img.shields.io/badge/Latest-Release-green)](https://github.com/WinDurango/WinDurango/releases)

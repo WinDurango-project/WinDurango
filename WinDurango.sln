@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{240ACC56-C
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "WinDurango (Package)", "apps\WinDurango\WinDurango (Package)\WinDurango (Package).wapproj", "{C0273DA4-2B16-4A10-B229-6113D4408741}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinDurango", "apps\WinDurango\WinDurango\WinDurango.csproj", "{41492CBB-4C65-4E00-AC8B-69E89EFC8AC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinDurango", "apps\WinDurango\WinDurango\WinDurango.csproj", "{41492CBB-4C65-4E00-AC8B-69E89EFC8AC4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "appmodel", "dlls\appmodel\appmodel.vcxproj", "{C4B41A92-2F30-4E8D-8F44-1A82F5C6A7F9}"
 EndProject
@@ -30,6 +30,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "thridparty", "thridparty", "{097A8A65-AD91-432A-9AF2-58F588E51597}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Detours", "thirdparty\Detours\vc\Detours.vcxproj", "{37489709-8054-4903-9C49-A79846049FC9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mfplat", "mfplat\mfplat.vcxproj", "{A67D1CEC-9F56-4D53-97C2-88BADEDDB22D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,14 @@ Global
 		{37489709-8054-4903-9C49-A79846049FC9}.Release|x64.Build.0 = ReleaseMD|x64
 		{37489709-8054-4903-9C49-A79846049FC9}.ReleaseMD|x64.ActiveCfg = ReleaseMD|x64
 		{37489709-8054-4903-9C49-A79846049FC9}.ReleaseMD|x64.Build.0 = ReleaseMD|x64
+		{A67D1CEC-9F56-4D53-97C2-88BADEDDB22D}.Debug|x64.ActiveCfg = Debug|x64
+		{A67D1CEC-9F56-4D53-97C2-88BADEDDB22D}.Debug|x64.Build.0 = Debug|x64
+		{A67D1CEC-9F56-4D53-97C2-88BADEDDB22D}.DebugMDd|x64.ActiveCfg = Debug|x64
+		{A67D1CEC-9F56-4D53-97C2-88BADEDDB22D}.DebugMDd|x64.Build.0 = Debug|x64
+		{A67D1CEC-9F56-4D53-97C2-88BADEDDB22D}.Release|x64.ActiveCfg = Release|x64
+		{A67D1CEC-9F56-4D53-97C2-88BADEDDB22D}.Release|x64.Build.0 = Release|x64
+		{A67D1CEC-9F56-4D53-97C2-88BADEDDB22D}.ReleaseMD|x64.ActiveCfg = Release|x64
+		{A67D1CEC-9F56-4D53-97C2-88BADEDDB22D}.ReleaseMD|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,6 +142,7 @@ Global
 		{C4B41A92-2F30-4E8D-8F44-1A82F5C6A7F9} = {A46DB9F5-4A23-41CA-98CA-A5DE9DDF012A}
 		{DD076E76-174E-414F-A47F-01CC84E3FC80} = {A46DB9F5-4A23-41CA-98CA-A5DE9DDF012A}
 		{37489709-8054-4903-9C49-A79846049FC9} = {097A8A65-AD91-432A-9AF2-58F588E51597}
+		{A67D1CEC-9F56-4D53-97C2-88BADEDDB22D} = {A46DB9F5-4A23-41CA-98CA-A5DE9DDF012A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19991728-E423-4D8D-9EF8-1311EFB03952}
