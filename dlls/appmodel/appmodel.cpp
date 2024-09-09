@@ -64,8 +64,8 @@ LONG GetCurrentPackageInfo_X(const UINT32 flags, UINT32* bufferLength, BYTE* buf
 
 LONG GetPackagesByPackageFamily_X(PCWSTR packageFamilyName, UINT32* count, PWSTR* packageFullNames, UINT32* bufferLength, WCHAR* buffer) { return 0; }
 
-__int64 __fastcall GetCurrentXboxLiveTitleId_X(__int64 a) { }
+__int64 __fastcall GetCurrentXboxLiveTitleId_X(__int64 a) { return 0; }
 
-__int64 __fastcall GetCurrentXboxLiveInfo_X(__int64 a, __int64 b, __int64 c) { }
+__int64 __fastcall GetCurrentXboxLiveInfo_X(__int64 a, __int64 b, __int64 c) { return 0; }
 
-__int64 __fastcall PsmUnregisterAppStateChangeNotification(__int64 notificationId, __int64 processId, __int64 additionalParam) { }
+__int64 __fastcall PsmUnregisterAppStateChangeNotification(__int64 notificationId, __int64 processId, __int64 additionalParam) { return 0; }
