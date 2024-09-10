@@ -47,7 +47,7 @@ and be sure to run clang-format!
 
 ## Contributors Wanted!
 
-Have some spare time, know C++ and have knowledge about Windows interals, 
+Have some spare time, know C++ and have knowledge about Windows internals, 
 and want to write code for the world's first Microsoft Xbox One compatiablity layer?
 Contribute! 
 
