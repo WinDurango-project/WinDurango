@@ -27,7 +27,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "appmodel", "dlls\appmodel\a
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "d3d11_x", "dlls\d3d11_x\d3d11_x.vcxproj", "{DD076E76-174E-414F-A47F-01CC84E3FC80}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "thridparty", "thridparty", "{097A8A65-AD91-432A-9AF2-58F588E51597}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "thirdparty", "thirdparty", "{097A8A65-AD91-432A-9AF2-58F588E51597}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Detours", "thirdparty\Detours\vc\Detours.vcxproj", "{37489709-8054-4903-9C49-A79846049FC9}"
 EndProject
