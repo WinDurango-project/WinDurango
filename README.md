@@ -1,9 +1,7 @@
 <h1 align="center">WinDurango</h1>
 
 [![kernelx.dll Progress](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)
-[![ntdll.dll Progress](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/ntdll.json)](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/ntdll.json)
 
-WinDurango (formally XBONEmu) is the worlds first Xbox One compatibility layer for Windows.
 For more information, see the
 [main WinDurango wiki](https://github.com/WinDurango/WinDurango/wiki).
 
@@ -47,7 +45,7 @@ and be sure to run clang-format!
 
 ## Contributors Wanted!
 
-Have some spare time, know C++ and have knowledge about Windows interals, 
+Have some spare time, know C++ and have knowledge about Windows internals, 
 and want to write code for the world's first Microsoft Xbox One compatiablity layer?
 Contribute! 
 
