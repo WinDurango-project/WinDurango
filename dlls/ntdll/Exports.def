@@ -1,3 +1,0 @@
-LIBRARY ntdll
-EXPORTS
-	TpSetPoolAffinityMask = TpSetPoolAffinityMask_X @860

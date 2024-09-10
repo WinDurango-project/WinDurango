@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "kernelx.h"
 
-#include "detours.h"
+#include "../src/detours.h"
 
 #include <intrin.h>
 #include <winternl.h>

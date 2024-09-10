@@ -1,0 +1,3 @@
+LIBRARY winrt_x
+EXPORTS
+	GetActivationFactory_X	 @1

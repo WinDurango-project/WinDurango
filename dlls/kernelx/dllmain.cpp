@@ -2,22 +2,39 @@
 // ReSharper disable CppParameterMayBeConst
 // ReSharper disable CppClangTidyClangDiagnosticMicrosoftCast
 // ReSharper disable CppClangTidyClangDiagnosticUndefinedReinterpretCast
+// ReSharper disable CppClangTidyClangDiagnosticShadow
+// ReSharper disable CppClangTidyClangDiagnosticCastFunctionTypeStrict
 #include "pch.h"
 
-typedef HRESULT (WINAPI* FuncRoGetActivationFactory)(HSTRING, REFIID, void**);
+typedef HRESULT (WINAPI *GetActivationFactory)(HSTRING classId, IActivationFactory** factory);
 
-FuncRoGetActivationFactory pRoGetActivationFactory = RoGetActivationFactory;
+HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
 HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** factory)
 {
-    const wchar_t* classIdStr = WindowsGetStringRawBuffer(classId, nullptr);
+	auto hr = TrueRoGetActivationFactory(classId, iid, factory);
 
-    if (wcscmp(classIdStr, L"Windows.ApplicationModel.Core.CoreApplication") == 0) 
+	const std::wstring message = std::wstring(L"classId: ") + WindowsGetStringRawBuffer(classId, nullptr);
+
+    MessageBox(nullptr, message.c_str(), L"RoGetActivationFactory Success", MB_OK);
+
+    if (FAILED(hr))
     {
-		MessageBox(nullptr, L"RoGetActivationFactory", L"classId: Windows.ApplicationModel.Core.CoreApplication", MB_OK);
+		MessageBox(nullptr, message.c_str(), L"RoGetActivationFactory Failed", MB_OK);
+
+		const auto pGetActivationFactory = reinterpret_cast<GetActivationFactory>(
+            GetProcAddress(
+                GetModuleHandle(
+                    TEXT("winrt_x.dll")), "GetActivationFactory_X"));
+
+        Microsoft::WRL::ComPtr<IActivationFactory> _factory{};
+
+        auto b = _factory.GetAddressOf();
+
+        hr = pGetActivationFactory(classId, _factory.GetAddressOf());
     }
 
-    return S_OK;
+    return hr;
 }
 
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID reserved)
@@ -27,21 +44,16 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID reserved)
     if (dwReason == DLL_PROCESS_ATTACH) 
     {
         DetourRestoreAfterWith();
-
         DetourTransactionBegin();
         DetourUpdateThread(GetCurrentThread());
-
-        DetourAttach(&reinterpret_cast<PVOID&>(pRoGetActivationFactory), RoGetActivationFactory_Hook);
-
+        DetourAttach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
         DetourTransactionCommit();
     }
     else if (dwReason == DLL_PROCESS_DETACH)
     {
         DetourTransactionBegin();
 		DetourUpdateThread(GetCurrentThread());
-        
-        DetourDetach(&reinterpret_cast<PVOID&>(pRoGetActivationFactory), RoGetActivationFactory_Hook);
-
+        DetourDetach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
         DetourTransactionCommit();
     }
 

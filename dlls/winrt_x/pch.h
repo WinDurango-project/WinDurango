@@ -1,8 +1,10 @@
 #ifndef PCH_H
 #define PCH_H
 
+#include <hstring.h>
+#include <wrl/client.h>
+
 #include "framework.h"
-#include "d3d11_x.h"
-#include "dxgi.h"
+#include "winrt_x.h"
 
 #endif //PCH_H
