@@ -4,7 +4,7 @@
 
 //xg stands for "Xbox Graphics".
 
-_int64 d3d_addr_pipes(_int64* pipe)
+PHYSICAL_ADDRESS d3d_addr_pipes(PHYSICAL_ADDRESS* pipe)
 {
 
 	BOOL CreatePipe(
@@ -17,24 +17,30 @@ _int64 d3d_addr_pipes(_int64* pipe)
 	//doesn't need to return something since the CreatePipe() already returns a value.
 }
 
-_int64 d3d_addr_banks()
+PHYSICAL_ADDRESS d3d_addr_banks(PHYSICAL_ADDRESS BaseAddress)
 {
-	typedef struct _DXGK_SEGMENTDESCRIPTOR {
-		PHYSICAL_ADDRESS  BaseAddress;
-		PHYSICAL_ADDRESS  CpuTranslatedAddress;
-		SIZE_T            Size;
-		UINT              NbOfBanks;
-		SIZE_T*			pBankRangeTable;
-		SIZE_T            CommitLimit;
-		DXGK_SEGMENTFLAGS Flags;
-	} DXGK_SEGMENTDESCRIPTOR;
-
+	
 	DXGKDDI_CREATEALLOCATION DxgkddiCreateallocation;
 
 	NTSTATUS DxgkddiCreateallocation(
 		     IN_CONST_HANDLE hAdapter,
 		 INOUT_PDXGKARG_CREATEALLOCATION pCreateAllocation
 	);
+
+	typedef struct _DXGK_SEGMENTDESCRIPTOR {
+		PHYSICAL_ADDRESS  BaseAddress;
+		PHYSICAL_ADDRESS  CpuTranslatedAddress;
+		SIZE_T            Size;
+		UINT              NbOfBanks;
+		SIZE_T* pBankRangeTable;
+		SIZE_T            CommitLimit;
+		DXGK_SEGMENTFLAGS Flags;
+	} DXGK_SEGMENTDESCRIPTOR;
+
+	_DXGK_SEGMENTDESCRIPTOR segmentDescriptor;
+	segmentDescriptor.BaseAddress = BaseAddress;
 	
+	return segmentDescriptor.BaseAddress;
+
 }
 
