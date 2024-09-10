@@ -88,14 +88,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="d3d11.h" />
     <ClInclude Include="d3d11_x.h" />
     <ClInclude Include="Exports.def" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="d3d11.cpp" />
     <ClCompile Include="d3d11_x.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="pch.cpp">
