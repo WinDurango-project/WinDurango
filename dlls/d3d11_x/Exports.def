@@ -1,3 +1,7 @@
 ﻿LIBRARY d3d11_x
 EXPORTS
-	D3D11CreateDevice = d3d11.D3D11CreateDevice	@4
+	D3D10CreateBlob = D3D10.D3D10CreateBlob	@1
+	D3D11CreateDevice = d3d11.D3D11CreateDevice	@2
+	D3D11CreateDeviceAndSwapChain = d3d11.D3D11CreateDeviceAndSwapChain @3
+	D3D11XCreateDeviceX = d3d11.D3D11XCreateDeviceX    @4
+    D3D11XCreateDeviceXAndSwapChain1 = d3d11.D3D11XCreateDeviceXAndSwapChain1 @5
