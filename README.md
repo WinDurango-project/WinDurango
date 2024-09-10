@@ -1,6 +1,7 @@
 <h1 align="center">WinDurango</h1>
 
 [![kernelx.dll Progress](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)
+
 For more information, see the
 [main WinDurango wiki](https://github.com/WinDurango/WinDurango/wiki).
 
