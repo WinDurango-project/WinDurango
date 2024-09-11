@@ -1,3 +1,9 @@
+<p align="center">
+    <a href="https://github.com/WinDurango-project/WinDurango/tree/master/assets/icon">
+        <img height="120px" src="https://raw.githubusercontent.com/WinDurango-project/WinDurango/master/assets/icon/128.png" />
+    </a>
+</p>
+
 <h1 align="center">WinDurango</h1>
 
 [![kernelx.dll Progress](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)
