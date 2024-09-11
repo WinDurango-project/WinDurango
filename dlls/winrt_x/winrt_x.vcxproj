@@ -172,6 +172,9 @@
   <ItemGroup>
     <None Include="Exports.def" />
   </ItemGroup>
+  <ItemGroup>
+    <Midl Include="idl\Windows.Xbox.Achievements.idl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

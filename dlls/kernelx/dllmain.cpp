@@ -16,22 +16,24 @@ HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** f
 
 	const std::wstring message = std::wstring(L"classId: ") + WindowsGetStringRawBuffer(classId, nullptr);
 
-    MessageBox(nullptr, message.c_str(), L"RoGetActivationFactory Success", MB_OK);
-
     if (FAILED(hr))
     {
 		MessageBox(nullptr, message.c_str(), L"RoGetActivationFactory Failed", MB_OK);
 
-		const auto pGetActivationFactory = reinterpret_cast<GetActivationFactory>(
-            GetProcAddress(
-                GetModuleHandle(
-                    TEXT("winrt_x.dll")), "GetActivationFactory_X"));
+        auto library = LoadLibraryW(L"winrt_x.dll");
+
+		GetActivationFactory pGetActivationFactory = reinterpret_cast<GetActivationFactory>(GetProcAddress(
+			(HMODULE)library, "GetActivationFactory_X"));
 
         Microsoft::WRL::ComPtr<IActivationFactory> _factory{};
 
         auto b = _factory.GetAddressOf();
 
         hr = pGetActivationFactory(classId, _factory.GetAddressOf());
+    }
+    else
+    {
+		MessageBox(nullptr, message.c_str(), L"RoGetActivationFactory Success", MB_OK);
     }
 
     return hr;
