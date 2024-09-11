@@ -1,46 +1,22 @@
+// xg_x.cpp : Defines the exported functions for the DLL.
+//
+
 #include "pch.h"
 #include "framework.h"
-#include "d3dkmddi.h"
+#include "xg_x.h"
 
-//xg stands for "Xbox Graphics".
 
-PHYSICAL_ADDRESS d3d_addr_pipes(PHYSICAL_ADDRESS* pipe)
+// This is an example of an exported variable
+XGX_API int nxgx=0;
+
+// This is an example of an exported function.
+XGX_API int fnxgx(void)
 {
-
-	BOOL CreatePipe(
-		          PHANDLE               hReadPipe,
-		          PHANDLE               hWritePipe,
-		 LPSECURITY_ATTRIBUTES lpPipeAttributes,
-		         DWORD                 nSize
-	);
-
-	//doesn't need to return something since the CreatePipe() already returns a value.
+    return 0;
 }
 
-PHYSICAL_ADDRESS d3d_addr_banks(PHYSICAL_ADDRESS BaseAddress)
+// This is the constructor of a class that has been exported.
+Cxgx::Cxgx()
 {
-	
-	DXGKDDI_CREATEALLOCATION DxgkddiCreateallocation;
-
-	NTSTATUS DxgkddiCreateallocation(
-		     IN_CONST_HANDLE hAdapter,
-		 INOUT_PDXGKARG_CREATEALLOCATION pCreateAllocation
-	);
-
-	typedef struct _DXGK_SEGMENTDESCRIPTOR {
-		PHYSICAL_ADDRESS  BaseAddress;
-		PHYSICAL_ADDRESS  CpuTranslatedAddress;
-		SIZE_T            Size;
-		UINT              NbOfBanks;
-		SIZE_T* pBankRangeTable;
-		SIZE_T            CommitLimit;
-		DXGK_SEGMENTFLAGS Flags;
-	} DXGK_SEGMENTDESCRIPTOR;
-
-	_DXGK_SEGMENTDESCRIPTOR segmentDescriptor;
-	segmentDescriptor.BaseAddress = BaseAddress;
-	
-	return segmentDescriptor.BaseAddress;
-
+    return;
 }
-

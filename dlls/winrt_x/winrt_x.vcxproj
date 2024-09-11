@@ -1,221 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props')" />
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props')" />
+  <PropertyGroup Label="Globals">
+    <CppWinRTOptimized>true</CppWinRTOptimized>
+    <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
+    <CppWinRTGenerateWindowsMetadata>true</CppWinRTGenerateWindowsMetadata>
+    <MinimalCoreWin>true</MinimalCoreWin>
+    <ProjectGuid>{23fa421f-dc63-40bb-8188-2f4b26d7023b}</ProjectGuid>
+    <ProjectName>winrt_x</ProjectName>
+    <RootNamespace>winrt_x</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.17134.0</WindowsTargetPlatformMinVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <PropertyGroup Label="Globals">
-    <VCProjectVersion>17.0</VCProjectVersion>
-    <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ed22c025-5199-412e-854d-0f1bde5417bc}</ProjectGuid>
-    <RootNamespace>winrtx</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+  <PropertyGroup Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16.0'">v142</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="PropertySheet.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>winrt_x</TargetName>
-    <IncludePath>D:\Desktop\WinDurango\dlls\winrt_x\idl;$(IncludePath)</IncludePath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <IncludePath>$(ProjectDir)\idl;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <IncludePath>$(ProjectDir)\idl;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <IncludePath>$(ProjectDir)\idl;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <IncludePath>$(ProjectDir)\idl;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>winrtx</TargetName>
-    <IncludePath>D:\Desktop\WinDurango\dlls\winrt_x\idl;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\idl;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>winrtx</TargetName>
-    <IncludePath>D:\Desktop\WinDurango\dlls\winrt_x\idl;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\idl;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir)\idl;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetName>winrtx</TargetName>
-    <IncludePath>D:\Desktop\WinDurango\dlls\winrt_x\idl;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\idl;$(IncludePath)</IncludePath>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup>
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;WINRTX_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level4</WarningLevel>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <PreprocessorDefinitions>_WINRT_DLL;WIN32_LEAN_AND_MEAN;WINRT_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+      <SubSystem>Console</SubSystem>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>winrt_x.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;WINRTX_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;WINRTX_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>Exports.def</ModuleDefinitionFile>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;WINRTX_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Windows.Xbox\Windows.Xbox.Achievement.AchievementNotifier.h" />
-    <ClInclude Include="Windows.Xbox\Windows.Xbox.h" />
-    <ClInclude Include="Windows.Xbox\Windows.Xbox.Shell.Social.h" />
-    <ClInclude Include="Windows.Xbox\Windows.Xbox.System.h" />
-    <ClInclude Include="winrt_x.h" />
+    <ClInclude Include="src\Windows.Xbox.Achievements.AchievementNotifier.h" />
+    <ClInclude Include="src\Windows.Xbox.Achievements.AchievementSource.h" />
+    <ClInclude Include="src\Windows.Xbox.Achievements.AchievementUnlockedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Audio.BackgroundNowPlayingSession.h" />
+    <ClInclude Include="src\Windows.Xbox.Audio.SoundClip.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.AssociatedControllerAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.AssociatedControllerRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BiometricUserChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyController.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyControllerAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyControllerReading.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyControllerReadingChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyControllerRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyHandPair.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BrokeredInteractions.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.Controller.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.ControllerAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.ControllerInputManager.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.ControllerOrderChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.ControllerPairingChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.ControllerRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.Gamepad.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.GamepadAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.GamepadReading.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.GamepadReadingChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.GamepadRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.InputManager.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.InputManagerInternal.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.IsKinectPersonEngagedChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.NavigationController.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.NavigationControllerAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.NavigationControllerRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.NavigationReading.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.NavigationReadingChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Services.XboxLiveConfiguration.h" />
+    <ClInclude Include="src\Windows.Xbox.System.AudioDeviceAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.AudioDeviceChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.AudioDeviceRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.Console.h" />
+    <ClInclude Include="src\Windows.Xbox.System.Console2.h" />
+    <ClInclude Include="src\Windows.Xbox.System.GetPictureResult.h" />
+    <ClInclude Include="src\Windows.Xbox.System.GetTokenAndSignatureResult.h" />
+    <ClInclude Include="src\Windows.Xbox.System.Launcher.h" />
+    <ClInclude Include="src\Windows.Xbox.System.OnlineStateChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.SignInCompletedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.SignOutCompletedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.SignOutDeferral.h" />
+    <ClInclude Include="src\Windows.Xbox.System.SignOutStartedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.User.h" />
+    <ClInclude Include="src\Windows.Xbox.System.UserAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.UserDisplayInfo.h" />
+    <ClInclude Include="src\Windows.Xbox.System.UserDisplayInfoChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.UserRemovedEventArgs.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="winrt_x.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Achievements.AchievementNotifier.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Achievements.AchievementSource.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Achievements.AchievementUnlockedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Audio.BackgroundNowPlayingSession.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Audio.SoundClip.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.AssociatedControllerAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.AssociatedControllerRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BiometricUserChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyController.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyControllerAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyControllerReading.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyControllerReadingChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyControllerRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyHandPair.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BrokeredInteractions.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.Controller.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.ControllerAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.ControllerInputManager.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.ControllerOrderChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.ControllerPairingChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.ControllerRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.Gamepad.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.GamepadAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.GamepadReading.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.GamepadReadingChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.GamepadRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.InputManager.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.InputManagerInternal.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.IsKinectPersonEngagedChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.NavigationController.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.NavigationControllerAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.NavigationControllerRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.NavigationReading.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.NavigationReadingChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Services.XboxLiveConfiguration.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.AudioDeviceAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.AudioDeviceChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.AudioDeviceRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.Console.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.Console2.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.GetPictureResult.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.GetTokenAndSignatureResult.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.Launcher.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.OnlineStateChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.SignInCompletedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.SignOutCompletedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.SignOutDeferral.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.SignOutStartedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.User.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.UserAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.UserDisplayInfo.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.UserDisplayInfoChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.UserRemovedEventArgs.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Exports.def" />
     <None Include="packages.config" />
+    <None Include="winrt_x.def" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="idl\Windows.Xbox.Achievements.idl" />
-    <Midl Include="idl\Windows.Xbox.Audio.idl" />
-    <Midl Include="idl\Windows.Xbox.Cab.Internal.idl" />
-    <Midl Include="idl\Windows.Xbox.Chat.Internal.idl" />
-    <Midl Include="idl\Windows.Xbox.CloudLanguageServices.idl" />
-    <Midl Include="idl\Windows.Xbox.Controls.NuiControl.idl" />
-    <Midl Include="idl\Windows.Xbox.Graphics.Display.idl" />
-    <Midl Include="idl\Windows.Xbox.Graphics.Display.Internal.idl" />
-    <Midl Include="idl\Windows.Xbox.idl" />
-    <Midl Include="idl\Windows.Xbox.Input.idl" />
-    <Midl Include="idl\Windows.Xbox.Internal.Networking.idl" />
-    <Midl Include="idl\Windows.Xbox.Management.Devices.idl" />
-    <Midl Include="idl\Windows.Xbox.Management.idl" />
-    <Midl Include="idl\Windows.Xbox.Management.Package.idl" />
-    <Midl Include="idl\Windows.Xbox.Media.idl" />
-    <Midl Include="idl\Windows.Xbox.Multiplayer.idl" />
-    <Midl Include="idl\Windows.Xbox.Multiplayer.Internal.idl" />
-    <Midl Include="idl\Windows.Xbox.Safety.Internal.idl" />
-    <Midl Include="idl\Windows.Xbox.Security.idl" />
-    <Midl Include="idl\Windows.Xbox.Services.idl" />
-    <Midl Include="idl\Windows.Xbox.Shell.idl" />
-    <Midl Include="idl\Windows.Xbox.Shell.Social.idl" />
-    <Midl Include="idl\Windows.Xbox.System.idl" />
+    <None Include="PropertySheet.props" />
+    <Text Include="readme.txt">
+      <DeploymentContent>false</DeploymentContent>
+    </Text>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets')" />
+    <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets'))" />
   </Target>
 </Project>

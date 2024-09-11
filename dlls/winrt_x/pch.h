@@ -1,10 +1,4 @@
-#ifndef PCH_H
-#define PCH_H
-
-#include <hstring.h>
-#include <wrl/client.h>
-
-#include "framework.h"
-#include "winrt_x.h"
-
-#endif //PCH_H
+﻿#pragma once
+#include <unknwn.h>
+#include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.Foundation.Collections.h>

@@ -1,128 +1,135 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{926ab91d-31b4-48c3-b9a4-e681349f27f0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="idl">
+      <UniqueIdentifier>{31023891-6ac9-4da0-b70b-37d4c4c8e682}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="winrt_x.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows.Xbox\Windows.Xbox.Achievement.AchievementNotifier.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows.Xbox\Windows.Xbox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows.Xbox\Windows.Xbox.System.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Windows.Xbox\Windows.Xbox.Shell.Social.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Class.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Achievements.AchievementNotifier.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Achievements.AchievementSource.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Achievements.AchievementUnlockedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Audio.BackgroundNowPlayingSession.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Audio.SoundClip.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.AssociatedControllerAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.AssociatedControllerRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BiometricUserChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyController.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyControllerAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyControllerReading.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyControllerReadingChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyControllerRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BodyHandPair.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.BrokeredInteractions.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.Controller.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.ControllerAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.ControllerInputManager.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.ControllerOrderChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.ControllerPairingChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.ControllerRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.Gamepad.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.GamepadAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.GamepadReading.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.GamepadReadingChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.GamepadRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.InputManager.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.InputManagerInternal.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.IsKinectPersonEngagedChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.NavigationController.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.NavigationControllerAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.NavigationControllerRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.NavigationReading.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Input.NavigationReadingChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.Services.XboxLiveConfiguration.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.AudioDeviceAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.AudioDeviceChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.AudioDeviceRemovedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.Console.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.Console2.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.GetPictureResult.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.GetTokenAndSignatureResult.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.Launcher.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.OnlineStateChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.SignInCompletedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.SignOutCompletedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.SignOutDeferral.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.SignOutStartedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.User.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.UserAddedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.UserDisplayInfo.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.UserDisplayInfoChangedEventArgs.cpp" />
+    <ClCompile Include="src\Windows.Xbox.System.UserRemovedEventArgs.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="winrt_x.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="src\Windows.Xbox.Achievements.AchievementNotifier.h" />
+    <ClInclude Include="src\Windows.Xbox.Achievements.AchievementSource.h" />
+    <ClInclude Include="src\Windows.Xbox.Achievements.AchievementUnlockedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Audio.BackgroundNowPlayingSession.h" />
+    <ClInclude Include="src\Windows.Xbox.Audio.SoundClip.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.AssociatedControllerAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.AssociatedControllerRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BiometricUserChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyController.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyControllerAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyControllerReading.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyControllerReadingChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyControllerRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BodyHandPair.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.BrokeredInteractions.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.Controller.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.ControllerAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.ControllerInputManager.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.ControllerOrderChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.ControllerPairingChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.ControllerRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.Gamepad.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.GamepadAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.GamepadReading.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.GamepadReadingChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.GamepadRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.InputManager.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.InputManagerInternal.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.IsKinectPersonEngagedChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.NavigationController.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.NavigationControllerAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.NavigationControllerRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.NavigationReading.h" />
+    <ClInclude Include="src\Windows.Xbox.Input.NavigationReadingChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.Services.XboxLiveConfiguration.h" />
+    <ClInclude Include="src\Windows.Xbox.System.AudioDeviceAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.AudioDeviceChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.AudioDeviceRemovedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.Console.h" />
+    <ClInclude Include="src\Windows.Xbox.System.Console2.h" />
+    <ClInclude Include="src\Windows.Xbox.System.GetPictureResult.h" />
+    <ClInclude Include="src\Windows.Xbox.System.GetTokenAndSignatureResult.h" />
+    <ClInclude Include="src\Windows.Xbox.System.Launcher.h" />
+    <ClInclude Include="src\Windows.Xbox.System.OnlineStateChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.SignInCompletedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.SignOutCompletedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.SignOutDeferral.h" />
+    <ClInclude Include="src\Windows.Xbox.System.SignOutStartedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.User.h" />
+    <ClInclude Include="src\Windows.Xbox.System.UserAddedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.UserDisplayInfo.h" />
+    <ClInclude Include="src\Windows.Xbox.System.UserDisplayInfoChangedEventArgs.h" />
+    <ClInclude Include="src\Windows.Xbox.System.UserRemovedEventArgs.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Exports.def">
-      <Filter>Source Files</Filter>
-    </None>
+    <None Include="winrt_x.def" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="idl\Windows.Xbox.Achievements.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.System.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Input.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Audio.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Cab.Internal.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Chat.Internal.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.CloudLanguageServices.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Controls.NuiControl.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Graphics.Display.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Graphics.Display.Internal.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Internal.Networking.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Management.Devices.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Management.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Management.Package.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Media.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Multiplayer.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Multiplayer.Internal.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Safety.Internal.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Security.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Services.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Shell.Social.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
-    <Midl Include="idl\Windows.Xbox.Shell.idl">
-      <Filter>Source Files</Filter>
-    </Midl>
+    <None Include="PropertySheet.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
   </ItemGroup>
 </Project>
