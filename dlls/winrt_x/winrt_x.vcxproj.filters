@@ -24,6 +24,18 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Windows.Xbox\Windows.Xbox.Achievement.AchievementNotifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows.Xbox\Windows.Xbox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows.Xbox\Windows.Xbox.System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows.Xbox\Windows.Xbox.Shell.Social.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winrt_x.cpp">
@@ -44,6 +56,72 @@
   </ItemGroup>
   <ItemGroup>
     <Midl Include="idl\Windows.Xbox.Achievements.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.System.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Input.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Audio.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Cab.Internal.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Chat.Internal.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.CloudLanguageServices.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Controls.NuiControl.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Graphics.Display.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Graphics.Display.Internal.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Internal.Networking.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Management.Devices.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Management.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Management.Package.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Media.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Multiplayer.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Multiplayer.Internal.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Safety.Internal.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Security.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Services.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Shell.Social.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+    <Midl Include="idl\Windows.Xbox.Shell.idl">
       <Filter>Source Files</Filter>
     </Midl>
   </ItemGroup>

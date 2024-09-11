@@ -73,15 +73,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>winrt_x</TargetName>
+    <IncludePath>D:\Desktop\WinDurango\dlls\winrt_x\idl;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>winrtx</TargetName>
+    <IncludePath>D:\Desktop\WinDurango\dlls\winrt_x\idl;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>winrtx</TargetName>
+    <IncludePath>D:\Desktop\WinDurango\dlls\winrt_x\idl;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>winrtx</TargetName>
+    <IncludePath>D:\Desktop\WinDurango\dlls\winrt_x\idl;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -158,6 +162,10 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Windows.Xbox\Windows.Xbox.Achievement.AchievementNotifier.h" />
+    <ClInclude Include="Windows.Xbox\Windows.Xbox.h" />
+    <ClInclude Include="Windows.Xbox\Windows.Xbox.Shell.Social.h" />
+    <ClInclude Include="Windows.Xbox\Windows.Xbox.System.h" />
     <ClInclude Include="winrt_x.h" />
   </ItemGroup>
   <ItemGroup>
@@ -175,9 +183,29 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="idl\Windows.Xbox.Achievements.idl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </Midl>
+    <Midl Include="idl\Windows.Xbox.Achievements.idl" />
+    <Midl Include="idl\Windows.Xbox.Audio.idl" />
+    <Midl Include="idl\Windows.Xbox.Cab.Internal.idl" />
+    <Midl Include="idl\Windows.Xbox.Chat.Internal.idl" />
+    <Midl Include="idl\Windows.Xbox.CloudLanguageServices.idl" />
+    <Midl Include="idl\Windows.Xbox.Controls.NuiControl.idl" />
+    <Midl Include="idl\Windows.Xbox.Graphics.Display.idl" />
+    <Midl Include="idl\Windows.Xbox.Graphics.Display.Internal.idl" />
+    <Midl Include="idl\Windows.Xbox.idl" />
+    <Midl Include="idl\Windows.Xbox.Input.idl" />
+    <Midl Include="idl\Windows.Xbox.Internal.Networking.idl" />
+    <Midl Include="idl\Windows.Xbox.Management.Devices.idl" />
+    <Midl Include="idl\Windows.Xbox.Management.idl" />
+    <Midl Include="idl\Windows.Xbox.Management.Package.idl" />
+    <Midl Include="idl\Windows.Xbox.Media.idl" />
+    <Midl Include="idl\Windows.Xbox.Multiplayer.idl" />
+    <Midl Include="idl\Windows.Xbox.Multiplayer.Internal.idl" />
+    <Midl Include="idl\Windows.Xbox.Safety.Internal.idl" />
+    <Midl Include="idl\Windows.Xbox.Security.idl" />
+    <Midl Include="idl\Windows.Xbox.Services.idl" />
+    <Midl Include="idl\Windows.Xbox.Shell.idl" />
+    <Midl Include="idl\Windows.Xbox.Shell.Social.idl" />
+    <Midl Include="idl\Windows.Xbox.System.idl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

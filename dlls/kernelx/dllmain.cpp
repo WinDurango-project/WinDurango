@@ -16,48 +16,48 @@ HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** f
 
 	const std::wstring message = std::wstring(L"classId: ") + WindowsGetStringRawBuffer(classId, nullptr);
 
-    if (FAILED(hr))
-    {
+	if (FAILED(hr))
+	{
 		MessageBox(nullptr, message.c_str(), L"RoGetActivationFactory Failed", MB_OK);
 
-        auto library = LoadLibraryW(L"winrt_x.dll");
+		auto library = LoadLibraryW(L"winrt_x.dll");
 
 		GetActivationFactory pGetActivationFactory = reinterpret_cast<GetActivationFactory>(GetProcAddress(
 			(HMODULE)library, "GetActivationFactory_X"));
 
-        Microsoft::WRL::ComPtr<IActivationFactory> _factory{};
+		Microsoft::WRL::ComPtr<IActivationFactory> _factory{};
 
-        auto b = _factory.GetAddressOf();
+		auto b = _factory.GetAddressOf();
 
-        hr = pGetActivationFactory(classId, _factory.GetAddressOf());
-    }
-    else
-    {
+		hr = pGetActivationFactory(classId, _factory.GetAddressOf());
+	}
+	else
+	{
 		MessageBox(nullptr, message.c_str(), L"RoGetActivationFactory Success", MB_OK);
-    }
+	}
 
-    return hr;
+	return hr;
 }
 
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID reserved)
 {    
-    if (DetourIsHelperProcess()) return TRUE;
+	if (DetourIsHelperProcess()) return TRUE;
 
-    if (dwReason == DLL_PROCESS_ATTACH) 
-    {
-        DetourRestoreAfterWith();
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
-        DetourAttach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
-        DetourTransactionCommit();
-    }
-    else if (dwReason == DLL_PROCESS_DETACH)
-    {
-        DetourTransactionBegin();
+	if (dwReason == DLL_PROCESS_ATTACH) 
+	{
+		DetourRestoreAfterWith();
+		DetourTransactionBegin();
 		DetourUpdateThread(GetCurrentThread());
-        DetourDetach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
-        DetourTransactionCommit();
-    }
+		DetourAttach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
+		DetourTransactionCommit();
+	}
+	else if (dwReason == DLL_PROCESS_DETACH)
+	{
+		DetourTransactionBegin();
+		DetourUpdateThread(GetCurrentThread());
+		DetourDetach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
+		DetourTransactionCommit();
+	}
 
-    return TRUE;
+	return TRUE;
 }
