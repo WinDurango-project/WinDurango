@@ -175,7 +175,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="idl\Windows.Xbox.Achievements.idl" />
+    <Midl Include="idl\Windows.Xbox.Achievements.idl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </Midl>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
