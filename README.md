@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/WinDurango-project/WinDurango/tree/master/assets/icon">
-        <img height="120px" src="https://raw.githubusercontent.com/WinDurango-project/WinDurango/master/assets/icon/128.png" />
+        <img height="120px" src="https://raw.githubusercontent.com/WinDurango-project/WinDurango/main/assets/logo/1024.png" />
     </a>
 </p>
 
