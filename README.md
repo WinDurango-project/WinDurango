@@ -7,6 +7,7 @@
 <h1 align="center">WinDurango</h1>
 
 [![kernelx.dll Progress](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/WinDurango-project/WinDurango-docs/main/progress/kernelx.json)
+[![Join our Discord](https://img.shields.io/discord/1280176159010848790?color=2c9510&label=WinDurango%20Discord&logo=Discord&logoColor=white)](https://discord.gg/mHN2BgH7MR)
 
 For more information, see the
 [main WinDurango wiki](https://github.com/WinDurango/WinDurango/wiki).
@@ -14,7 +15,7 @@ For more information, see the
 **Interested in supporting the core contributors?** Visit
 [WinDurango Project on Patreon](https://www.patreon.com/WinDurango).
 
-Come chat with us about **emulator-related topics** on [![Join our Discord](https://img.shields.io/discord/1280176159010848790?color=2c9510&label=WinDurango%20Discord&logo=Discord&logoColor=white)](https://discord.gg/mHN2BgH7MR).
+Come chat with us on our [Discord](https://discord.gg/mHN2BgH7MR).
 For developer chat join `#developer` but stay on topic. Lurking is not only fine, but encouraged!
 Please check the [FAQ](https://github.com/WinDurango/WinDurango/wiki/FAQ) page before asking questions.
 We've got jobs/lives/etc, so don't expect instant answers.
