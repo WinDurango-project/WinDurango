@@ -1,2 +1,0 @@
-#define MFPLAT_API __declspec(dllexport)
-#define MFPLAT_API __declspec(dllimport)
