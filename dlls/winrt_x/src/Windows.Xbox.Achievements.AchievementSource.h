@@ -20,9 +20,6 @@
 // This assertion helps prevent accidental modification of generated files.
 
 
-
-
-
 namespace winrt::Windows::Xbox::Achievements::implementation
 {
     struct AchievementSource : AchievementSourceT<AchievementSource>

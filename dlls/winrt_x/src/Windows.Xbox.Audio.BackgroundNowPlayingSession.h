@@ -20,8 +20,6 @@
 // This assertion helps prevent accidental modification of generated files.
 
 
-
-
 namespace winrt::Windows::Xbox::Audio::implementation
 {
     struct BackgroundNowPlayingSession : BackgroundNowPlayingSessionT<BackgroundNowPlayingSession>

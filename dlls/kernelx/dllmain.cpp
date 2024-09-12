@@ -6,7 +6,11 @@
 // ReSharper disable CppClangTidyClangDiagnosticCastFunctionTypeStrict
 #include "pch.h"
 
-typedef HRESULT (WINAPI *DllGetActivationFactory)(HSTRING activatableClassId, IActivationFactory **factory);
+
+typedef HRESULT(*DllGetActivationFactoryFunc) (HSTRING, IActivationFactory**);
+
+DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
+
 
 HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
@@ -14,26 +18,27 @@ HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** f
 {
 	auto hr = TrueRoGetActivationFactory(classId, iid, factory);
 
-	const std::wstring message = std::wstring(L"classId: ") + WindowsGetStringRawBuffer(classId, nullptr);
+	const std::wstring message = std::wstring(L"classId: ") + 
+		WindowsGetStringRawBuffer(classId, nullptr);
 
 	if (FAILED(hr))
 	{
-		MessageBox(nullptr, message.c_str(), L"RoGetActivationFactory Failed", MB_OK);
-
-		const auto library = LoadLibraryW(L"winrt_x.dll");
-
-
-		DllGetActivationFactory pDllGetActivationFactory = reinterpret_cast<DllGetActivationFactory>(GetProcAddress(
-			(HMODULE)library, "DllGetActivationFactory"));
-
-
 		Microsoft::WRL::ComPtr<IActivationFactory> _factory{};
 
-		hr = pDllGetActivationFactory(classId, _factory.GetAddressOf());
-	}
-	else
-	{
-		MessageBox(nullptr, message.c_str(), L"RoGetActivationFactory Success", MB_OK);
+		auto library = LoadPackagedLibrary(L"winrt_x.dll", 0);
+
+		if (!library)
+			library = LoadLibraryW(L"winrt_x.dll");
+
+		auto error = GetLastError();
+
+		if (library) 
+		{
+			pDllGetActivationFactory = reinterpret_cast<DllGetActivationFactoryFunc>(GetProcAddress(library, "DllGetActivationFactory"));
+
+			if (pDllGetActivationFactory)
+				hr = pDllGetActivationFactory(classId, _factory.GetAddressOf());
+		}
 	}
 
 	return hr;

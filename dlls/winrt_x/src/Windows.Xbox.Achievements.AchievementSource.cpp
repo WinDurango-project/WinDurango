@@ -21,7 +21,6 @@
 // This assertion helps prevent accidental modification of generated files.
 
 
-
 namespace winrt::Windows::Xbox::Achievements::implementation
 {
     winrt::event_token AchievementSource::AchievementUnlocked(winrt::Windows::Foundation::EventHandler<winrt::Windows::Xbox::Achievements::AchievementUnlockedEventArgs> const& handler)

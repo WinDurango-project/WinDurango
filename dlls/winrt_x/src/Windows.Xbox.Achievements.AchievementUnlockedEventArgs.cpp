@@ -21,8 +21,6 @@
 // This assertion helps prevent accidental modification of generated files.
 
 
-
-
 namespace winrt::Windows::Xbox::Achievements::implementation
 {
     winrt::Windows::Xbox::System::User AchievementUnlockedEventArgs::User()
