@@ -6,6 +6,7 @@
 // ReSharper disable CppClangTidyClangDiagnosticCastFunctionTypeStrict
 #include "pch.h"
 
+using namespace Microsoft::WRL;
 
 typedef HRESULT(*DllGetActivationFactoryFunc) (HSTRING, IActivationFactory**);
 
@@ -23,22 +24,27 @@ HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** f
 
 	if (FAILED(hr))
 	{
-		Microsoft::WRL::ComPtr<IActivationFactory> _factory{};
-
 		auto library = LoadPackagedLibrary(L"winrt_x.dll", 0);
 
-		if (!library)
-			library = LoadLibraryW(L"winrt_x.dll");
+		if (!library) library = LoadLibraryW(L"winrt_x.dll");
+
+		if (!library) return hr;
 
 		auto error = GetLastError();
 
-		if (library) 
-		{
-			pDllGetActivationFactory = reinterpret_cast<DllGetActivationFactoryFunc>(GetProcAddress(library, "DllGetActivationFactory"));
+		pDllGetActivationFactory = reinterpret_cast<DllGetActivationFactoryFunc>
+			(GetProcAddress(library, "DllGetActivationFactory"));
 
-			if (pDllGetActivationFactory)
-				hr = pDllGetActivationFactory(classId, _factory.GetAddressOf());
-		}
+		if (!pDllGetActivationFactory)
+			return hr;
+
+		ComPtr<IActivationFactory> _factory;
+
+		hr = pDllGetActivationFactory(classId, _factory.GetAddressOf());
+
+		if (FAILED(hr)) return hr;
+
+		return _factory.CopyTo(iid, factory);
 	}
 
 	return hr;
