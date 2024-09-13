@@ -153,7 +153,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
     <None Include="Exports.def" />
   </ItemGroup>
   <ItemGroup>

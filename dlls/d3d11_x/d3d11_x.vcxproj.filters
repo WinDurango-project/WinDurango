@@ -40,8 +40,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Exports.txt">
-      <Filter>Header Files</Filter>
-    </Text>
+    <None Include="Exports.def.bak" />
   </ItemGroup>
 </Project>

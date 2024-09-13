@@ -1,6 +1,18 @@
 ﻿LIBRARY d3d11_x
 EXPORTS
-	D3D10CreateBlob								= d3d10.D3D10CreateBlob						@1
-	D3D11CreateDevice							= d3d11.D3D11CreateDevice					@2
-	D3D11CreateDeviceAndSwapChain				= d3d11.D3D11CreateDeviceAndSwapChain		@3
-	D3D11XCreateDeviceX							= d3d11.D3D11CreateDevice 					@4
+	D3DQuerySEQCounters							=	D3DQuerySEQCounters_X										@1
+	D3DUploadCustomMicrocode					=	D3DUploadCustomMicrocode_X									@2
+	D3D10CreateBlob								=	d3d10.D3D10CreateBlob										@3
+	D3D11CreateDevice							=	d3d11.D3D11CreateDevice										@4
+	D3D11CreateDeviceAndSwapChain				=	d3d11.D3D11CreateDeviceAndSwapChain 						@5
+	D3D11XCreateDeviceX							=	d3d11.D3D11CreateDevice 									@6
+	D3D11XCreateDeviceXAndSwapChain1			=	D3D11XCreateDeviceXAndSwapChain1_X							@7
+	D3DAllocateGraphicsMemory					=	D3DAllocateGraphicsMemory_X									@8
+	D3DConfigureVirtualMemory					=	D3DConfigureVirtualMemory_X									@9
+	D3DFlushEntireCpuCache						=	D3DFlushEntireCpuCache_X									@10
+	D3DFreeGraphicsMemory						=	D3DFreeGraphicsMemory_X										@11
+	D3DMapEsramMemory							=	D3DMapEsramMemory_X											@12
+	DXGIXGetFrameStatistics						=	DXGIXGetFrameStatistics_X									@13
+	DXGIXPresentArray							=	DXGIXPresentArray_X											@14
+	DXGIXSetFrameNotification					=	DXGIXSetFrameNotification_X									@15
+	DXGIXSetVLineNotification					=	DXGIXSetVLineNotification_X									@16
