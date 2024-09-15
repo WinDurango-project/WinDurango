@@ -1,0 +1,13 @@
+LIBRARY xg_x
+EXPORTS
+	XGComputeBufferLayout					=	XGComputeBufferLayout_X						@1
+	XGComputeOptimalDepthStencilTileModes	=	XGComputeOptimalDepthStencilTileModes_X		@2
+	XGComputeOptimalTileMode				=	XGComputeOptimalTileMode_X					@3
+	XGComputeTexture1DLayout				=	XGComputeTexture1DLayout_X					@4
+	XGComputeTexture2DLayout				=	XGComputeTexture2DLayout_X					@5
+	XGComputeTexture3DLayout				=	XGComputeTexture3DLayout_X					@6
+	XGComputeTileShape						=	XGComputeTileShape_X						@7
+	XGCreateTexture1DComputer				=	XGCreateTexture1DComputer_X					@8
+	XGCreateTexture2DComputer				=	XGCreateTexture2DComputer_X					@9
+	XGCreateTexture3DComputer				=	XGCreateTexture3DComputer_X					@10
+	XGValidateJpegFile						=	XGValidateJpegFile_X						@11
