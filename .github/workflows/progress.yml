@@ -32,7 +32,7 @@ jobs:
       - name: Copy progress JSONs
         run: |
           mkdir -p docs_repo/progress
-          cp .github/progress/*.json docs_repo/progress/
+          cp progress/*.json docs_repo/progress/
 
       - name: Commit and Push JSONs
         run: |
