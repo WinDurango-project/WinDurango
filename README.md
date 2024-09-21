@@ -1,7 +1,11 @@
 <p align="center">
-    <a href="https://github.com/WinDurango-project/WinDurango/tree/master/assets/icon">
-        <img height="120px" src="https://raw.githubusercontent.com/WinDurango-project/WinDurango/main/assets/logo/1024.png" />
-    </a>
+  <a href="https://github.com/WinDurango-project/WinDurango/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/WinDurango-project/WinDurango/main/assets/logo/dark/1024.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/WinDurango-project/WinDurango/main/assets/logo/light/1024.png">
+      <img alt="WinDurango logo" src="https://raw.githubusercontent.com/WinDurango-project/WinDurango/main/assets/logo/light/1024.png" height="120px">
+    </picture>
+  </a>
 </p>
 
 <h1 align="center">WinDurango</h1>
