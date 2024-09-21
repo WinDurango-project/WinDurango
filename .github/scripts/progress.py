@@ -58,7 +58,7 @@ def save_progress_data(dll_name, progress):
         "color": color
     }
     
-    output_dir = 'progress'
+    output_dir = '.github/progress'
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, f'{dll_name}.json')
     
