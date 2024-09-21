@@ -18,6 +18,6 @@ typedef NTSTATUS(NTAPI* NtFreeVirtualMemory_t)(
 
 // Deleted that extern "C" stuff as I don't think it's needed, if it's needed someone added it pls
 
-__int64 sub_18001BB8C();
+__int64 ConfigureLocaleSettings();
 
-NTSTATUS sub_18001BCA0(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved);
+NTSTATUS CleanupResources(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved);
