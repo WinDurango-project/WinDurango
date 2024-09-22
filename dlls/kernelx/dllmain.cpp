@@ -11,48 +11,62 @@
 //
 using namespace Microsoft::WRL;
 
-typedef HRESULT(*DllGetActivationFactoryFunc) (HSTRING, IActivationFactory**);
-
-DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
 HMODULE hModule;
 SYSTEM_BASIC_INFORMATION systemBasicInfo;
 
+HRESULT(WINAPI* pRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
-HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
+typedef HRESULT(__fastcall* FuncDllGetActivationFactory)(void*, void**);
+
+FuncDllGetActivationFactory pDllGetActivationFactory;
+
+void debug_printf(const char *format, ...) {
+    char buffer[1024];  // Temporary buffer to hold the formatted string
+    va_list args;
+    
+    // Start handling the variable argument list
+    va_start(args, format);
+
+    // Format the input string and store it in the buffer
+    vsnprintf(buffer, sizeof(buffer), format, args);
+
+    // End argument handling
+    va_end(args);
+
+    // Send the formatted string to the debugger
+    OutputDebugStringA(buffer);
+}
 
 HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** factory)
 {
-	auto hr = TrueRoGetActivationFactory(classId, iid, factory);
+    const wchar_t* classIdStr = WindowsGetStringRawBuffer(classId, nullptr);
+    int result = pRoGetActivationFactory(classId, iid, factory);
 
-	const std::wstring message = std::wstring(L"classId: ") +
-		WindowsGetStringRawBuffer(classId, nullptr);
+    // Failed, redirect to our winrt component
+    if (result < 0) {
+        debug_printf("[DEBUG] Forwarding activationFactory of %ls to our dll!", classIdStr);
+        // Checks if we initalized pointer to our DllGetActivationFactory
+        if (!pDllGetActivationFactory) {
+            HMODULE winrtLib = LoadLibraryA("winrt_x.dll");
+            debug_printf("[DEBUG] winrtLib: %i\n", winrtLib);
+            if (!winrtLib)
+                return result;
 
-	if (FAILED(hr))
-	{
-		auto library = LoadPackagedLibrary(L"winrt_x.dll", 0);
+            pDllGetActivationFactory = (FuncDllGetActivationFactory)GetProcAddress(winrtLib, "DllGetActivationFactory");
+            debug_printf("[DEBUG] pDllGetActivationFactory: %i\n", pDllGetActivationFactory);
 
-		if (!library) library = LoadLibraryW(L"winrt_x.dll");
+            if (!pDllGetActivationFactory)
+                return result;
+        }
 
-		if (!library) return hr;
+        result = pDllGetActivationFactory(classId, factory);
+        
+        if (result < 0)
+            return result;
 
-		auto error = GetLastError();
-
-		pDllGetActivationFactory = reinterpret_cast<DllGetActivationFactoryFunc>
-			(GetProcAddress(library, "DllGetActivationFactory"));
-
-		if (!pDllGetActivationFactory)
-			return hr;
-
-		ComPtr<IActivationFactory> _factory;
-
-		hr = pDllGetActivationFactory(classId, _factory.GetAddressOf());
-
-		if (FAILED(hr)) return hr;
-
-		return _factory.CopyTo(iid, factory);
-	}
-
-	return hr;
+        return result;
+    }
+    return result;
 }
 
 LPTOP_LEVEL_EXCEPTION_FILTER RtlSetUnhandledExceptionFilter(LPTOP_LEVEL_EXCEPTION_FILTER lpTopLevelExceptionFilter)
@@ -69,7 +83,7 @@ BOOL __stdcall DllEntryPoint(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReser
 		DetourRestoreAfterWith();
 		DetourTransactionBegin();
 		DetourUpdateThread(GetCurrentThread());
-		DetourAttach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
+		DetourAttach(&reinterpret_cast<PVOID&>(pRoGetActivationFactory), RoGetActivationFactory_Hook);
 		DetourTransactionCommit();
 
 		if (NtQuerySystemInformation(SystemBasicInformation, &systemBasicInfo, 0x40u, 0i64) >= 0)
@@ -97,7 +111,7 @@ BOOL __stdcall DllEntryPoint(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReser
 		{
 			DetourTransactionBegin();
 			DetourUpdateThread(GetCurrentThread());
-			DetourDetach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
+			DetourDetach(&reinterpret_cast<PVOID&>(pRoGetActivationFactory), RoGetActivationFactory_Hook);
 			DetourTransactionCommit();
 			//CleanupResources(hinstDLL, fdwReason, lpReserved); Incomplete
 		}
