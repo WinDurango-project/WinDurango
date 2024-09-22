@@ -5,6 +5,9 @@
 #include "kernelx.h"
 
 #include "../src/detours.h"
+=======
+#include "../../thirdparty/Detours/src/detours.h"
+>>>>>>> Stashed changes
 
 #include <intrin.h>
 #include <winternl.h>

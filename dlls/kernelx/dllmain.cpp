@@ -26,6 +26,59 @@ HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** f
 
 	const std::wstring message = std::wstring(L"classId: ") +
 		WindowsGetStringRawBuffer(classId, nullptr);
+=======
+    const wchar_t* classIdStr = WindowsGetStringRawBuffer(classId, nullptr);
+    int result = pRoGetActivationFactory(classId, iid, factory);
+
+    // Failed, redirect to our winrt component
+    if (result < 0) {
+        debug_printf("[DEBUG] Forwarding activationFactory of %ls to our dll!", classIdStr);
+
+        /*// That means we redirect this to already existing dll which has been implemented by Microsoft
+        if (wcscmp(classIdStr, L"Windows.Xbox.Media.GameTransportControls") == 0) {
+            HMODULE gtcLib = LoadLibraryEx(L"gametransportcontrols.dll", NULL, 0);
+            debug_printf("[DEBUG] gtcLib: %i\n", gtcLib);
+            if (!gtcLib)
+                return result;
+
+            FuncDllGetActivationFactory gtcLibActivationFactory = (FuncDllGetActivationFactory)GetProcAddress(gtcLib, "DllGetActivationFactory");
+            debug_printf("[DEBUG] gtcLibActivationFactory: %i\n", gtcLibActivationFactory);
+
+            if (!gtcLibActivationFactory)
+                return result;
+
+            Microsoft::WRL::ComPtr<IActivationFactory> _factory;
+            result = gtcLibActivationFactory(classId, (void**)_factory.GetAddressOf());
+
+            HRESULT returnvalue = _factory.CopyTo(iid, factory);
+
+            if (returnvalue < 0)
+                return result;
+
+            return returnvalue;
+        }*/
+        // Checks if we initalized pointer to our DllGetActivationFactory
+        if (!pDllGetActivationFactory) {
+            HMODULE winrtLib = LoadLibraryA("Windows_Xbox_Achievement.dll");
+            debug_printf("[DEBUG] winrtLib: %i\n", winrtLib);
+            if (!winrtLib)
+                return result;
+
+            pDllGetActivationFactory = (FuncDllGetActivationFactory)GetProcAddress(winrtLib, "DllGetActivationFactory");
+            debug_printf("[DEBUG] pDllGetActivationFactory: %i\n", pDllGetActivationFactory);
+
+            if (!pDllGetActivationFactory)
+                return result;
+        }
+
+        result = pDllGetActivationFactory(classId, factory);
+        
+        if (result < 0)
+            return result;
+
+        return result;
+    }
+>>>>>>> Stashed changes
 
 	if (FAILED(hr))
 	{
