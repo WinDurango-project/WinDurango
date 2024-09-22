@@ -69,9 +69,6 @@
       <ModuleDefinitionFile>Exports.def</ModuleDefinitionFile>
       <AdditionalDependencies>ntdll.lib;detours.lib;runtimeobject.lib;kernel32.lib;Synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "C:\Users\krzyc\Documents\JakisSyfZebyNieBrudzicPuplitu\XboxOneMinecraftLCE\Mount\kernelx.dll"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
