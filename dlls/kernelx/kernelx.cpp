@@ -489,7 +489,7 @@ __int64 ConfigureLocaleSettings()
                             FreeLibrary(libraryHandle);
 
                         // Free heap memory allocated for locale data
-                        RtlFreeHeap(NtCurrentPeb()->ProcessHeap, 0, localeDataPointer);
+                        //RtlFreeHeap(NtCurrentPeb()->ProcessHeap, 0, localeDataPointer);
                         P = 0i64;
 
                         // Return error code 87 (ERROR_INVALID_PARAMETER)
