@@ -4,24 +4,27 @@
 // ReSharper disable CppClangTidyHicppMultiwayPathsCovered
 // ReSharper disable CppClangTidyClangDiagnosticInconsistentDllimport
 #include "pch.h"
-#include <winternl.h>
-#include "XPEB.h"
 
 NtAllocateVirtualMemory_t NtAllocateVirtualMemory;
 NtFreeVirtualMemory_t NtFreeVirtualMemory;
+
 #ifndef STATUS_SUCCESS
 #define STATUS_SUCCESS ((NTSTATUS)0x00000000L)
 #endif
-//Ignoring this as for now (just hope it's not being used and it's not useful.)
-__int64 NlsUpdateLocale_X() {
+
+//Ignoring this as for now (just hope it's not being used, and it's not useful.)
+__int64 NlsUpdateLocale_X() 
+{
     return 0();
 }
 
-void WakeByAddressSingle_X(PVOID Address) {
+void WakeByAddressSingle_X(PVOID Address) 
+{
     WakeByAddressSingle(Address);
 }
 
-void WakeByAddressAll_X(PVOID Address) {
+void WakeByAddressAll_X(PVOID Address) 
+{
     WakeByAddressAll(Address);
 }
 

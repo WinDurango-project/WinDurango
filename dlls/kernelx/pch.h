@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "kernelx.h"
+#include "xpeb.h"
 
 #include "../src/detours.h"
 
@@ -13,5 +14,7 @@
 #include <roapi.h>
 #include <wrl.h>
 #include <string>
+
+using namespace Microsoft::WRL;
 
 #endif //PCH_H
