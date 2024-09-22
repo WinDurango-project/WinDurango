@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "kernelx.h"
 
+<<<<<<< Updated upstream
 #include "../src/detours.h"
 =======
 #include "../../thirdparty/Detours/src/detours.h"

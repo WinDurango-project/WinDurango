@@ -20,6 +20,27 @@ SYSTEM_BASIC_INFORMATION systemBasicInfo;
 
 HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
+typedef HRESULT(__fastcall* FuncDllGetActivationFactory)(void*, void**);
+
+FuncDllGetActivationFactory pDllGetActivationFactory;
+
+void debug_printf(const char *format, ...) {
+    char buffer[1024];  // Temporary buffer to hold the formatted string
+    va_list args;
+    
+    // Start handling the variable argument list
+    va_start(args, format);
+
+    // Format the input string and store it in the buffer
+    vsnprintf(buffer, sizeof(buffer), format, args);
+
+    // End argument handling
+    va_end(args);
+
+    // Send the formatted string to the debugger
+    OutputDebugStringA(buffer);
+}
+
 HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** factory)
 {
 	auto hr = TrueRoGetActivationFactory(classId, iid, factory);
