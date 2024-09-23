@@ -3,10 +3,8 @@
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="mfplat.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mfplat.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>

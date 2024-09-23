@@ -396,4 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/dlls/winrt_x/idl
+
+# IDL files
+/dlls/winrt_x/External/*

@@ -8,16 +8,23 @@
 NtAllocateVirtualMemory_t NtAllocateVirtualMemory;
 NtFreeVirtualMemory_t NtFreeVirtualMemory;
 
-//Ignoring this as for now (just hope it's not being used and it's not useful.)
-__int64 NlsUpdateLocale_X() {
+#ifndef STATUS_SUCCESS
+#define STATUS_SUCCESS ((NTSTATUS)0x00000000L)
+#endif
+
+//Ignoring this as for now (just hope it's not being used, and it's not useful.)
+__int64 NlsUpdateLocale_X() 
+{
     return 0();
 }
 
-void WakeByAddressSingle_X(PVOID Address) {
+void WakeByAddressSingle_X(PVOID Address) 
+{
     WakeByAddressSingle(Address);
 }
 
-void WakeByAddressAll_X(PVOID Address) {
+void WakeByAddressAll_X(PVOID Address) 
+{
     WakeByAddressAll(Address);
 }
 
@@ -342,20 +349,18 @@ PVOID XMemAlloc_X(uint64_t size, uint64_t flags) {
 // TODO
 // absolutely temporary implementation I just want to make it work
 // sub_18001BCA0 
-char* qword_18002B880;
-char* qword_18002B890;
+PVOID globalDataBlock;
+PVOID localeDataHeap;
 HANDLE qword_18002B820;
 HANDLE qword_18002B830;
 HANDLE qword_18002B818;
 HANDLE qword_18002B850;
 HANDLE qword_18002B858;
-HANDLE qword_18002B888;
+PVOID baseBufferMemory;
 HANDLE P;
 char* dword_18002B84C;
 
 //sub_18001BB8C
-int dword_18002BF68;
-
 
 int sub_18001D528()
 {
@@ -369,187 +374,235 @@ INT16 sub_18001D768()
     return 0;
 }
 
-int sub_18001D96C(int v2, unsigned short* codePageData, unsigned int p, bool t, long l)
+int sub_18001D96C(int v2, PVOID codePageData, unsigned int p, bool t, long l)
 {
     //TODO
     return 0;
 }
-
-__int64 sub_18001BB8C()
-{
     // I know it should look better if it was initalized at dllmain.cpp but then I can't fix some idiotic errors
-    HMODULE ntdll = LoadLibraryA("ntdll.dll");
-    if (ntdll) {
-        NtAllocateVirtualMemory =
-            (NtAllocateVirtualMemory_t)GetProcAddress(ntdll, "NtAllocateVirtualMemory");
-        NtFreeVirtualMemory =
-            (NtFreeVirtualMemory_t)GetProcAddress(ntdll, "NtFreeVirtualMemory");
+    //HMODULE ntdll = LoadLibraryA("ntdll.dll");
+    //if (ntdll) {
+    //    NtAllocateVirtualMemory =
+    //        (NtAllocateVirtualMemory_t)GetProcAddress(ntdll, "NtAllocateVirtualMemory");
+    //    NtFreeVirtualMemory =
+    //        (NtFreeVirtualMemory_t)GetProcAddress(ntdll, "NtFreeVirtualMemory");
 
-        FreeLibrary(ntdll);
-    }
-    /*unsigned int v0; // ebx
-    unsigned __int16* AnsiCodePageData; // rdx
-    int v2; // ecx
-    PVOID v3; // rbx
-    HMODULE v4; // rcx
+    //    FreeLibrary(ntdll);
+    //}
 
-    v0 = 0;
-    if (!dword_18002B84C)
+BOOL isLocaleConfigInitialized;
+
+__int64 AllocateLocaleHeapMemory()
+{
+    //memset(&globalDataBlock, 0, 0xD8ui64);
+    //baseBufferMemory = RtlAllocateHeap(NtCurrentPeb()->ProcessHeap, 8u, 0x400ui64);
+    //if (!baseBufferMemory)
+    //    return 14i64;
+    //localeDataHeap = RtlAllocateHeap(NtCurrentPeb()->ProcessHeap, 8u, 0x400ui64);
+    //if (!localeDataHeap)
+    //{
+    //    if (baseBufferMemory)
+    //        RtlFreeHeap(NtCurrentPeb()->ProcessHeap, 0, baseBufferMemory);
+    //    return 14i64;
+    //}
+    return 0i64;
+}
+
+int dword_18002BF68;
+_QWORD unk_18002B838;
+__int64 qword_18002B828;
+__int64 qword_18002B980;
+__int64 qword_18002B990;
+__int16 word_18002BF64;
+HANDLE Event;
+__int64 __fastcall sub_18001EB38(unsigned int a1, __int64 a2 = 0)
+{
+    return 0;
+}
+__int64 __fastcall MapLocaleFileAndInitializeData(unsigned int* a1 = 0)
+{
+    return 0;
+}
+__int64 ConfigureLocaleSettings()
+{
+    unsigned int localeHeapMemory;      // LocaleHeapMemory -> localeHeapMemory
+    PVOID ansiCodePageData;             // AnsiCodePageData -> ansiCodePageData
+    int ansiCodePage;                   // v2 -> ansiCodePage
+    PVOID localeDataPointer;            // v3 -> localeDataPointer
+    HMODULE libraryHandle;              // v4 -> libraryHandle
+
+    localeHeapMemory = 0;
+
+    // Check if locale configuration is already initialized
+    if (!isLocaleConfigInitialized)
     {
+        // Try to allocate memory for locale data
+        localeHeapMemory = AllocateLocaleHeapMemory();
 
-        v0 = sub_18001D528();
-        if (!v0)
+        if (!localeHeapMemory)
         {
-            v0 = sub_18001D768();
-            if (!v0)
+            // If allocation fails, attempt to map the locale file and initialize data
+            localeHeapMemory = ((__int64 (*)(void))MapLocaleFileAndInitializeData)();
+
+            if (!localeHeapMemory)
             {
-                // not sure
-                AnsiCodePageData = (unsigned __int16*)NtCurrentTeb()->ProcessEnvironmentBlock->ProcessParameters;
-                v2 = AnsiCodePageData[1];
-                dword_18002BF68 = v2;
-                v0 = sub_18001D96C(v2, AnsiCodePageData, (unsigned int)&P, 0, 0LL);
-                if (!v0)
+                // Retrieve AnsiCodePage data from PEB
+                ansiCodePageData = NtCurrentPeb()->AnsiCodePageData;
+                ansiCodePage = *((unsigned __int16*)ansiCodePageData + 1);
+
+                // Store AnsiCodePage value in a global variable
+                dword_18002BF68 = ansiCodePage;
+
+                // Call a subroutine with various locale parameters
+                localeHeapMemory = sub_18001D96C(ansiCodePage,
+                    (PVOID)(DWORD)ansiCodePageData,
+                    (unsigned int)&P, 0, 0i64);
+
+                // If no memory is allocated, set up synchronization and locale data
+                if (!localeHeapMemory)
                 {
-                    RtlAcquireSRWLockExclusive(&unk_18002B838);
-                    qword_18002B828 = sub_18001EB38(127LL);
+                    // Acquire exclusive lock for synchronization
+                    RtlAcquireSRWLockExclusive((PSRWLOCK)&unk_18002B838);
+
+                    // Attempt to initialize locale data
+                    qword_18002B828 = sub_18001EB38(127i64);
+
                     if (qword_18002B828)
                     {
-                        RtlReleaseSRWLockExclusive(&unk_18002B838);
-                        qword_18002B990 = 0LL;
-                        qword_18002B980 = 0LL;
+                        // Release lock after initialization
+                        RtlReleaseSRWLockExclusive((PSRWLOCK)&unk_18002B838);
+
+                        qword_18002B990 = 0i64;
+                        qword_18002B980 = 0i64;
                         word_18002BF64 = 1;
-                        Event = 0LL;
-                        dword_18002B84C = 1;
+                        Event = 0i64;
+                        isLocaleConfigInitialized = 1;
                     }
                     else
                     {
-                        RtlReleaseSRWLockExclusive(&unk_18002B838);
-                        v3 = P;
-                        v4 = (HMODULE) * ((_QWORD*)P + 8);
-                        if (v4)
-                            FreeLibrary(v4);
-                        RtlFreeHeap(NtCurrentPeb()->ProcessHeap, 0, v3);
-                        P = 0LL;
+                        // Release lock if initialization fails
+                        RtlReleaseSRWLockExclusive((PSRWLOCK)&unk_18002B838);
+
+                        // Cleanup in case of failure
+                        localeDataPointer = P;
+                        libraryHandle = (HMODULE) * ((_QWORD*)P + 8);
+
+                        // Free the loaded library if it exists
+                        if (libraryHandle)
+                            FreeLibrary(libraryHandle);
+
+                        // Free heap memory allocated for locale data
+                        //RtlFreeHeap(NtCurrentPeb()->ProcessHeap, 0, localeDataPointer);
+                        P = 0i64;
+
+                        // Return error code 87 (ERROR_INVALID_PARAMETER)
                         return 87;
                     }
                 }
             }
         }
     }
-    return v0;*/
-    return 0;
+
+    return localeHeapMemory;
 }
+
 
 
 // absolutely temporary implementation I just want to make it work
 // decompilation from ghidra (it looks horrible lol)
-NTSTATUS sub_18001BCA0(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved)
+NTSTATUS CleanupResources(HINSTANCE hInstance, DWORD forwardReason, LPVOID lpvReserved)
 {
-    char* v0; // rax
-    __int64 v1; // rdi
-    __int64 v2; // rsi
-    char* v3; // rbx
-    HMODULE v4; // rcx
-    char* v5; // rbp
-    char* v6; // rax
-    __int64 v7; // rdi
-    __int64 v8; // rsi
-    char* v9; // r8
-    char* v10; // rbx
-    PVOID v11; // rbx
-    HMODULE v12; // rcx
-    NTSTATUS result; // al
-
-
-    v0 = (char*)qword_18002B880;
-    if (qword_18002B880)
+    char* resourceArray1 = (char*)globalDataBlock;
+    if (resourceArray1)
     {
-        v1 = 0LL;
-        v2 = 197LL;
-        do
+        for (int i = 0; i < 197; ++i)
         {
-            v3 = *(char**)&v0[v1];
-            if (v3)
+            char* currentResource = *(char**)&resourceArray1[i * 8];
+            while (currentResource)
             {
-                do
-                {
-                    v4 = (HMODULE)v3[8];
-                    v5 = (char*)v3[9];
-                    if (v4)
-                        FreeLibrary(v4);
-                    HeapFree(GetProcessHeap(), 0, v3);
-                    v3 = v5;
-                } while (v5);
-                v0 = (char*)qword_18002B880;
+                HMODULE moduleHandle = (HMODULE)currentResource[8];
+                char* nextResource = (char*)currentResource[9];
+
+                if (moduleHandle)
+                    FreeLibrary(moduleHandle);
+
+                HeapFree(GetProcessHeap(), 0, currentResource);
+                currentResource = nextResource;
             }
-            v1 += 8LL;
-            --v2;
-        } while (v2);
-        if (v0)
-            HeapFree(GetProcessHeap(), 0, qword_18002B880);
-        qword_18002B880 = 0LL;
-    }
-    v6 = (char*)qword_18002B890;
-    v7 = 0LL;
-    v8 = 128LL;
-    do
-    {
-        v9 = *(char**)&v6[v7];
-        if (v9)
-        {
-            do
-            {
-                v10 = (char*)v9[10];
-                HeapFree(GetProcessHeap(), 0, v9);
-                v9 = v10;
-            } while (v10);
-            v6 = (char*)qword_18002B890;
         }
-        v7 += 8LL;
-        --v8;
-    } while (v8);
-    if (v6)
-        HeapFree(GetProcessHeap(), 0, qword_18002B890);
-    qword_18002B890 = 0LL;
-    if (qword_18002B888)
-        HeapFree(GetProcessHeap(), 0, qword_18002B888);
-    // P ?!?
-    v11 = P;
-    qword_18002B888 = 0LL;
-    v12 = (HMODULE) * ((char*)P + 8);
-    if (v12)
-        FreeLibrary(v12);
-    result = HeapFree(GetProcessHeap(), 0, v11);
-    P = 0LL;
-    if (GetModuleHandle)
-    {
-        result = NtClose(GetModuleHandle);
+        HeapFree(GetProcessHeap(), 0, globalDataBlock);
+        globalDataBlock = 0LL;
     }
+
+    char* resourceArray2 = (char*)localeDataHeap;
+    if (resourceArray2)
+    {
+        for (int i = 0; i < 128; ++i)
+        {
+            char* currentResource = *(char**)&resourceArray2[i * 8];
+            while (currentResource)
+            {
+                char* nextResource = (char*)currentResource[10];
+                HeapFree(GetProcessHeap(), 0, currentResource);
+                currentResource = nextResource;
+            }
+        }
+        HeapFree(GetProcessHeap(), 0, localeDataHeap);
+        localeDataHeap = 0LL;
+    }
+
+    if (baseBufferMemory)
+    {
+        HeapFree(GetProcessHeap(), 0, baseBufferMemory);
+        baseBufferMemory = 0LL;
+    }
+
+    // Handle cleanup of 'P'
+    PVOID pResource = P;
+    if (pResource)
+    {
+        HMODULE moduleHandle = (HMODULE)((char*)P + 8);
+        if (moduleHandle)
+            FreeLibrary(moduleHandle);
+
+        HeapFree(GetProcessHeap(), 0, pResource);
+        P = 0LL;
+    }
+
+    // Close any open module handles
+    if (GetModuleHandle)
+        NtClose(GetModuleHandle);
+
     if (qword_18002B820)
     {
-        result = NtClose(qword_18002B820);
+        NtClose(qword_18002B820);
         qword_18002B820 = 0LL;
     }
+
     if (qword_18002B830)
     {
-        result = NtClose(qword_18002B830);
+        NtClose(qword_18002B830);
         qword_18002B830 = 0LL;
     }
+
     if (qword_18002B818)
     {
-        result = NtClose(qword_18002B818);
+        NtClose(qword_18002B818);
         qword_18002B818 = 0LL;
     }
+
     if (qword_18002B850)
     {
-        result = NtClose(qword_18002B850);
+        NtClose(qword_18002B850);
         qword_18002B850 = 0LL;
     }
+
     if (qword_18002B858)
     {
-        result = NtClose(qword_18002B858);
+        NtClose(qword_18002B858);
         qword_18002B858 = 0LL;
     }
+
     dword_18002B84C = 0;
-    return result;
+    return STATUS_SUCCESS;
 }

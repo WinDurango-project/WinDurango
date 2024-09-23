@@ -1,0 +1,12 @@
+LIBRARY AcpHal
+EXPORTS
+    AcpHalAllocateShapeContexts = AcpHalAllocateShapeContexts_X @1
+    AcpHalCreate                = AcpHalCreate_X                @2
+    AcpHalReleaseShapeContexts  = AcpHalReleaseShapeContexts_X  @3
+    ApuAlloc                    = ApuAlloc_X                    @4
+    ApuCreateHeap               = ApuCreateHeap_X               @5
+    ApuFree                     = ApuFree_X                     @6
+    ApuHeapGetState             = ApuHeapGetState_X             @7
+    ApuIsVirtualAddressValid    = ApuIsVirtualAddressValid_X    @8
+    ApuMapApuAddress            = ApuMapApuAddress_X            @9
+    ApuMapVirtualAddress        = ApuMapVirtualAddress_X        @10
