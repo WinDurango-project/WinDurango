@@ -95,7 +95,6 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="kernelx.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="xpeb.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

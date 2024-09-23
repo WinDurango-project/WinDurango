@@ -1,16 +1,16 @@
 LIBRARY kernelx
 EXPORTS
-	XMemAlloc				               = XMemAlloc_X					                   @504
-	XMemAllocDefault		               = XMemAllocDefault_X			                       @505
-	EventRegister                          = NTDLL.EventRegister                               @95
-	XMemFree                               = XMemFree_X                                        @507
-	XMemFreeDefault                        = XMemFreeDefault_X                                 @508
-	GetConsoleType                         = GetConsoleType_X                                  @140
+	XMemAlloc				            = XMemAlloc_X					                    @504
+	XMemAllocDefault		            = XMemAllocDefault_X			                    @505
+	EventRegister                       = NTDLL.EventRegister                               @95
+	XMemFree                            = XMemFree_X                                        @507
+	XMemFreeDefault                     = XMemFreeDefault_X                                 @508
+	GetConsoleType                      = GetConsoleType_X                                  @140
 	AcquireSRWLockExclusive             = Kernel32.AcquireSRWLockExclusive                  @1
 	AcquireSRWLockShared                = Kernel32.AcquireSRWLockShared                     @2
 	AddVectoredContinueHandler          = Kernel32.AddVectoredContinueHandler               @3
 	AddVectoredExceptionHandler         = Kernel32.AddVectoredExceptionHandler              @4
-	AllocateTitlePhysicalPages          = Kernel32.AllocateUserPhysicalPages               @5
+	AllocateTitlePhysicalPages          = Kernel32.AllocateUserPhysicalPages				@5
 	Beep                                = Kernel32.Beep                                     @6
 	BindIoCompletionCallback            = Kernel32.BindIoCompletionCallback                 @7
 	CallbackMayRunLong                  = Kernel32.CallbackMayRunLong                       @8
@@ -37,7 +37,7 @@ EXPORTS
 	ConvertThreadToFiberEx              = Kernel32.ConvertThreadToFiberEx                   @29
 	CopyContext                         = Kernel32.CopyContext                              @30
 	CopyFile2                           = Kernel32.CopyFile2                                @31
-	CopyMemoryNonTemporal               = Kernel32.RtlCopyMemory                    @32
+	CopyMemoryNonTemporal               = Kernel32.RtlCopyMemory							@32
 	CreateDirectoryA                    = Kernel32.CreateDirectoryA                         @33
 	CreateDirectoryW                    = Kernel32.CreateDirectoryW                         @34
 	CreateEventA                        = Kernel32.CreateEventA                             @35
