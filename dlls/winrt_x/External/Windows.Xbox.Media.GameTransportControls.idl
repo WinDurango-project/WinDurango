@@ -75,14 +75,10 @@ namespace Windows
             {
                 Play = 0,
                 Pause = 1,
-                Stop = 2,
-                Record = 3,
-                FastForward = 4,
-                Rewind = 5,
-                Next = 6,
-                Previous = 7,
-                ChannelUp = 8,
-                ChannelDown = 9
+                Menu = 2,
+                View = 3,
+                Back = 4,
+                MaxButtons = 5
             };
 
             enum GameTransportControlsProperty
