@@ -155,6 +155,9 @@
     <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferManager.h" />
     <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferWatcher.h" />
     <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.StreamingInstallQueue.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControls.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControlsButtonPressedEventArgs.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControlsPropertyChangedEventArgs.h" />
     <ClInclude Include="Implementation\Windows.Xbox.Media.SmoothStreamingSessionManager.h" />
     <ClInclude Include="Implementation\Windows.Xbox.Media.SystemMediaTransportControls.h" />
     <ClInclude Include="Implementation\Windows.Xbox.System.Console.h" />
@@ -195,6 +198,9 @@
     <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferManager.cpp" />
     <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferWatcher.cpp" />
     <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.StreamingInstallQueue.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControls.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControlsButtonPressedEventArgs.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControlsPropertyChangedEventArgs.cpp" />
     <ClCompile Include="Implementation\Windows.Xbox.Media.SmoothStreamingSessionManager.cpp" />
     <ClCompile Include="Implementation\Windows.Xbox.Media.SystemMediaTransportControls.cpp" />
     <ClCompile Include="Implementation\Windows.Xbox.System.Console.cpp" />
@@ -221,6 +227,7 @@
     <Midl Include="External\Windows.Xbox.Input.idl" />
     <Midl Include="External\Windows.Xbox.Management.Deployment.idl" />
     <Midl Include="External\Windows.Xbox.Management.idl" />
+    <Midl Include="External\Windows.Xbox.Media.GameTransportControls.idl" />
     <Midl Include="External\Windows.Xbox.Media.idl" />
     <Midl Include="External\Windows.Xbox.Shell.idl" />
     <Midl Include="External\Windows.Xbox.Shell.Social.idl" />

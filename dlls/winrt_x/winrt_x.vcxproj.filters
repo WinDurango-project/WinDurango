@@ -87,6 +87,9 @@
     <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.StreamingInstallQueue.cpp" />
     <ClCompile Include="Implementation\Windows.Xbox.Media.SmoothStreamingSessionManager.cpp" />
     <ClCompile Include="Implementation\Windows.Xbox.Media.SystemMediaTransportControls.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControls.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControlsButtonPressedEventArgs.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControlsPropertyChangedEventArgs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -159,10 +162,13 @@
     <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.StreamingInstallQueue.h" />
     <ClInclude Include="Implementation\Windows.Xbox.Media.SystemMediaTransportControls.h" />
     <ClInclude Include="Implementation\Windows.Xbox.Media.SmoothStreamingSessionManager.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControls.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControlsButtonPressedEventArgs.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControlsPropertyChangedEventArgs.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Windows_Xbox_Achievement.def" />
     <None Include="packages.config" />
+    <None Include="winrt_x.def" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
@@ -180,9 +186,6 @@
     <Midl Include="External\Windows.Xbox.Shell.Social.idl">
       <Filter>External</Filter>
     </Midl>
-    <Midl Include="Windows.Xbox.Achievements.idl">
-      <Filter>Implementation</Filter>
-    </Midl>
     <Midl Include="External\Windows.Xbox.Management.Deployment.idl" />
     <Midl Include="External\Windows.Xbox.ApplicationModel.State.Internal.idl" />
     <Midl Include="External\Windows.Xbox.Management.idl" />
@@ -190,5 +193,7 @@
     <Midl Include="External\Windows.Xbox.ApplicationModel.State.idl" />
     <Midl Include="External\Windows.Xbox.ApplicationModel.Store.idl" />
     <Midl Include="External\Windows.Xbox.Media.idl" />
+    <Midl Include="External\Windows.Xbox.Achievements.idl" />
+    <Midl Include="External\Windows.Xbox.Media.GameTransportControls.idl" />
   </ItemGroup>
 </Project>
