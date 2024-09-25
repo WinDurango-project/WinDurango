@@ -1,0 +1,7 @@
+LIBRARY MMDevAPI
+EXPORTS
+	ActivateAudioInterfaceAsync	 =	ActivateAudioInterfaceAsync_X	@1
+	DllCanUnloadNow				 =	DllCanUnloadNow_X				@2
+	DllGetClassObject			 =	DllGetClassObject_X				@3
+	RefreshWasapiDeviceList		 =	RefreshWasapiDeviceList_X		@4
+	SetWasapiThreadAffinityMask	 =	SetWasapiThreadAffinityMask_X	@5
