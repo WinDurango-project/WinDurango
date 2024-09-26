@@ -18,6 +18,18 @@ cd WinDurango
 git submodule update --init
 ```
 
+### Dumping Xbox Winmds
+
+COMING SOON
+
+### Converting Winmds to IDLs
+
+COMMING SOON
+
 Open WinDurango.sln
 
 Select Build > Build Solution
+
+### Debugging Xbox Games
+
+COMING SOON
