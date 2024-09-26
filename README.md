@@ -12,6 +12,8 @@
 For more information, see the
 [main WinDurango wiki](https://github.com/WinDurango/WinDurango/wiki).
 
+Check out the UI project at [WinDurango.UI](https://github.com/WinDurango-project/WinDurango.UI/)
+
 **Interested in supporting the core contributors?** Visit
 [WinDurango Project on Patreon](https://www.patreon.com/WinDurango).
 
