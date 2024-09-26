@@ -24,7 +24,7 @@ COMING SOON
 
 ### Converting Winmds to IDLs
 
-COMMING SOON
+COMING SOON
 
 Open WinDurango.sln
 
