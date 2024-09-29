@@ -338,6 +338,25 @@ PVOID XMemAlloc_X(uint64_t size, uint64_t flags) {
     return XMemAllocDefault_X(size, flags);
 }
 
+void XMemSetAllocationHooks_X(void (*a1)(SIZE_T), void (*a2)(PVOID))
+{
+
+    //RtlEnterCriticalSection(&PTR_DAT_18002alc0);
+
+    void* ptr = a2;
+    void* ptr2 = a1;
+
+    if (a1 == (void*)(SIZE_T)0x0)
+    {
+        ptr = XMemAllocDefault_X;
+        ptr2 = XMemFreeDefault_X;
+
+    }
+
+    //RtlLeaveCriticalSection(&PTR_DAT_18002alc0);
+
+}
+
 
 // TODO
 // absolutely temporary implementation I just want to make it work
