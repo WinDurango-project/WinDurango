@@ -258,7 +258,7 @@ void GetSystemOSVersion_X(uint8_t* buffer) {
 
 
 __int64 GetConsoleType_X() {
-    return 4;
+    return CONSOLE_TYPE::CONSOLE_TYPE_XBOX_ONE_X_DEVKIT;
 }
 
 uint32_t dword_180021AA0[16];
