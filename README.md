@@ -14,6 +14,10 @@ For more information, see the
 
 Check out the UI project at [WinDurango.UI](https://github.com/WinDurango-project/WinDurango.UI/)
 
+> [!NOTE]
+> This project is still being worked on, and we **really** need help as we only have a few developers.   
+> If you know C++ and think you can help out, hop into the Discord and let us know. :)
+
 **Interested in supporting the core contributors?** Visit
 [WinDurango Project on Patreon](https://www.patreon.com/WinDurango).
 
