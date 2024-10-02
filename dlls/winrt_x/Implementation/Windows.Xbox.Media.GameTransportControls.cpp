@@ -33,11 +33,11 @@ namespace winrt::Windows::Xbox::Media::implementation
     }
     winrt::Windows::Xbox::Media::GamePlaybackStatus GameTransportControls::PlaybackStatus()
     {
-        return GamePlaybackStatus::Playing;
+        return this->m_gamePlaybackStatus;
     }
     void GameTransportControls::PlaybackStatus(winrt::Windows::Xbox::Media::GamePlaybackStatus const& value)
     {
-        // We ignore setting PlaybackStatus
+        this->m_gamePlaybackStatus = value;
     }
     winrt::Windows::Xbox::Media::SoundLevel GameTransportControls::SoundLevel()
     {
@@ -45,66 +45,66 @@ namespace winrt::Windows::Xbox::Media::implementation
     }
     bool GameTransportControls::IsEnabled()
     {
-        return false;
+        return this->m_isEnabled;
     }
     void GameTransportControls::IsEnabled(bool value)
     {
-        // We ignore setting isEnabled
+        this->m_isEnabled = value;
     }
     bool GameTransportControls::IsPlayEnabled()
     {
-        return false;
+        return this->m_isPlayEnabled;
     }
     void GameTransportControls::IsPlayEnabled(bool value)
     {
-        // We ignore setting isPlayEnabled
+        this->m_isPlayEnabled = value;
     }
     bool GameTransportControls::IsPauseEnabled()
     {
-        return false;
+        return this->m_isPauseEnabled;
     }
     void GameTransportControls::IsPauseEnabled(bool value)
     {
-        // We ignore setting IsPauseEnabled
+        this->m_isPauseEnabled = value;
     }
     bool GameTransportControls::IsMenuEnabled()
     {
-        return false;
+        return this->m_isMenuEnabled;
     }
     void GameTransportControls::IsMenuEnabled(bool value)
     {
-        // We ignore setting IsMenuEnabled
+        this->m_isMenuEnabled = value;
     }
     bool GameTransportControls::IsViewEnabled()
     {
-        return false;
+        return this->m_isViewEnabled;
     }
     void GameTransportControls::IsViewEnabled(bool value)
     {
-        // We ignore setting IsViewEnabled
+        this->m_isViewEnabled = value;
     }
     bool GameTransportControls::IsBackEnabled()
     {
-        return false;
+        return this->m_isBackEnabled;
     }
     void GameTransportControls::IsBackEnabled(bool value)
     {
-        // We ignore setting IsBackEnabled
+        this->m_isBackEnabled = value;
     }
     winrt::event_token GameTransportControls::ButtonPressed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Xbox::Media::GameTransportControls, winrt::Windows::Xbox::Media::GameTransportControlsButtonPressedEventArgs> const& handler)
     {
-        return m_gameTransportControlsButtonPressedEventArgs.add(handler);
+        return this->m_gameTransportControlsButtonPressedEventArgs.add(handler);
     }
     void GameTransportControls::ButtonPressed(winrt::event_token const& token) noexcept
     {
-        m_gameTransportControlsButtonPressedEventArgs.remove(token);
+        this->m_gameTransportControlsButtonPressedEventArgs.remove(token);
     }
     winrt::event_token GameTransportControls::PropertyChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Xbox::Media::GameTransportControls, winrt::Windows::Xbox::Media::GameTransportControlsPropertyChangedEventArgs> const& handler)
     {
-        return m_gameTransportControlsPropertyChangedEventArgs.add(handler);
+        return this->m_gameTransportControlsPropertyChangedEventArgs.add(handler);
     }
     void GameTransportControls::PropertyChanged(winrt::event_token const& token) noexcept
     {
-        m_gameTransportControlsPropertyChangedEventArgs.remove(token);
+        this->m_gameTransportControlsPropertyChangedEventArgs.remove(token);
     }
 }
