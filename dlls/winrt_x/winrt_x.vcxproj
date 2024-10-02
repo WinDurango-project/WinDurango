@@ -1,248 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props')" />
-	<Import Project="packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props')" />
-	<PropertyGroup Label="Globals">
-		<CppWinRTOptimized>true</CppWinRTOptimized>
-		<CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
-		<CppWinRTGenerateWindowsMetadata>true</CppWinRTGenerateWindowsMetadata>
-		<MinimalCoreWin>true</MinimalCoreWin>
-		<ProjectGuid>{93628d69-c7a5-43e0-a6e7-ae920c666eb4}</ProjectGuid>
-		<ProjectName>winrt_x</ProjectName>
-		<RootNamespace>winrt_x</RootNamespace>
-		<DefaultLanguage>en-US</DefaultLanguage>
-		<MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-		<AppContainerApplication>true</AppContainerApplication>
-		<ApplicationType>Windows Store</ApplicationType>
-		<ApplicationTypeRevision>10.0</ApplicationTypeRevision>
-		<WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0.22621.0</WindowsTargetPlatformVersion>
-		<WindowsTargetPlatformMinVersion>10.0.17134.0</WindowsTargetPlatformMinVersion>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-	<ItemGroup Label="ProjectConfigurations">
-		<ProjectConfiguration Include="Debug|ARM">
-			<Configuration>Debug</Configuration>
-			<Platform>ARM</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Debug|ARM64">
-			<Configuration>Debug</Configuration>
-			<Platform>ARM64</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Debug|Win32">
-			<Configuration>Debug</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Debug|x64">
-			<Configuration>Debug</Configuration>
-			<Platform>x64</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|ARM">
-			<Configuration>Release</Configuration>
-			<Platform>ARM</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|ARM64">
-			<Configuration>Release</Configuration>
-			<Platform>ARM64</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|Win32">
-			<Configuration>Release</Configuration>
-			<Platform>Win32</Platform>
-		</ProjectConfiguration>
-		<ProjectConfiguration Include="Release|x64">
-			<Configuration>Release</Configuration>
-			<Platform>x64</Platform>
-		</ProjectConfiguration>
-	</ItemGroup>
-	<PropertyGroup Label="Configuration">
-		<ConfigurationType>DynamicLibrary</ConfigurationType>
-		<PlatformToolset>v143</PlatformToolset>
-		<PlatformToolset Condition="'$(VisualStudioVersion)' == '16.0'">v142</PlatformToolset>
-		<PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0'">v141</PlatformToolset>
-		<PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
-		<CharacterSet>Unicode</CharacterSet>
-		<GenerateManifest>false</GenerateManifest>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
-		<UseDebugLibraries>true</UseDebugLibraries>
-		<LinkIncremental>true</LinkIncremental>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
-		<UseDebugLibraries>false</UseDebugLibraries>
-		<WholeProgramOptimization>true</WholeProgramOptimization>
-		<LinkIncremental>false</LinkIncremental>
-	</PropertyGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-	<ImportGroup Label="ExtensionSettings">
-	</ImportGroup>
-	<ImportGroup Label="Shared">
-	</ImportGroup>
-	<ImportGroup Label="PropertySheets">
-		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-	</ImportGroup>
-	<ImportGroup Label="PropertySheets">
-		<Import Project="PropertySheet.props" />
-	</ImportGroup>
-	<PropertyGroup Label="UserMacros" />
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-		<IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\External</IncludePath>
-	</PropertyGroup>
-	<ItemDefinitionGroup>
-		<ClCompile>
-			<PrecompiledHeader>Use</PrecompiledHeader>
-			<PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-			<PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
-			<WarningLevel>Level4</WarningLevel>
-			<AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
-			<PreprocessorDefinitions>_WINRT_DLL;WIN32_LEAN_AND_MEAN;WINRT_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			<AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-		</ClCompile>
-		<Link>
-			<SubSystem>Console</SubSystem>
-			<GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-			<ModuleDefinitionFile>winrt_x.def</ModuleDefinitionFile>
-		</Link>
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
-		<ClCompile>
-			<PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-		</ClCompile>
-		<Midl>
-			<AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/winrt %(AdditionalOptions)</AdditionalOptions>
-		</Midl>
-		<PostBuildEvent>
-			<Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-			</Command>
-		</PostBuildEvent>
-	</ItemDefinitionGroup>
-	<ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
-		<ClCompile>
-			<PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-		</ClCompile>
-		<Link>
-			<EnableCOMDATFolding>true</EnableCOMDATFolding>
-			<OptimizeReferences>true</OptimizeReferences>
-		</Link>
-	</ItemDefinitionGroup>
-	<ItemGroup>
-		<ClInclude Include="Implementation\Windows.Xbox.Achievements.AchievementNotifier.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Achievements.AchievementSource.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Achievements.AchievementUnlockedEventArgs.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.AppInfo.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.AumidQuery.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ContentCompatibility.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ContentEnhancements.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageFullNameQuery.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageInfo.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageInfoEvents.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ProtocolQuery.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.Store.Configuration.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.Store.Product.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Input.BodyController.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Input.BodyHandPair.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Input.BrokeredInteractions.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Input.Controller.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Input.ControllerInputManager.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Input.Gamepad.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Input.InputManager.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Input.InputManagerInternal.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Input.NavigationController.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.ContentInstallationInfo.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.ContentInstallManager.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.ContentLocation.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.ContentMetadata.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.ContentMetadataPackager.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.DownloadableContentPackageManager.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferManager.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferWatcher.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.StreamingInstallQueue.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControls.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControlsButtonPressedEventArgs.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControlsPropertyChangedEventArgs.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Media.SmoothStreamingSessionManager.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.Media.SystemMediaTransportControls.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.System.Console.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.System.Console2.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.System.Launcher.h" />
-		<ClInclude Include="Implementation\Windows.Xbox.System.User.h" />
-		<ClInclude Include="pch.h" />
-	</ItemGroup>
-	<ItemGroup>
-		<ClCompile Include="Implementation\Windows.Xbox.Achievements.AchievementNotifier.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Achievements.AchievementSource.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Achievements.AchievementUnlockedEventArgs.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.AppInfo.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.AumidQuery.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ContentCompatibility.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ContentEnhancements.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageFullNameQuery.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageInfo.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageInfoEvents.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ProtocolQuery.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.Store.Configuration.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.Store.Product.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Input.BodyController.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Input.BodyHandPair.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Input.BrokeredInteractions.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Input.Controller.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Input.ControllerInputManager.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Input.Gamepad.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Input.InputManager.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Input.InputManagerInternal.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Input.NavigationController.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.ContentInstallationInfo.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.ContentInstallManager.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.ContentLocation.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.ContentMetadata.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.ContentMetadataPackager.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.DownloadableContentPackageManager.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferManager.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferWatcher.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.StreamingInstallQueue.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControls.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControlsButtonPressedEventArgs.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControlsPropertyChangedEventArgs.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Media.SmoothStreamingSessionManager.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.Media.SystemMediaTransportControls.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.System.Console.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.System.Console2.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.System.Launcher.cpp" />
-		<ClCompile Include="Implementation\Windows.Xbox.System.User.cpp" />
-		<ClCompile Include="pch.cpp">
-			<PrecompiledHeader>Create</PrecompiledHeader>
-		</ClCompile>
-		<ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="packages.config" />
-		<None Include="winrt_x.def" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="PropertySheet.props" />
-	</ItemGroup>
-	<ItemGroup>
-		<Midl Include="External\Windows.Xbox.ApplicationModel.State.idl" />
-		<Midl Include="External\Windows.Xbox.ApplicationModel.State.Internal.idl" />
-		<Midl Include="External\Windows.Xbox.ApplicationModel.Store.idl" />
-		<Midl Include="External\Windows.Xbox.idl" />
-		<Midl Include="External\Windows.Xbox.Input.idl" />
-		<Midl Include="External\Windows.Xbox.Management.Deployment.idl" />
-		<Midl Include="External\Windows.Xbox.Management.idl" />
-		<Midl Include="External\Windows.Xbox.Media.GameTransportControls.idl" />
-		<Midl Include="External\Windows.Xbox.Media.idl" />
-		<Midl Include="External\Windows.Xbox.Shell.idl" />
-		<Midl Include="External\Windows.Xbox.Shell.Social.idl" />
-		<Midl Include="External\Windows.Xbox.System.idl" />
-		<Midl Include="External\Windows.Xbox.Achievements.idl" />
-	</ItemGroup>
-	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-	<ImportGroup Label="ExtensionTargets">
-		<Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets')" />
-	</ImportGroup>
-	<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-		<PropertyGroup>
-			<ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-		</PropertyGroup>
-		<Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props'))" />
-		<Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets'))" />
-	</Target>
+  <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props')" />
+  <Import Project="packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props')" />
+  <PropertyGroup Label="Globals">
+    <CppWinRTOptimized>true</CppWinRTOptimized>
+    <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
+    <CppWinRTGenerateWindowsMetadata>true</CppWinRTGenerateWindowsMetadata>
+    <MinimalCoreWin>true</MinimalCoreWin>
+    <ProjectGuid>{93628d69-c7a5-43e0-a6e7-ae920c666eb4}</ProjectGuid>
+    <ProjectName>winrt_x</ProjectName>
+    <RootNamespace>winrt_x</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.17134.0</WindowsTargetPlatformMinVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '16.0'">v142</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="PropertySheet.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\External</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level4</WarningLevel>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <PreprocessorDefinitions>_WINRT_DLL;WIN32_LEAN_AND_MEAN;WINRT_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>winrt_x.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Midl>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/winrt %(AdditionalOptions)</AdditionalOptions>
+    </Midl>
+    <PostBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Implementation\Windows.Xbox.Achievements.AchievementNotifier.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Achievements.AchievementSource.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Achievements.AchievementUnlockedEventArgs.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.AppInfo.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.AumidQuery.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ContentCompatibility.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ContentEnhancements.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageFullNameQuery.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageInfo.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageInfoEvents.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ProtocolQuery.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.Store.Configuration.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.ApplicationModel.Store.Product.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Input.BodyController.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Input.BodyHandPair.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Input.BrokeredInteractions.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Input.Controller.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Input.ControllerInputManager.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Input.Gamepad.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Input.InputManager.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Input.InputManagerInternal.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Input.NavigationController.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.ContentInstallationInfo.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.ContentInstallManager.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.ContentLocation.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.ContentMetadata.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.ContentMetadataPackager.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.DownloadableContentPackageManager.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferManager.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferWatcher.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Management.Deployment.StreamingInstallQueue.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControls.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControlsButtonPressedEventArgs.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.GameTransportControlsPropertyChangedEventArgs.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.SmoothStreamingSessionManager.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.Media.SystemMediaTransportControls.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.System.Console.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.System.Console2.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.System.Launcher.h" />
+    <ClInclude Include="Implementation\Windows.Xbox.System.User.h" />
+    <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Implementation\Windows.Xbox.Achievements.AchievementNotifier.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Achievements.AchievementSource.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Achievements.AchievementUnlockedEventArgs.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.AppInfo.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.AumidQuery.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ContentCompatibility.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ContentEnhancements.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageFullNameQuery.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageInfo.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.PackageInfoEvents.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.State.Internal.ProtocolQuery.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.Store.Configuration.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.ApplicationModel.Store.Product.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Input.BodyController.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Input.BodyHandPair.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Input.BrokeredInteractions.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Input.Controller.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Input.ControllerInputManager.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Input.Gamepad.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Input.InputManager.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Input.InputManagerInternal.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Input.NavigationController.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.ContentInstallationInfo.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.ContentInstallManager.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.ContentLocation.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.ContentMetadata.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.ContentMetadataPackager.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.DownloadableContentPackageManager.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferManager.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.PackageTransferWatcher.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Management.Deployment.StreamingInstallQueue.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControls.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControlsButtonPressedEventArgs.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.GameTransportControlsPropertyChangedEventArgs.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.SmoothStreamingSessionManager.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.Media.SystemMediaTransportControls.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.System.Console.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.System.Console2.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.System.Launcher.cpp" />
+    <ClCompile Include="Implementation\Windows.Xbox.System.User.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="winrt_x.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PropertySheet.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="External\Windows.Xbox.ApplicationModel.State.idl" />
+    <Midl Include="External\Windows.Xbox.ApplicationModel.State.Internal.idl" />
+    <Midl Include="External\Windows.Xbox.ApplicationModel.Store.idl" />
+    <Midl Include="External\Windows.Xbox.idl" />
+    <Midl Include="External\Windows.Xbox.Input.idl" />
+    <Midl Include="External\Windows.Xbox.Management.Deployment.idl" />
+    <Midl Include="External\Windows.Xbox.Management.idl" />
+    <Midl Include="External\Windows.Xbox.Media.GameTransportControls.idl" />
+    <Midl Include="External\Windows.Xbox.Media.idl" />
+    <Midl Include="External\Windows.Xbox.Shell.idl" />
+    <Midl Include="External\Windows.Xbox.Shell.Social.idl" />
+    <Midl Include="External\Windows.Xbox.System.idl" />
+    <Midl Include="External\Windows.Xbox.Achievements.idl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Windows.CppWinRT.2.0.240405.15\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+  </Target>
 </Project>

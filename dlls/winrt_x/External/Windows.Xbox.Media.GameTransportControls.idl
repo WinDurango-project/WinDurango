@@ -8,6 +8,8 @@ namespace Windows
     {
         namespace Media
         {
+            apicontract GameTransportControlsContract;
+
             typedef enum GamePlaybackStatus GamePlaybackStatus;
 
             typedef enum SoundLevel SoundLevel;
@@ -55,6 +57,11 @@ namespace Windows
     {
         namespace Media
         {
+            [contractversion(1.0)]
+            apicontract GameTransportControlsContract
+            {
+            }
+
             enum GamePlaybackStatus
             {
                 Closed = 0,
@@ -86,6 +93,7 @@ namespace Windows
                 SoundLevel = 0
             };
 
+            [contract(Windows.Xbox.Media.GameTransportControlsContract, 1.0)]
             [exclusiveto(Windows.Xbox.Media.GameTransportControls)]
             [uuid(F5BA60D7-9303-44CD-AC0C-4E532702CD00)]
             [version(1.0)]
@@ -131,6 +139,8 @@ namespace Windows
                 [propget] HRESULT Property([out][retval] Windows.Xbox.Media.GameTransportControlsProperty* value);
             }
 
+            [activatable(Windows.Xbox.Media.GameTransportControlsContract, 1.0)]
+            [contract(Windows.Xbox.Media.GameTransportControlsContract, 1.0)]
             [version(1.0)]
             [marshaling_behavior(agile)]
             [threading(mta)]
