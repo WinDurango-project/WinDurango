@@ -19,9 +19,6 @@ HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** f
 {
 	auto hr = TrueRoGetActivationFactory(classId, iid, factory);
 
-	const std::wstring message = std::wstring(L"classId: ") +
-		WindowsGetStringRawBuffer(classId, nullptr);
-
 	if (FAILED(hr))
 	{
 		auto library = LoadPackagedLibrary(L"winrt_x.dll", 0);
@@ -29,8 +26,6 @@ HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** f
 		if (!library) library = LoadLibraryW(L"winrt_x.dll");
 
 		if (!library) return hr;
-
-		auto error = GetLastError();
 
 		pDllGetActivationFactory = reinterpret_cast<DllGetActivationFactoryFunc>
 			(GetProcAddress(library, "DllGetActivationFactory"));
