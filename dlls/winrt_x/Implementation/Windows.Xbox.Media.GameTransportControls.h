@@ -50,12 +50,12 @@ namespace winrt::Windows::Xbox::Media::implementation
 
     private:
         GamePlaybackStatus m_gamePlaybackStatus = GamePlaybackStatus::Closed;
-        bool m_isEnabled = false;
-        bool m_isPlayEnabled = false;
-        bool m_isPauseEnabled = false;
-        bool m_isMenuEnabled = false;
-        bool m_isViewEnabled = false;
-        bool m_isBackEnabled = false;
+        bool m_enabled = false;
+        bool m_playEnabled = false;
+        bool m_pauseEnabled = false;
+        bool m_menuEnabled = false;
+        bool m_viewEnabled = false;
+        bool m_backEnabled = false;
         winrt::event<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Xbox::Media::GameTransportControls, winrt::Windows::Xbox::Media::GameTransportControlsButtonPressedEventArgs>> m_gameTransportControlsButtonPressedEventArgs;
         winrt::event<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Xbox::Media::GameTransportControls, winrt::Windows::Xbox::Media::GameTransportControlsPropertyChangedEventArgs>> m_gameTransportControlsPropertyChangedEventArgs;
     };
