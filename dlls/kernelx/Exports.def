@@ -5,6 +5,7 @@ EXPORTS
 	EventRegister                       = NTDLL.EventRegister                               @95
 	XMemFree                            = XMemFree_X                                        @507
 	XMemFreeDefault                     = XMemFreeDefault_X                                 @508
+	XMemSetAllocationHooks		    = XMemSetAllocationHooks_X				@514
 	GetConsoleType                      = GetConsoleType_X                                  @140
 	AcquireSRWLockExclusive             = Kernel32.AcquireSRWLockExclusive                  @1
 	AcquireSRWLockShared                = Kernel32.AcquireSRWLockShared                     @2

@@ -267,15 +267,14 @@ int64_t qword_18002C7E0[34];
 HANDLE HeapHandle;
 
 
-bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2) {
-    if (!P) return FALSE;
+void XMemFreeDefault_X(PVOID pADDRESS, uint64_t dwAllocAttributes) {
 
-    uint64_t v3 = a2 >> 29;
-    uint32_t v2 = static_cast<uint32_t>(a2);
+    uint64_t v3 = dwAllocAttributes >> 29;
+    uint32_t v2 = static_cast<uint32_t>(dwAllocAttributes);
 
     // Check if RtlFreeHeap can be used
     if (!dword_180021A60[v3 & 0xF] && (v2 & 0x1F000000) <= 0x4000000 && (v2 & 0xC000) == 0) {
-        return HeapFree(HeapHandle, 0, P) ? TRUE : FALSE;
+        HeapFree(HeapHandle, 0, pADDRESS);
     }
 
     uint64_t v6 = v3 & 0xF;
@@ -283,13 +282,13 @@ bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2) {
 
     // Check if the memory can be freed using sub_18000EA08
     if (!v7 || !*reinterpret_cast<uint64_t*>(v7 + 48) ||
-        *reinterpret_cast<uint64_t*>(v7 + 48) > reinterpret_cast<uint64_t>(P) ||
-        *reinterpret_cast<uint64_t*>(v7 + 56) < reinterpret_cast<uint64_t>(P)) {
+        *reinterpret_cast<uint64_t*>(v7 + 48) > reinterpret_cast<uint64_t>(pADDRESS) ||
+        *reinterpret_cast<uint64_t*>(v7 + 56) < reinterpret_cast<uint64_t>(pADDRESS)) {
 
         v7 = qword_18002C7E0[static_cast<unsigned int>(v6 + 16)];
         if (!v7 || !*reinterpret_cast<uint64_t*>(v7 + 48) ||
-            *reinterpret_cast<uint64_t*>(v7 + 48) > reinterpret_cast<uint64_t>(P) ||
-            *reinterpret_cast<uint64_t*>(v7 + 56) < reinterpret_cast<uint64_t>(P)) {
+            *reinterpret_cast<uint64_t*>(v7 + 48) > reinterpret_cast<uint64_t>(pADDRESS) ||
+            *reinterpret_cast<uint64_t*>(v7 + 56) < reinterpret_cast<uint64_t>(pADDRESS)) {
             v7 = 0;
         }
     }
@@ -301,16 +300,16 @@ bool XMemFreeDefault_X(PVOID P, unsigned __int64 a2) {
 
     SIZE_T RegionSize = 0;
     // Attempt to free virtual memory
-    return NtFreeVirtualMemory(
+    NtFreeVirtualMemory(
         reinterpret_cast<HANDLE>(0xFFFFFFFFFFFFFFFF),
-        &P,
+        &pADDRESS,
         &RegionSize,
         MEM_RELEASE
-    ) >= 0 ? TRUE : FALSE;
+    );
 }
 
-__int64 XMemFree_X(PVOID P, __int64 a2) {
-    return XMemFreeDefault_X(P, a2);
+void XMemFree_X(PVOID pADDRESS, uint64_t dwAllocAttributes) {
+    XMemFreeDefault_X(pADDRESS, dwAllocAttributes);
 }
 
 // Define PVOID for non-Windows environments if needed
@@ -318,27 +317,46 @@ __int64 XMemFree_X(PVOID P, __int64 a2) {
 typedef void* PVOID;
 #endif
 
-PVOID XMemAllocDefault_X(uint64_t size, uint64_t flags) {
+PVOID XMemAllocDefault_X(SIZE_T dwSize, uint64_t flags) {
     PVOID ptr = nullptr;
     // Example flag usage: we assume if the highest bit of flags is set, we zero the memory.
     bool shouldZeroMemory = (flags & (1ULL << 63)) != 0;
 
     // Allocate memory
-    ptr = malloc(size);
+    ptr = malloc(dwSize);
 
     // Optionally zero out the memory if the flag is set
     if (ptr && shouldZeroMemory) {
-        memset(ptr, 0, size);
+        memset(ptr, 0, dwSize);
     }
 
     return ptr;
 }
 
-PVOID XMemAlloc_X(uint64_t size, uint64_t flags) {
-    return XMemAllocDefault_X(size, flags);
+PVOID XMemAlloc_X(SIZE_T dwSize, uint64_t flags) {
+    return XMemAllocDefault_X(dwSize, flags);
 }
 
+static decltype(&XMemAlloc_X) XMemAllocRoutine_X;
+static decltype(&XMemFree_X) XMemFreeRoutine_X;
+static CRITICAL_SECTION XMemSetAllocationHooksLock_X;
 
+void XMemSetAllocationHooks_X(decltype(&XMemAlloc_X) Alloc, decltype(&XMemFree_X) Free)
+{
+    EnterCriticalSection(&XMemSetAllocationHooksLock_X);
+
+    if (Alloc) {
+        XMemAllocRoutine_X = Alloc;
+        XMemFreeRoutine_X = Free;
+    }
+    else {
+        XMemAllocRoutine_X = &XMemAllocDefault_X;
+        XMemFreeRoutine_X = &XMemFreeDefault_X;
+    }
+
+    LeaveCriticalSection(&XMemSetAllocationHooksLock_X);
+
+}
 // TODO
 // absolutely temporary implementation I just want to make it work
 // sub_18001BCA0 
