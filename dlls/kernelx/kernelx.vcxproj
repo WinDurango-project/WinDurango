@@ -92,11 +92,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CoreWindowX.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="ICoreWindowX.h" />
     <ClInclude Include="kernelx.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CoreWindowX.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="kernelx.cpp" />
     <ClCompile Include="pch.cpp">

@@ -4,14 +4,28 @@
 // ReSharper disable CppClangTidyClangDiagnosticUndefinedReinterpretCast
 // ReSharper disable CppClangTidyClangDiagnosticShadow
 // ReSharper disable CppClangTidyClangDiagnosticCastFunctionTypeStrict
+// ReSharper disable CppFunctionalStyleCast
+// ReSharper disable CppClangTidyClangDiagnosticCastAlign
+// ReSharper disable CppClangTidyClangDiagnosticCastQual
+// ReSharper disable CppZeroConstantCanBeReplacedWithNullptr
 #include "pch.h"
 
+#include "ICoreWindowX.h"
+
 using namespace Microsoft::WRL;
+
+bool IsClassName(HSTRING classId, const char* classIdName)
+{
+    const wchar_t* classIdString = WindowsGetStringRawBuffer(classId, nullptr);
+    std::wstring classIdWString(classIdString);
+    const std::string classIdStringUTF8(classIdWString.begin(), classIdWString.end());
+
+    return (classIdStringUTF8 == classIdName);
+}
 
 typedef HRESULT(*DllGetActivationFactoryFunc) (HSTRING, IActivationFactory**);
 
 DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
-
 
 HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
@@ -35,7 +49,15 @@ HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** f
 
 		ComPtr<IActivationFactory> _factory;
 
-		hr = pDllGetActivationFactory(classId, _factory.GetAddressOf());
+
+		if (IsClassName(classId, "Windows.UI.Core.ICoreWindow"))
+		{
+			// _factory = winrt::detach_abi(winrt::make<winrt::Windows::Xbox::System::factory_implementation::User>());
+		}
+		else
+		{
+			hr = pDllGetActivationFactory(classId, _factory.GetAddressOf());
+		}
 
 		if (FAILED(hr)) return hr;
 
@@ -44,6 +66,8 @@ HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** f
 
 	return hr;
 }
+
+
 
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID reserved)
 {

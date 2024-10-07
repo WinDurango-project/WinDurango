@@ -4,11 +4,20 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="kernelx.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="CoreWindowX.cpp">
+      <Filter>Windows.UI.Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="kernelx.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ICoreWindowX.h">
+      <Filter>Windows.UI.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreWindowX.h">
+      <Filter>Windows.UI.Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Exports.def" />
@@ -16,6 +25,9 @@
   <ItemGroup>
     <Filter Include="Headers">
       <UniqueIdentifier>{1fd01865-5063-43f8-8e37-2d5b0dd81b88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows.UI.Core">
+      <UniqueIdentifier>{bb53c96d-38a7-46b6-bfc9-84fc5b33678e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

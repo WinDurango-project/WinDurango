@@ -13,5 +13,7 @@
 #include <roapi.h>
 #include <wrl.h>
 #include <string>
+#include <string_view>
+#include <__msvc_string_view.hpp>
 
 #endif //PCH_H
