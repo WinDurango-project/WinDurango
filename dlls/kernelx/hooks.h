@@ -32,7 +32,7 @@ void* GetForCurrentThread = nullptr;
 
 inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(CoreWindow** window)
 {
-	return S_OK;
+	return TrueGetForCurrentThread(window);
 }
 
 inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** factory)
