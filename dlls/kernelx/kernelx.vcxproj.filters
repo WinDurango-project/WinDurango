@@ -18,6 +18,7 @@
     <ClInclude Include="CoreWindowX.h">
       <Filter>Windows.UI.Core</Filter>
     </ClInclude>
+    <ClInclude Include="hooks.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Exports.def" />

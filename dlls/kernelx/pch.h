@@ -4,6 +4,9 @@
 #include "framework.h"
 #include "kernelx.h"
 
+#include "CoreWindowX.h"
+#include "ICoreWindowX.h"
+
 #include "../src/detours.h"
 
 #include <intrin.h>
@@ -15,5 +18,8 @@
 #include <string>
 #include <string_view>
 #include <__msvc_string_view.hpp>
+
+using namespace Microsoft::WRL;
+using namespace Microsoft::WRL::Wrappers;
 
 #endif //PCH_H

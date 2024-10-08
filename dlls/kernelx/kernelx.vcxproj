@@ -94,6 +94,7 @@
   <ItemGroup>
     <ClInclude Include="CoreWindowX.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="hooks.h" />
     <ClInclude Include="ICoreWindowX.h" />
     <ClInclude Include="kernelx.h" />
     <ClInclude Include="pch.h" />

@@ -19,193 +19,168 @@ HRESULT CoreWindowX::GetTrustLevel(TrustLevel* trustLevel)
 	return m_coreWindow->GetTrustLevel(trustLevel);
 }
 
-void CoreWindowX::Activate()
-{
-	m_coreWindow->Activate();
-}
-
-void CoreWindowX::Close()
-{
-	m_coreWindow->Close();
-}
-
-CoreVirtualKeyStates CoreWindowX::GetAsyncKeyState(VirtualKey key)
-{
-	//return ICoreWindowX::GetAsyncKeyState(key);
-
-	return CoreVirtualKeyStates_None;
-}
-
-CoreVirtualKeyStates CoreWindowX::GetKeyState(VirtualKey key)
-{
-	//return ICoreWindowX::GetKeyState(key);
-
-	return CoreVirtualKeyStates_None;
-}
-
-int32_t CoreWindowX::get_Bounds(Rect* rect)
+INT32 CoreWindowX::_abi_get_Bounds(Rect* rect)
 {
 	return m_coreWindow->get_Bounds(rect);
 }
 
-int32_t CoreWindowX::get_Dispatcher(CoreDispatcher** dispatcher)
+INT32 CoreWindowX::_abi_get_Dispatcher(ICoreDispatcher** dispatcher)
 {
-	//return ICoreWindowX::get_Dispatcher(dispatcher);
-	return 0;
+	return m_coreWindow->get_Dispatcher(dispatcher);
 }
 
-int32_t CoreWindowX::get_IsInputEnabled(boolean* value)
+INT32 CoreWindowX::_abi_get_IsInputEnabled(boolean* value)
 {
 	return m_coreWindow->get_IsInputEnabled(value);
 }
 
-int32_t CoreWindowX::set_IsInputEnabled(boolean value)
+INT32 CoreWindowX::_abi_set_IsInputEnabled(boolean value)
 {
-	//return ICoreWindowX::set_IsInputEnabled(value);
-
-	return 0;
+	return m_coreWindow->put_IsInputEnabled(value);
 }
 
-int32_t CoreWindowX::get_Visible(boolean* value)
+INT32 CoreWindowX::_abi_get_Visible(boolean* value)
 {
 	return m_coreWindow->get_Visible(value);
 }
 
-int32_t CoreWindowX::_abi_Activate()
+INT32 CoreWindowX::_abi_Activate()
 {
 	return m_coreWindow->Activate();
 }
 
-int32_t CoreWindowX::_abi_Close()
+INT32 CoreWindowX::_abi_Close()
 {
 	return m_coreWindow->Close();
 }
 
-int32_t CoreWindowX::get_AsyncKeyState(VirtualKey key, CoreVirtualKeyStates* value)
+INT32 CoreWindowX::_abi_get_AsyncKeyState(VirtualKey key, CoreVirtualKeyStates* value)
 {
 	return m_coreWindow->GetAsyncKeyState(key, value);
 }
 
-int32_t CoreWindowX::get_KeyState(VirtualKey key, CoreVirtualKeyStates* value)
+INT32 CoreWindowX::_abi_get_KeyState(VirtualKey key, CoreVirtualKeyStates* value)
 {
 	return m_coreWindow->GetKeyState(key, value);
 }
 
-int32_t CoreWindowX::add_Activated(ITypedEventHandler<CoreWindow*, WindowActivatedEventArgs*>* handler,
+INT32 CoreWindowX::_abi_add_Activated(ITypedEventHandler<CoreWindow*, WindowActivatedEventArgs*>* handler,
 	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_Activated(handler, token);
 }
 
-int32_t CoreWindowX::remove_Activated(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_Activated(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_Activated(token);
 }
 
-int32_t CoreWindowX::add_CharacterRecieved(ITypedEventHandler<CoreWindow*, CharacterReceivedEventArgs*>* handler,
+INT32 CoreWindowX::_abi_add_CharacterRecieved(ITypedEventHandler<CoreWindow*, CharacterReceivedEventArgs*>* handler,
 	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_CharacterReceived(handler, token);
 }
 
-int32_t CoreWindowX::remove_CharacterRecieved(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_CharacterRecieved(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_CharacterReceived(token);
 }
 
-int32_t CoreWindowX::add_Closed(ITypedEventHandler<CoreWindow*, CoreWindowEventArgs*>* handler,
+INT32 CoreWindowX::_abi_add_Closed(ITypedEventHandler<CoreWindow*, CoreWindowEventArgs*>* handler,
 	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_Closed(handler, token);
 }
 
-int32_t CoreWindowX::remove_Closed(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_Closed(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_Closed(token);
 }
 
-int32_t CoreWindowX::add_InputEnabled(ITypedEventHandler<CoreWindow*, InputEnabledEventArgs*>* handler,
+INT32 CoreWindowX::_abi_add_InputEnabled(ITypedEventHandler<CoreWindow*, InputEnabledEventArgs*>* handler,
 	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_InputEnabled(handler, token);
 }
 
-int32_t CoreWindowX::remove_InputEnabled(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_InputEnabled(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_InputEnabled(token);
 }
 
-int32_t CoreWindowX::add_KeyDown(ITypedEventHandler<CoreWindow*, KeyEventArgs*>* handler, EventRegistrationToken* token)
+INT32 CoreWindowX::_abi_add_KeyDown(ITypedEventHandler<CoreWindow*, KeyEventArgs*>* handler,
+	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_KeyDown(handler, token);
 }
 
-int32_t CoreWindowX::remove_KeyDown(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_KeyDown(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_KeyDown(token);
 }
 
-int32_t CoreWindowX::add_KeyUp(ITypedEventHandler<CoreWindow*, KeyEventArgs*>* handler, EventRegistrationToken* token)
+INT32 CoreWindowX::_abi_add_KeyUp(ITypedEventHandler<CoreWindow*, KeyEventArgs*>* handler,
+	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_KeyUp(handler, token);
 }
 
-int32_t CoreWindowX::remove_KeyUp(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_KeyUp(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_KeyUp(token);
 }
 
-int32_t CoreWindowX::add_PointerMoved(ITypedEventHandler<CoreWindow*, PointerEventArgs*>* handler,
+INT32 CoreWindowX::_abi_add_PointerMoved(ITypedEventHandler<CoreWindow*, PointerEventArgs*>* handler,
 	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_PointerMoved(handler, token);
 }
 
-int32_t CoreWindowX::remove_PointerMoved(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_PointerMoved(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_PointerMoved(token);
 }
 
-int32_t CoreWindowX::add_PointerEntered(ITypedEventHandler<CoreWindow*, PointerEventArgs*>* handler,
+INT32 CoreWindowX::_abi_add_PointerEntered(ITypedEventHandler<CoreWindow*, PointerEventArgs*>* handler,
 	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_PointerEntered(handler, token);
 }
 
-int32_t CoreWindowX::remove_PointerEntered(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_PointerEntered(EventRegistrationToken token)
 {
-	return m_coreWindow->remove_PointerCaptureLost(token);
+	return m_coreWindow->remove_PointerEntered(token);
 }
 
-int32_t CoreWindowX::add_PointerExited(ITypedEventHandler<CoreWindow*, PointerEventArgs*>* handler,
+INT32 CoreWindowX::_abi_add_PointerExited(ITypedEventHandler<CoreWindow*, PointerEventArgs*>* handler,
 	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_PointerExited(handler, token);
 }
 
-int32_t CoreWindowX::remove_PointerExited(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_PointerExited(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_PointerExited(token);
 }
 
-int32_t CoreWindowX::add_SizeChanged(ITypedEventHandler<CoreWindow*, WindowSizeChangedEventArgs*>* handler,
+INT32 CoreWindowX::_abi_add_SizeChanged(ITypedEventHandler<CoreWindow*, WindowSizeChangedEventArgs*>* handler,
 	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_SizeChanged(handler, token);
 }
 
-int32_t CoreWindowX::remove_SizeChanged(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_SizeChanged(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_SizeChanged(token);
 }
 
-int32_t CoreWindowX::add_VisibilityChanged(ITypedEventHandler<CoreWindow*, VisibilityChangedEventArgs*>* handler,
+INT32 CoreWindowX::_abi_add_VisibilityChanged(ITypedEventHandler<CoreWindow*, VisibilityChangedEventArgs*>* handler,
 	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_VisibilityChanged(handler, token);
 }
 
-int32_t CoreWindowX::remove_VisibilityChanged(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_VisibilityChanged(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_VisibilityChanged(token);
 }
