@@ -32,7 +32,11 @@ void* GetForCurrentThread = nullptr;
 
 inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(CoreWindow** window)
 {
-	return TrueGetForCurrentThread(window);
+	ComPtr<CoreWindowX> coreWindowX = Make<CoreWindowX>();
+
+	coreWindowX.CopyTo(window);
+
+	return S_OK();
 }
 
 inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** factory)
