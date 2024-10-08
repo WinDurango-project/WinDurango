@@ -98,6 +98,7 @@
     <ClInclude Include="ICoreWindowX.h" />
     <ClInclude Include="kernelx.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CoreWindowX.cpp" />

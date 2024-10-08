@@ -29,7 +29,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID reserved)
 		DetourTransactionBegin();
 		DetourUpdateThread(GetCurrentThread());
 		DetourDetach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
-		DetourDetach(&GetForCurrentThread, GetForCurrentThread_Hook);
+		DetourDetach(&TrueGetForCurrentThread, GetForCurrentThread_Hook);
 		DetourTransactionCommit();
 	}
 

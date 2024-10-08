@@ -19,6 +19,7 @@
       <Filter>Windows.UI.Core</Filter>
     </ClInclude>
     <ClInclude Include="hooks.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Exports.def" />

@@ -1,6 +1,7 @@
 // ReSharper disable CppInconsistentNaming
 // ReSharper disable CppClassCanBeFinal
 // ReSharper disable CppPolymorphicClassWithNonVirtualPublicDestructor
+// ReSharper disable CppClangTidyClangDiagnosticNonVirtualDtor
 #pragma once
 #include <wrl/client.h>
 
@@ -8,6 +9,12 @@
 
 class CoreWindowX : public ICoreWindowX
 {
+public:
+	CoreWindowX(CoreWindow* window)
+	{
+		m_coreWindow = reinterpret_cast<ICoreWindow*>(window);
+	}
+
 public:
 	HRESULT GetIids(ULONG* iidCount, IID** iids) override;
 	HRESULT GetRuntimeClassName(HSTRING* className) override;
@@ -59,5 +66,5 @@ public:
 	ULONG Release() override;
 
 private:
-	Microsoft::WRL::ComPtr<ICoreWindow> m_coreWindow;
+	ICoreWindow* m_coreWindow;
 };

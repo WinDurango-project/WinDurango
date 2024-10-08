@@ -19,24 +19,26 @@ inline bool IsClassName(HSTRING classId, const char* classIdName)
 	return (classIdStringUTF8 == classIdName);
 }
 
+typedef HRESULT(*DllGetForCurrentThreadFunc) (ICoreWindowStatic*, CoreWindow**);
 typedef HRESULT(*DllGetActivationFactoryFunc) (HSTRING, IActivationFactory**);
-typedef HRESULT(*DllGetForCurrentThreadFunc) (CoreWindow**);
 
-DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
 DllGetForCurrentThreadFunc pDllGetForCurrentThread = nullptr;
+DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
 
-HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread)(CoreWindow** window);
+HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread)(ICoreWindowStatic* staticWindow, CoreWindow** window);
 HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
-void* GetForCurrentThread = nullptr;
-
-inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(CoreWindow** window)
+inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(ICoreWindowStatic* paramThis, CoreWindow** window)
 {
-	ComPtr<CoreWindowX> coreWindowX = Make<CoreWindowX>();
+	// ReSharper disable once CppLocalVariableMayBeConst
+	HRESULT hr = TrueGetForCurrentThread(paramThis, window);
 
-	coreWindowX.CopyTo(window);
+	//*reinterpret_cast<void**>(window) = new CoreWindowX(*window);
+	auto p = *reinterpret_cast<void**>(window);
 
-	return S_OK();
+	p = new CoreWindowX(*window);
+
+	return hr;
 }
 
 inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** factory)
@@ -66,9 +68,9 @@ inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, v
 
 			hr = RoGetActivationFactory(HStringReference(RuntimeClass_Windows_UI_Core_CoreWindow).Get(), IID_PPV_ARGS(&coreWindowStatic));
 
-			GetForCurrentThread = (*reinterpret_cast<void***>(coreWindowStatic.Get()))[6];
+			*reinterpret_cast<void**>(&TrueGetForCurrentThread) = (*reinterpret_cast<void***>(coreWindowStatic.Get()))[6];
 
-			DetourAttach(&GetForCurrentThread, GetForCurrentThread_Hook);
+			DetourAttach(&TrueGetForCurrentThread, GetForCurrentThread_Hook);
 		}
 		else
 		{
