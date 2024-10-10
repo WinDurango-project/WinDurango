@@ -220,7 +220,6 @@
     <None Include="PropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="External\Windows.UI.Core.idl" />
     <Midl Include="External\Windows.Xbox.ApplicationModel.State.idl" />
     <Midl Include="External\Windows.Xbox.ApplicationModel.State.Internal.idl" />
     <Midl Include="External\Windows.Xbox.ApplicationModel.Store.idl" />
