@@ -7,6 +7,9 @@
     <ClCompile Include="CoreWindowX.cpp">
       <Filter>Windows.UI.Core</Filter>
     </ClCompile>
+    <ClCompile Include="CoreApplicationX.cpp">
+      <Filter>Windows.ApplicationModel.Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -20,9 +23,16 @@
     </ClInclude>
     <ClInclude Include="hooks.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="CoreApplicationX.h">
+      <Filter>Windows.ApplicationModel.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ICoreApplicationX.h">
+      <Filter>Windows.ApplicationModel.Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Exports.def" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -30,6 +40,9 @@
     </Filter>
     <Filter Include="Windows.UI.Core">
       <UniqueIdentifier>{bb53c96d-38a7-46b6-bfc9-84fc5b33678e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows.ApplicationModel.Core">
+      <UniqueIdentifier>{22d419bf-d552-4ab7-a078-94a3d47e5051}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
