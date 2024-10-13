@@ -6,7 +6,6 @@
 #include <winrt/windows.foundation.collections.h>
 #include <winrt/Windows.ApplicationModel.h>
 #include <windows.ui.core.h>
-#include <inspectable.h>
 
 
 using namespace ABI::Windows::ApplicationModel::Activation;

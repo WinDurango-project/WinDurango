@@ -9,6 +9,8 @@
 // ReSharper disable CppClangTidyClangDiagnosticCastQual
 // ReSharper disable CppZeroConstantCanBeReplacedWithNullptr
 #pragma once
+#include <winrt/Windows.ApplicationModel.h>
+#include "CoreApplicationX.h"
 
 inline bool IsClassName(HSTRING classId, const char* classIdName)
 {
@@ -20,11 +22,15 @@ inline bool IsClassName(HSTRING classId, const char* classIdName)
 }
 
 typedef HRESULT(*DllGetForCurrentThreadFunc) (ICoreWindowStatic*, CoreWindow**);
+typedef HRESULT(*DllGetForCurrentThreadFunc_App) (ABI::Windows::ApplicationModel::Core::ICoreApplication*, winrt::Windows::ApplicationModel::Core::CoreApplication**);
 typedef HRESULT(*DllGetActivationFactoryFunc) (HSTRING, IActivationFactory**);
 
 DllGetForCurrentThreadFunc pDllGetForCurrentThread = nullptr;
+DllGetForCurrentThreadFunc_App pDllGetForCurrentThread_App = nullptr;
 DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
 
+HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread_App)(ABI::Windows::ApplicationModel::Core::ICoreApplication* Iapplication,
+winrt::Windows::ApplicationModel::Core::CoreApplication** Application);
 HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread)(ICoreWindowStatic* staticWindow, CoreWindow** window);
 HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
@@ -39,6 +45,20 @@ inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(ICoreWindowStatic* par
 	p = new CoreWindowX(*window);
 
 	return hr;
+}
+
+inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook_App(ABI::Windows::ApplicationModel::Core::ICoreApplication* paramThis,
+	winrt::Windows::ApplicationModel::Core::CoreApplication** Application)
+{
+	// ReSharper disable once CppLocalVariableMayBeConst
+	HRESULT hrApp = TrueGetForCurrentThread_App(paramThis, Application);
+
+	//*reinterpret_cast<void**>(Application) = new CoreApplicationX(*Application);
+	auto pApp = *reinterpret_cast<void**>(Application);
+
+	pApp = new CoreApplicationX(*Application);
+
+	return hrApp;
 }
 
 inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** factory)
@@ -80,7 +100,27 @@ inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, v
 		if (FAILED(hr)) return hr;
 
 		return _factory.CopyTo(iid, factory);
-	}
 
+		if (IsClassName(classId, "Windows.ApplicationModel.Core.CoreApplication"))
+		{
+			ComPtr<ABI::Windows::ApplicationModel::Core::ICoreApplication> ICoreApplicationPtr;
+
+			hr = RoGetActivationFactory(HStringReference(RuntimeClass_Windows_ApplicationModel_Core_CoreApplication).Get(), IID_PPV_ARGS(&ICoreApplicationPtr));
+
+			*reinterpret_cast<void**>(&TrueGetForCurrentThread_App) = (*reinterpret_cast<void***>(ICoreApplicationPtr.Get()))[6];
+
+			DetourAttach(&TrueGetForCurrentThread_App, GetForCurrentThread_Hook_App);
+		}
+		else
+		{
+			hr = pDllGetActivationFactory(classId, _factory.GetAddressOf());
+		}
+
+		if (FAILED(hr)) return hr;
+
+		return _factory.CopyTo(iid, factory);
+	}
+		
 	return hr;
+
 }

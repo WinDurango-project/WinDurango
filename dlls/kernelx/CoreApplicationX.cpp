@@ -4,6 +4,21 @@
 #include "pch.h"
 #include "CoreApplicationX.h"
 
+HRESULT CoreApplicationX::GetIids(ULONG* iidCount, IID** iids)
+{
+	return m_coreWindow->GetIids(iidCount, iids);
+}
+
+HRESULT CoreApplicationX::GetRuntimeClassName(HSTRING* className)
+{
+	return m_coreWindow->GetRuntimeClassName(className);
+}
+
+HRESULT CoreApplicationX::GetTrustLevel(TrustLevel* trustLevel)
+{
+	return m_coreWindow->GetTrustLevel(trustLevel);
+}
+
 INT32 CoreApplicationX::_abi_add_Resuming(__FIEventHandler_1_IInspectable* handler, EventRegistrationToken* token)
 {
 	return m_IapplicationCore->add_Resuming(handler, token);

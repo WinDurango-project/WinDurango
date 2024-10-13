@@ -12,9 +12,14 @@ public:
 	CoreApplicationX(winrt::Windows::ApplicationModel::Core::CoreApplication* application)
 	{
 		m_applicationCore = reinterpret_cast<winrt::Windows::ApplicationModel::Core::CoreApplication*>(application);
+		m_IapplicationCore = reinterpret_cast<ABI::Windows::ApplicationModel::Core::ICoreApplication*>(application);
+		m_coreWindow = reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(application);
 	}
 
 public:
+	HRESULT GetIids(ULONG* iidCount, IID** iids) override;
+	HRESULT GetRuntimeClassName(HSTRING* className) override;
+	HRESULT GetTrustLevel(TrustLevel* trustLevel) override;
 	INT32 _abi_add_Resuming(__FIEventHandler_1_IInspectable* handler, EventRegistrationToken* token) override;
 	INT32 _abi_remove_Resuming(EventRegistrationToken token) override;
 	INT32 _abi_add_Suspending(__FIEventHandler_1_Windows__CApplicationModel__CSuspendingEventArgs* handler, EventRegistrationToken* token) override;
