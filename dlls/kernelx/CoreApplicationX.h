@@ -1,7 +1,3 @@
-// ReSharper disable CppInconsistentNaming
-// ReSharper disable CppClassCanBeFinal
-// ReSharper disable CppPolymorphicClassWithNonVirtualPublicDestructor
-// ReSharper disable CppClangTidyClangDiagnosticNonVirtualDtor
 #pragma once
 #include "ICoreApplicationX.h"
 

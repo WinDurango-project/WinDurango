@@ -1,6 +1,3 @@
-// ReSharper disable CppInconsistentNaming
-// ReSharper disable CppFunctionResultShouldBeUsed
-// ReSharper disable CppParameterMayBeConst
 #include "pch.h"
 #include "CoreApplicationX.h"
 

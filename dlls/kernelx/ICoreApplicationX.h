@@ -1,8 +1,3 @@
-// ReSharper disable CppPolymorphicClassWithNonVirtualPublicDestructor
-// ReSharper disable CppInconsistentNaming
-// ReSharper disable CppClangTidyClangDiagnosticNonVirtualDtor
-// ReSharper disable IdentifierTypo
-// ReSharper disable CppClangTidyClangDiagnosticHeaderHygiene
 #include <winrt/windows.foundation.collections.h>
 #include <winrt/Windows.ApplicationModel.h>
 #include <windows.ui.core.h>
