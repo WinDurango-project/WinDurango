@@ -19,7 +19,6 @@ DllGetForCurrentThreadFunc pDllGetForCurrentThread = nullptr;
 DllGetForCurrentThreadFunc_App pDllGetForCurrentThread_App = nullptr;
 DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
 
-// ReSharper disable once CppNonInlineVariableDefinitionInHeaderFile
 HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread_App)(ICoreApplication* application, winrt::Windows::ApplicationModel::Core::CoreApplication** Application);
 HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread)(ICoreWindowStatic* staticWindow, CoreWindow** window);
 HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
