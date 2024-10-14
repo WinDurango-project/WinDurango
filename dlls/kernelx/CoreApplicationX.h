@@ -13,6 +13,9 @@ public:
 	{
 		m_applicationCore = reinterpret_cast<winrt::Windows::ApplicationModel::Core::CoreApplication*>(application);
 		m_IapplicationCore = reinterpret_cast<ABI::Windows::ApplicationModel::Core::ICoreApplication*>(application);
+		m_IapplicationCoreView = reinterpret_cast<ABI::Windows::ApplicationModel::Core::ICoreApplicationView*>(application);
+		m_applicationCoreView = reinterpret_cast<ABI::Windows::ApplicationModel::Core::CoreApplicationView*>(application);
+		m_applicationCoreExit = reinterpret_cast<ABI::Windows::ApplicationModel::Core::ICoreApplicationExit*>(application);
 		m_coreWindow = reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(application);
 	}
 
@@ -27,7 +30,12 @@ public:
 	INT32 _abi_get_ResourceAvailability() override;
 	INT32 _abi_add_ResourceAvailabilityChanged(winrt::Windows::Foundation::EventHandler<IInspectable>* handler, EventRegistrationToken* token) override;
 	INT32 _abi_remove_ResourceAvailabilityChanged(EventRegistrationToken token) override;
-
+	INT32 _abi_get_CoreWindow(ABI::Windows::UI::Core::ICoreWindow**) override;
+	INT32 _abi_add_Activated(__FITypedEventHandler_2_Windows__CApplicationModel__CCore__CCoreApplicationView_Windows__CApplicationModel__CActivation__CIActivatedEventArgs* handler, EventRegistrationToken* token) override;
+	INT32 _abi_remove_Activated(EventRegistrationToken token) override;
+	INT32 _abi_Exit() override;
+	INT32 _abi_add_Exiting(__FIEventHandler_1_IInspectable* handler, EventRegistrationToken* token) override;
+	INT32 _abi_remove_Exiting(EventRegistrationToken token) override;
 	INT32 _abi_RunWithActivationFactories(ABI::Windows::Foundation::IGetActivationFactory* activationFactoryCallback) override;
 	INT32 _abi_GetCurrentView(ABI::Windows::ApplicationModel::Core::ICoreApplicationView** value) override;
 	INT32 _abi_Run(ABI::Windows::ApplicationModel::Core::IFrameworkViewSource* viewSource) override;
@@ -42,6 +50,9 @@ public:
 private:
 	winrt::Windows::ApplicationModel::Core::CoreApplication* m_applicationCore;
 	ABI::Windows::ApplicationModel::Core::ICoreApplication* m_IapplicationCore;
+	ABI::Windows::ApplicationModel::Core::ICoreApplicationView* m_IapplicationCoreView;
+	ABI::Windows::ApplicationModel::Core::CoreApplicationView* m_applicationCoreView;
+	ABI::Windows::ApplicationModel::Core::ICoreApplicationExit* m_applicationCoreExit;
 	ABI::Windows::UI::Core::ICoreWindow* m_coreWindow;
 
 };
