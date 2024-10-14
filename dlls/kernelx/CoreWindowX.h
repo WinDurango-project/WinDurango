@@ -1,7 +1,3 @@
-// ReSharper disable CppInconsistentNaming
-// ReSharper disable CppClassCanBeFinal
-// ReSharper disable CppPolymorphicClassWithNonVirtualPublicDestructor
-// ReSharper disable CppClangTidyClangDiagnosticNonVirtualDtor
 #pragma once
 #include <wrl/client.h>
 
@@ -31,9 +27,9 @@ public:
 	INT32 _abi_add_Activated(ITypedEventHandler<CoreWindow*, WindowActivatedEventArgs*>* handler,
 		EventRegistrationToken* token) override;
 	INT32 _abi_remove_Activated(EventRegistrationToken token) override;
-	INT32 _abi_add_CharacterRecieved(ITypedEventHandler<CoreWindow*, CharacterReceivedEventArgs*>* handler,
+	INT32 _abi_add_CharacterReceived(ITypedEventHandler<CoreWindow*, CharacterReceivedEventArgs*>* handler,
 		EventRegistrationToken* token) override;
-	INT32 _abi_remove_CharacterRecieved(EventRegistrationToken token) override;
+	INT32 _abi_remove_CharacterReceived(EventRegistrationToken token) override;
 	INT32 _abi_add_Closed(ITypedEventHandler<CoreWindow*, CoreWindowEventArgs*>* handler,
 		EventRegistrationToken* token) override;
 	INT32 _abi_remove_Closed(EventRegistrationToken token) override;

@@ -1,13 +1,3 @@
-// ReSharper disable CppInconsistentNaming
-// ReSharper disable CppParameterMayBeConst
-// ReSharper disable CppClangTidyClangDiagnosticMicrosoftCast
-// ReSharper disable CppClangTidyClangDiagnosticUndefinedReinterpretCast
-// ReSharper disable CppClangTidyClangDiagnosticShadow
-// ReSharper disable CppClangTidyClangDiagnosticCastFunctionTypeStrict
-// ReSharper disable CppFunctionalStyleCast
-// ReSharper disable CppClangTidyClangDiagnosticCastAlign
-// ReSharper disable CppClangTidyClangDiagnosticCastQual
-// ReSharper disable CppZeroConstantCanBeReplacedWithNullptr
 #include "pch.h"
 #include "hooks.h"
 

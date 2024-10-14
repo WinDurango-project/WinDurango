@@ -1,8 +1,3 @@
-// ReSharper disable CppPolymorphicClassWithNonVirtualPublicDestructor
-// ReSharper disable CppInconsistentNaming
-// ReSharper disable CppClangTidyClangDiagnosticNonVirtualDtor
-// ReSharper disable IdentifierTypo
-// ReSharper disable CppClangTidyClangDiagnosticHeaderHygiene
 #pragma once
 #include <inspectable.h>
 #include <windows.foundation.h>
@@ -27,8 +22,8 @@ public:
 	virtual INT32 _abi_get_KeyState(VirtualKey key, CoreVirtualKeyStates* value) = 0;
 	virtual INT32 _abi_add_Activated(ITypedEventHandler<CoreWindow*, WindowActivatedEventArgs*>* handler, EventRegistrationToken* token) = 0;
 	virtual INT32 _abi_remove_Activated(EventRegistrationToken token) = 0;
-	virtual INT32 _abi_add_CharacterRecieved(ITypedEventHandler<CoreWindow*, CharacterReceivedEventArgs*>* handler, EventRegistrationToken* token) = 0;
-	virtual INT32 _abi_remove_CharacterRecieved(EventRegistrationToken token) = 0;
+	virtual INT32 _abi_add_CharacterReceived(ITypedEventHandler<CoreWindow*, CharacterReceivedEventArgs*>* handler, EventRegistrationToken* token) = 0;
+	virtual INT32 _abi_remove_CharacterReceived(EventRegistrationToken token) = 0;
 	virtual INT32 _abi_add_Closed(ITypedEventHandler<CoreWindow*, CoreWindowEventArgs*>* handler, EventRegistrationToken* token) = 0;
 	virtual INT32 _abi_remove_Closed(EventRegistrationToken token) = 0;
 	virtual INT32 _abi_add_InputEnabled(ITypedEventHandler<CoreWindow*, InputEnabledEventArgs*>* handler, EventRegistrationToken* token) = 0;

@@ -1,6 +1,3 @@
-// ReSharper disable CppInconsistentNaming
-// ReSharper disable CppFunctionResultShouldBeUsed
-// ReSharper disable CppParameterMayBeConst
 #include "pch.h"
 #include "CoreWindowX.h"
 
@@ -75,13 +72,13 @@ INT32 CoreWindowX::_abi_remove_Activated(EventRegistrationToken token)
 	return m_coreWindow->remove_Activated(token);
 }
 
-INT32 CoreWindowX::_abi_add_CharacterRecieved(ITypedEventHandler<CoreWindow*, CharacterReceivedEventArgs*>* handler,
+INT32 CoreWindowX::_abi_add_CharacterReceived(ITypedEventHandler<CoreWindow*, CharacterReceivedEventArgs*>* handler,
 	EventRegistrationToken* token)
 {
 	return m_coreWindow->add_CharacterReceived(handler, token);
 }
 
-INT32 CoreWindowX::_abi_remove_CharacterRecieved(EventRegistrationToken token)
+INT32 CoreWindowX::_abi_remove_CharacterReceived(EventRegistrationToken token)
 {
 	return m_coreWindow->remove_CharacterReceived(token);
 }

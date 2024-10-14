@@ -1,8 +1,3 @@
-// ReSharper disable CppInconsistentNaming
-// ReSharper disable CppParameterMayBeConst
-// ReSharper disable CppDefaultCaseNotHandledInSwitchStatement
-// ReSharper disable CppClangTidyHicppMultiwayPathsCovered
-// ReSharper disable CppClangTidyClangDiagnosticInconsistentDllimport
 #include "pch.h"
 
 NtAllocateVirtualMemory_t NtAllocateVirtualMemory;
