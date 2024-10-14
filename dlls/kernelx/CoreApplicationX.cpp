@@ -36,6 +36,7 @@ INT32 CoreApplicationX::_abi_remove_Suspending(EventRegistrationToken token)
 	return m_IapplicationCore->remove_Suspending(token);
 }
 
+//INT32 CoreApplicationX::_abi_get_ResourceAvailability(Windows::ApplicationModel::Core::ResourceAvailability*)
 INT32 CoreApplicationX::_abi_get_ResourceAvailability()
 {
 	//Stubbed at this moment.
@@ -52,6 +53,36 @@ INT32 CoreApplicationX::_abi_remove_ResourceAvailabilityChanged(EventRegistratio
 {
 	//Stubbed at this moment.
 	return 0;
+}
+
+INT32 CoreApplicationX::_abi_get_CoreWindow(ABI::Windows::UI::Core::ICoreWindow** Window)
+{
+	return m_IapplicationCoreView->get_CoreWindow(Window);
+}
+
+INT32 CoreApplicationX::_abi_add_Activated(__FITypedEventHandler_2_Windows__CApplicationModel__CCore__CCoreApplicationView_Windows__CApplicationModel__CActivation__CIActivatedEventArgs* handler, EventRegistrationToken* token)
+{
+	return m_IapplicationCoreView->add_Activated(handler, token);
+}
+
+INT32 CoreApplicationX::_abi_remove_Activated(EventRegistrationToken token)
+{
+	return m_IapplicationCoreView->remove_Activated(token);
+}
+
+INT32 CoreApplicationX::_abi_Exit()
+{
+	return m_applicationCoreExit->Exit();
+}
+
+INT32 CoreApplicationX::_abi_add_Exiting(__FIEventHandler_1_IInspectable* handler, EventRegistrationToken* token)
+{
+	return m_applicationCoreExit->add_Exiting(handler, token);
+}
+
+INT32 CoreApplicationX::_abi_remove_Exiting(EventRegistrationToken token)
+{
+	return m_applicationCoreExit->remove_Exiting(token);
 }
 
 INT32 CoreApplicationX::_abi_RunWithActivationFactories(ABI::Windows::Foundation::IGetActivationFactory* activationFactoryCallback)
@@ -82,6 +113,36 @@ INT32 CoreApplicationX::_abi_get_Id(HSTRING* value)
 INT32 CoreApplicationX::_abi_get_Properties(ABI::Windows::Foundation::Collections::IPropertySet** value)
 {
 	return m_IapplicationCore->get_Properties(value);
+}
+
+INT32 CoreApplicationX::_abi_Initialize(ABI::Windows::ApplicationModel::Core::ICoreApplicationView* application)
+{
+	return m_IFrameworkView->Initialize(application);
+}
+
+INT32 CoreApplicationX::_abi_SetWindow(ICoreWindow* window)
+{
+	return m_IFrameworkView->SetWindow(window);
+}
+
+INT32 CoreApplicationX::_abi_Load(HSTRING string)
+{
+	return m_IFrameworkView->Load(string);
+}
+
+INT32 CoreApplicationX::__abi_Run()
+{
+	return m_IFrameworkView->Run();
+}
+
+INT32 CoreApplicationX::_abi_Uninitialize()
+{
+	return m_IFrameworkView->Uninitialize();
+}
+
+INT32 CoreApplicationX::_abi_CreateView(ABI::Windows::ApplicationModel::Core::IFrameworkView** view)
+{
+	return m_IFrameworkViewSource->CreateView(view);
 }
 
 HRESULT CoreApplicationX::QueryInterface(const IID& riid, void** ppvObject)
