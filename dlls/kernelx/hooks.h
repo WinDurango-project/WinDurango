@@ -12,15 +12,15 @@ inline bool IsClassName(HSTRING classId, const char* classIdName)
 }
 
 typedef HRESULT(*DllGetForCurrentThreadFunc) (ICoreWindowStatic*, CoreWindow**);
-typedef HRESULT(*DllGetForCurrentThreadFunc_App) (ABI::Windows::ApplicationModel::Core::ICoreApplication*, winrt::Windows::ApplicationModel::Core::CoreApplication**);
+typedef HRESULT(*DllGetForCurrentThreadFunc_App) (ICoreApplication*, winrt::Windows::ApplicationModel::Core::CoreApplication**);
 typedef HRESULT(*DllGetActivationFactoryFunc) (HSTRING, IActivationFactory**);
 
 DllGetForCurrentThreadFunc pDllGetForCurrentThread = nullptr;
 DllGetForCurrentThreadFunc_App pDllGetForCurrentThread_App = nullptr;
 DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
 
-HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread_App)(ABI::Windows::ApplicationModel::Core::ICoreApplication* Iapplication,
-winrt::Windows::ApplicationModel::Core::CoreApplication** Application);
+// ReSharper disable once CppNonInlineVariableDefinitionInHeaderFile
+HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread_App)(ICoreApplication* application, winrt::Windows::ApplicationModel::Core::CoreApplication** Application);
 HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread)(ICoreWindowStatic* staticWindow, CoreWindow** window);
 HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
@@ -37,13 +37,12 @@ inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(ICoreWindowStatic* par
 	return hr;
 }
 
-inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook_App(ABI::Windows::ApplicationModel::Core::ICoreApplication* paramThis,
+inline HRESULT STDMETHODCALLTYPE GetForCurrentThreadApp_Hook(ICoreApplication* paramThis,
 	winrt::Windows::ApplicationModel::Core::CoreApplication** Application)
 {
 	// ReSharper disable once CppLocalVariableMayBeConst
 	HRESULT hrApp = TrueGetForCurrentThread_App(paramThis, Application);
 
-	//*reinterpret_cast<void**>(Application) = new CoreApplicationX(*Application);
 	auto pApp = *reinterpret_cast<void**>(Application);
 
 	pApp = new CoreApplicationX(*Application);
@@ -71,39 +70,29 @@ inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, v
 
 		ComPtr<IActivationFactory> _factory;
 
+		if (IsClassName(classId, "Windows.ApplicationModel.Core.CoreApplication"))
+		{
+			ComPtr<ABI::Windows::ApplicationModel::Core::ICoreApplication> ICoreApplicationPtr;
 
-		if (IsClassName(classId, "Windows.UI.Core.CoreWindow"))
+			hr = RoGetActivationFactory(HStringReference(RuntimeClass_Windows_ApplicationModel_Core_CoreApplication).Get(), IID_PPV_ARGS(&ICoreApplicationPtr));
+
+			*reinterpret_cast<void**>(&TrueGetForCurrentThread_App) = (*reinterpret_cast<void***>(ICoreApplicationPtr.Get()))[ 6 ];
+
+			DetourAttach(&TrueGetForCurrentThread_App, GetForCurrentThreadApp_Hook);
+		}
+		else if (IsClassName(classId, "Windows.UI.Core.CoreWindow"))
 		{
 			ComPtr<ICoreWindowStatic> coreWindowStatic;
 
-			hr = RoGetActivationFactory(HStringReference(RuntimeClass_Windows_UI_Core_CoreWindow).Get( ), IID_PPV_ARGS(&coreWindowStatic));
+			hr = RoGetActivationFactory(HStringReference(RuntimeClass_Windows_UI_Core_CoreWindow).Get(), IID_PPV_ARGS(&coreWindowStatic));
 
-			*reinterpret_cast<void**>(&TrueGetForCurrentThread) = (*reinterpret_cast<void***>(coreWindowStatic.Get( )))[ 6 ];
+			*reinterpret_cast<void**>(&TrueGetForCurrentThread) = (*reinterpret_cast<void***>(coreWindowStatic.Get()))[ 6 ];
 
 			DetourAttach(&TrueGetForCurrentThread, GetForCurrentThread_Hook);
 		}
 		else
 		{
-			hr = pDllGetActivationFactory(classId, _factory.GetAddressOf( ));
-		}
-
-		if (FAILED(hr)) return hr;
-
-		return _factory.CopyTo(iid, factory);
-
-		if (IsClassName(classId, "Windows.ApplicationModel.Core.CoreApplication"))
-		{
-			ComPtr<ABI::Windows::ApplicationModel::Core::ICoreApplication> ICoreApplicationPtr;
-
-			hr = RoGetActivationFactory(HStringReference(RuntimeClass_Windows_ApplicationModel_Core_CoreApplication).Get( ), IID_PPV_ARGS(&ICoreApplicationPtr));
-
-			*reinterpret_cast<void**>(&TrueGetForCurrentThread_App) = (*reinterpret_cast<void***>(ICoreApplicationPtr.Get( )))[ 6 ];
-
-			DetourAttach(&TrueGetForCurrentThread_App, GetForCurrentThread_Hook_App);
-		}
-		else
-		{
-			hr = pDllGetActivationFactory(classId, _factory.GetAddressOf( ));
+			hr = pDllGetActivationFactory(classId, _factory.GetAddressOf());
 		}
 
 		if (FAILED(hr)) return hr;
