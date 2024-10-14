@@ -17,6 +17,8 @@ public:
 		m_applicationCoreView = reinterpret_cast<ABI::Windows::ApplicationModel::Core::CoreApplicationView*>(application);
 		m_applicationCoreExit = reinterpret_cast<ABI::Windows::ApplicationModel::Core::ICoreApplicationExit*>(application);
 		m_coreWindow = reinterpret_cast<ABI::Windows::UI::Core::ICoreWindow*>(application);
+		m_IFrameworkView = reinterpret_cast<ABI::Windows::ApplicationModel::Core::IFrameworkView*>(application);
+		m_IFrameworkViewSource = reinterpret_cast<ABI::Windows::ApplicationModel::Core::IFrameworkViewSource*>(application);
 	}
 
 public:
@@ -42,6 +44,12 @@ public:
 	INT32 Run(ABI::Windows::ApplicationModel::Core::IFrameworkViewSource* viewSource) override;
 	INT32 _abi_get_Id(HSTRING* value) override;
 	INT32 _abi_get_Properties(ABI::Windows::Foundation::Collections::IPropertySet** value) override;
+	INT32 _abi_Initialize(ABI::Windows::ApplicationModel::Core::ICoreApplicationView* application) override;
+	INT32 _abi_SetWindow(ICoreWindow* window) override;
+	INT32 _abi_Load(HSTRING string) override;
+	INT32 __abi_Run() override;
+	INT32 _abi_Uninitialize() override;
+	INT32 _abi_CreateView(ABI::Windows::ApplicationModel::Core::IFrameworkView** view) override;
 
 	HRESULT QueryInterface(const IID& riid, void** ppvObject) override;
 	ULONG AddRef() override;
@@ -54,5 +62,7 @@ private:
 	ABI::Windows::ApplicationModel::Core::CoreApplicationView* m_applicationCoreView;
 	ABI::Windows::ApplicationModel::Core::ICoreApplicationExit* m_applicationCoreExit;
 	ABI::Windows::UI::Core::ICoreWindow* m_coreWindow;
+	ABI::Windows::ApplicationModel::Core::IFrameworkView* m_IFrameworkView;
+	ABI::Windows::ApplicationModel::Core::IFrameworkViewSource* m_IFrameworkViewSource;
 
 };

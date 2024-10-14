@@ -118,6 +118,36 @@ INT32 CoreApplicationX::_abi_get_Properties(ABI::Windows::Foundation::Collection
 	return m_IapplicationCore->get_Properties(value);
 }
 
+INT32 CoreApplicationX::_abi_Initialize(ABI::Windows::ApplicationModel::Core::ICoreApplicationView* application)
+{
+	return m_IFrameworkView->Initialize(application);
+}
+
+INT32 CoreApplicationX::_abi_SetWindow(ICoreWindow* window)
+{
+	return m_IFrameworkView->SetWindow(window);
+}
+
+INT32 CoreApplicationX::_abi_Load(HSTRING string)
+{
+	return m_IFrameworkView->Load(string);
+}
+
+INT32 CoreApplicationX::__abi_Run()
+{
+	return m_IFrameworkView->Run();
+}
+
+INT32 CoreApplicationX::_abi_Uninitialize()
+{
+	return m_IFrameworkView->Uninitialize();
+}
+
+INT32 CoreApplicationX::_abi_CreateView(ABI::Windows::ApplicationModel::Core::IFrameworkView** view)
+{
+	return m_IFrameworkViewSource->CreateView(view);
+}
+
 HRESULT CoreApplicationX::QueryInterface(const IID& riid, void** ppvObject)
 {
 	return m_coreWindow->QueryInterface(riid, ppvObject);

@@ -37,6 +37,12 @@ public:
 	virtual INT32 Run(ABI::Windows::ApplicationModel::Core::IFrameworkViewSource* viewSource) = 0;
 	virtual INT32 _abi_get_Id(HSTRING* value) = 0;
 	virtual INT32 _abi_get_Properties(ABI::Windows::Foundation::Collections::IPropertySet** value) = 0;
+	virtual INT32 _abi_Initialize(ABI::Windows::ApplicationModel::Core::ICoreApplicationView* application) = 0;
+	virtual INT32 _abi_SetWindow(ICoreWindow* window) = 0;
+	virtual INT32 _abi_Load(HSTRING string) = 0;
+	virtual INT32 __abi_Run() = 0;
+	virtual INT32 _abi_Uninitialize() = 0;
+	virtual INT32 _abi_CreateView(ABI::Windows::ApplicationModel::Core::IFrameworkView** view) = 0;
 
 	virtual HRESULT QueryInterface(const IID& riid, void** ppvObject) override = 0;
 	virtual ULONG AddRef() override = 0;
