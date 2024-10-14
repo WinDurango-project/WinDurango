@@ -1,7 +1,6 @@
 #pragma once
 #include "ICoreApplicationX.h"
 
-
 class CoreApplicationX : public ICoreApplicationX
 {
 public:

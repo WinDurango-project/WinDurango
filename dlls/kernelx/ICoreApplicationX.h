@@ -1,4 +1,4 @@
-#include <winrt/windows.foundation.collections.h>
+#pragma once
 #include <winrt/Windows.ApplicationModel.h>
 #include <windows.ui.core.h>
 
