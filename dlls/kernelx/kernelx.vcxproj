@@ -93,10 +93,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CoreApplicationResourceAvailabilityX.h" />
     <ClInclude Include="CoreApplicationX.h" />
     <ClInclude Include="CoreWindowX.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="hooks.h" />
+    <ClInclude Include="ICoreApplicationResourceAvailabilityX.h" />
     <ClInclude Include="ICoreApplicationX.h" />
     <ClInclude Include="ICoreWindowX.h" />
     <ClInclude Include="kernelx.h" />
@@ -104,6 +106,7 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CoreApplicationResourceAvailabilityX.cpp" />
     <ClCompile Include="CoreApplicationX.cpp" />
     <ClCompile Include="CoreWindowX.cpp" />
     <ClCompile Include="dllmain.cpp" />

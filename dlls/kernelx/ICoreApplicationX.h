@@ -2,11 +2,12 @@
 #include <winrt/Windows.ApplicationModel.h>
 #include <windows.ui.core.h>
 
+#include "ICoreApplicationResourceAvailabilityX.h"
 
-using namespace ABI::Windows::ApplicationModel::Activation;
 using namespace ABI::Windows::ApplicationModel;
-using namespace ABI::Windows::Foundation;
+using namespace ABI::Windows::ApplicationModel::Activation;
 using namespace ABI::Windows::ApplicationModel::Core;
+using namespace ABI::Windows::Foundation;
 using namespace ABI::Windows::System;
 
 class ICoreApplicationX : public IInspectable
@@ -16,7 +17,7 @@ public:
 	virtual INT32 _abi_remove_Resuming(EventRegistrationToken token) = 0;
 	virtual INT32 _abi_add_Suspending(__FIEventHandler_1_Windows__CApplicationModel__CSuspendingEventArgs* handler, EventRegistrationToken* token) = 0;
 	virtual INT32 _abi_remove_Suspending(EventRegistrationToken token) = 0;
-	//virtual INT32 _abi_get_ResourceAvailability(Windows::ApplicationModel::Core::ResourceAvailability*) = 0;
+	virtual INT32 _abi_get_ResourceAvailability(ResourceAvailability* resourceAvailability) = 0;
 	virtual INT32 _abi_get_ResourceAvailability() = 0;
 	virtual INT32 _abi_add_ResourceAvailabilityChanged(winrt::Windows::Foundation::EventHandler<IInspectable>* handler, EventRegistrationToken* token) = 0;
 	virtual INT32 _abi_remove_ResourceAvailabilityChanged(EventRegistrationToken token) = 0;
@@ -42,5 +43,4 @@ public:
 	virtual HRESULT QueryInterface(const IID& riid, void** ppvObject) override = 0;
 	virtual ULONG AddRef() override = 0;
 	virtual ULONG Release() override = 0;
-
 };

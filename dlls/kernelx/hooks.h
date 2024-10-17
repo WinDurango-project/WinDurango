@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <winrt/Windows.ApplicationModel.h>
+
 #include "CoreApplicationX.h"
 
 inline bool IsClassName(HSTRING classId, const char* classIdName)
@@ -19,8 +20,8 @@ DllGetForCurrentThreadFunc pDllGetForCurrentThread = nullptr;
 DllGetForCurrentThreadFunc_App pDllGetForCurrentThread_App = nullptr;
 DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
 
-HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread_App)(ICoreApplication* application, winrt::Windows::ApplicationModel::Core::CoreApplication** Application);
 HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread)(ICoreWindowStatic* staticWindow, CoreWindow** window);
+HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread_App)(ICoreApplication* application, winrt::Windows::ApplicationModel::Core::CoreApplication** Application);
 HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
 inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(ICoreWindowStatic* paramThis, CoreWindow** window)
@@ -36,8 +37,7 @@ inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(ICoreWindowStatic* par
 	return hr;
 }
 
-inline HRESULT STDMETHODCALLTYPE GetForCurrentThreadApp_Hook(ICoreApplication* paramThis,
-	winrt::Windows::ApplicationModel::Core::CoreApplication** Application)
+inline HRESULT STDMETHODCALLTYPE GetForCurrentThreadApp_Hook(ICoreApplication* paramThis, winrt::Windows::ApplicationModel::Core::CoreApplication** Application)
 {
 	// ReSharper disable once CppLocalVariableMayBeConst
 	HRESULT hrApp = TrueGetForCurrentThread_App(paramThis, Application);
@@ -69,13 +69,17 @@ inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, v
 
 		ComPtr<IActivationFactory> _factory;
 
-		if (IsClassName(classId, "Windows.ApplicationModel.Core.CoreApplication"))
+		if (IsClassName(classId, "Windows.ApplicationModel.Core.ICoreApplicationResourceAvailability"))
 		{
-			ComPtr<ABI::Windows::ApplicationModel::Core::ICoreApplication> ICoreApplicationPtr;
+
+		}
+		else if (IsClassName(classId, "Windows.ApplicationModel.Core.CoreApplication"))
+		{
+			ComPtr<ICoreApplication> ICoreApplicationPtr;
 
 			hr = RoGetActivationFactory(HStringReference(RuntimeClass_Windows_ApplicationModel_Core_CoreApplication).Get(), IID_PPV_ARGS(&ICoreApplicationPtr));
 
-			*reinterpret_cast<void**>(&TrueGetForCurrentThread_App) = (*reinterpret_cast<void***>(ICoreApplicationPtr.Get()))[ 6 ];
+			*reinterpret_cast<void**>(&TrueGetForCurrentThread_App) = (*reinterpret_cast<void***>(ICoreApplicationPtr.Get()))[6];
 
 			DetourAttach(&TrueGetForCurrentThread_App, GetForCurrentThreadApp_Hook);
 		}
@@ -85,7 +89,7 @@ inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, v
 
 			hr = RoGetActivationFactory(HStringReference(RuntimeClass_Windows_UI_Core_CoreWindow).Get(), IID_PPV_ARGS(&coreWindowStatic));
 
-			*reinterpret_cast<void**>(&TrueGetForCurrentThread) = (*reinterpret_cast<void***>(coreWindowStatic.Get()))[ 6 ];
+			*reinterpret_cast<void**>(&TrueGetForCurrentThread) = (*reinterpret_cast<void***>(coreWindowStatic.Get()))[6];
 
 			DetourAttach(&TrueGetForCurrentThread, GetForCurrentThread_Hook);
 		}
@@ -100,5 +104,4 @@ inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, v
 	}
 
 	return hr;
-
 }

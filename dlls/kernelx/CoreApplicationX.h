@@ -24,6 +24,7 @@ public:
 	INT32 _abi_remove_Resuming(EventRegistrationToken token) override;
 	INT32 _abi_add_Suspending(__FIEventHandler_1_Windows__CApplicationModel__CSuspendingEventArgs* handler, EventRegistrationToken* token) override;
 	INT32 _abi_remove_Suspending(EventRegistrationToken token) override;
+	INT32 _abi_get_ResourceAvailability(ResourceAvailability* resourceAvailability) override;
 	INT32 _abi_get_ResourceAvailability() override;
 	INT32 _abi_add_ResourceAvailabilityChanged(winrt::Windows::Foundation::EventHandler<IInspectable>* handler, EventRegistrationToken* token) override;
 	INT32 _abi_remove_ResourceAvailabilityChanged(EventRegistrationToken token) override;

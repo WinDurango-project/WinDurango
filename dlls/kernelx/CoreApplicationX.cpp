@@ -36,11 +36,17 @@ INT32 CoreApplicationX::_abi_remove_Suspending(EventRegistrationToken token)
 	return m_IapplicationCore->remove_Suspending(token);
 }
 
-//INT32 CoreApplicationX::_abi_get_ResourceAvailability(Windows::ApplicationModel::Core::ResourceAvailability*)
+INT32 CoreApplicationX::_abi_get_ResourceAvailability(ResourceAvailability* resourceAvailability)
+{
+	// TODO: Stubbed for now.
+	*resourceAvailability = Full;
+
+	return S_OK;
+}
+
 INT32 CoreApplicationX::_abi_get_ResourceAvailability()
 {
-	//Stubbed at this moment.
-	return 0;
+	return S_OK;
 }
 
 INT32 CoreApplicationX::_abi_add_ResourceAvailabilityChanged(winrt::Windows::Foundation::EventHandler<IInspectable>* handler, EventRegistrationToken* token)
