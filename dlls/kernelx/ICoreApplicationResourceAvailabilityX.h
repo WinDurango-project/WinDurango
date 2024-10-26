@@ -8,16 +8,18 @@ using namespace ABI::Windows::ApplicationModel::Core;
 using namespace ABI::Windows::Foundation;
 using namespace ABI::Windows::System;
 
-enum ResourceAvailability : INT32 {
-	Full = 0x0000,
-	Constrained = 0x0001,
-	FullWithExtendedSystemReserve = 0x0002,
+enum ResourceAvailability
+{
+	ResourceAvailability_Full,
+	ResourceAvailability_Constrained,
+	ResourceAvailability_FullWithExtendedSystemReserve,
 };
 
-class ICoreApplicationResourceAvailabilityX : public IInspectable
+MIDL_INTERFACE("9FF3799E-6E83-468C-A5B0-501CE6BB0FA1")
+ICoreApplicationResourceAvailabilityX : public IInspectable
 {
 public:
-	virtual INT32 _abi_get_ResourceAvailability(ResourceAvailability* resourceAvailability) = 0;
-	virtual INT32 _abi_add_ResourceAvailabilityChanged(__FIEventHandler_1_IInspectable* handler, EventRegistrationToken* token) = 0;
-	virtual INT32 _abi_remove_ResourceAvailabilityChanged(EventRegistrationToken token) = 0;
+	STDMETHOD(_abi_get_ResourceAvailability)(ResourceAvailability *) PURE;
+	STDMETHOD(_abi_add_ResourceAvailabilityChanged)(__FIEventHandler_1_IInspectable *, EventRegistrationToken *) PURE;
+	STDMETHOD(_abi_remove_ResourceAvailabilityChanged)(EventRegistrationToken) PURE;
 };

@@ -39,7 +39,7 @@ INT32 CoreApplicationX::_abi_remove_Suspending(EventRegistrationToken token)
 INT32 CoreApplicationX::_abi_get_ResourceAvailability(ResourceAvailability* resourceAvailability)
 {
 	// TODO: Stubbed for now.
-	*resourceAvailability = Full;
+	*resourceAvailability = ResourceAvailability_Full;
 
 	return S_OK;
 }
