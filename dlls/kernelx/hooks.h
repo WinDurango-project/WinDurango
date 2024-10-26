@@ -75,9 +75,7 @@ public:
 
 		HSTRING _className = nullptr;
 
-		WindowsCreateString(L"Windows.Core.CCoreApplicationResourceAvailability", 39, &_className);
-
-		*className = _className;
+		WindowsCreateString(RuntimeClass_Windows_ApplicationModel_Core_CoreApplication, sizeof(RuntimeClass_Windows_ApplicationModel_Core_CoreApplication), &_className);
 
 		return S_OK();
 	}
@@ -180,10 +178,9 @@ inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, v
 
 		if (IsClassName(classId, "Windows.ApplicationModel.Core.ICoreApplicationResourceAvailability"))
 		{
-			// TODO: Implement this method.
+			hr = RoGetActivationFactory(HStringReference(RuntimeClass_Windows_ApplicationModel_Core_CoreApplication).Get(), IID_PPV_ARGS(&_factory));
 
-			// TODO: Get the correct vtable index.
-			*reinterpret_cast<void**>(&TrueCoreApplicationFactory_QueryInterface); // = (*reinterpret_cast<void***>(_factory.Get()))[0];
+			*reinterpret_cast<void**>(&TrueCoreApplicationFactory_QueryInterface) = (*reinterpret_cast<void***>(_factory.Get()))[0];
 
 			DetourAttach(&TrueCoreApplicationFactory_QueryInterface, CoreApplicationFactory_QueryInterface_Hook);
 		}
