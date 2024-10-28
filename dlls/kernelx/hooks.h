@@ -77,6 +77,8 @@ public:
 
 		WindowsCreateString(RuntimeClass_Windows_ApplicationModel_Core_CoreApplication, sizeof(RuntimeClass_Windows_ApplicationModel_Core_CoreApplication), &_className);
 
+		*className = _className;
+
 		return S_OK();
 	}
 
