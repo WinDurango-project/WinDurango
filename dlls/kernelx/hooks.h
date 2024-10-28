@@ -3,6 +3,10 @@
 
 #include "CoreApplicationX.h"
 
+/* Concrete class for the CoreApplicationResourceAvailability.
+ * This class is required because the Windows does not provide a 
+ * concrete implementation for this interface or the interface itself. 
+ */
 class CCoreApplicationResourceAvailabilityX : public ICoreApplicationResourceAvailabilityX
 {
 	LONG m_RefCount = 1;
@@ -90,6 +94,7 @@ public:
 	}
 };
 
+/* This function is used to compare the class name of the classId with the classIdName. */
 inline bool IsClassName(HSTRING classId, const char* classIdName)
 {
 	const wchar_t* classIdString = WindowsGetStringRawBuffer(classId, nullptr);
@@ -99,19 +104,31 @@ inline bool IsClassName(HSTRING classId, const char* classIdName)
 	return (classIdStringUTF8 == classIdName);
 }
 
+/* Function pointers for the DllGetForCurrentThread */
 typedef HRESULT(*DllGetForCurrentThreadFunc) (ICoreWindowStatic*, CoreWindow**);
+/* Function pointers for the DllGetForCurrentThread */
 typedef HRESULT(*DllGetForCurrentThreadFunc_App) (ICoreApplication*, winrt::Windows::ApplicationModel::Core::CoreApplication**);
+/* Function pointers for the CoreApplicationFactory's QueryInterface */
 typedef HRESULT(*CoreApplicationFactory_QueryInterface) (IUnknown* pFactory, REFIID iid, void** ppv);
+/* Function pointers for the DllGetActivationFactory */
 typedef HRESULT(*DllGetActivationFactoryFunc) (HSTRING, IActivationFactory**);
 
+/* Function pointers for the DllGetForCurrentThread */
 DllGetForCurrentThreadFunc pDllGetForCurrentThread = nullptr;
+/* Function pointers for the DllGetForCurrentThread */
 DllGetForCurrentThreadFunc_App pDllGetForCurrentThread_App = nullptr;
+/* Function pointers for the CoreApplicationFactory's QueryInterface */
 CoreApplicationFactory_QueryInterface pCoreApplicationFactory_QueryInterface = nullptr;
+/* Function pointers for the DllGetActivationFactory */
 DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
 
+/* Function pointers for the DllGetForCurrentThread */
 HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread)(ICoreWindowStatic* staticWindow, CoreWindow** window);
+/* Function pointers for the DllGetForCurrentThread */
 HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread_App)(ICoreApplication* application, winrt::Windows::ApplicationModel::Core::CoreApplication** Application);
+/* Function pointers for the CoreApplicationFactory's QueryInterface */
 HRESULT(STDMETHODCALLTYPE* TrueCoreApplicationFactory_QueryInterface)(IUnknown* factory, REFIID iid, void** ppv);
+/* Function pointers for the WinRT RoGetActivationFactory function. */
 HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
 /* Hook for ICoreWindowStatic's GetCurrentThread function. */
