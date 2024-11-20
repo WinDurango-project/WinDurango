@@ -1,0 +1,3 @@
+LIBRARY common
+EXPORTS
+	XMemAlloc				            = XMemAlloc_X					                    @504

@@ -1,9 +1,7 @@
 ﻿#pragma once
 #include <winrt/Windows.ApplicationModel.h>
 
-
 #include "CoreApplicationWrapperX.h"
-
 
 /* This function is used to compare the class name of the classId with the classIdName. */
 inline bool IsClassName(HSTRING classId, const char* classIdName)
@@ -65,9 +63,6 @@ inline HRESULT STDMETHODCALLTYPE GetForCurrentThreadCoreApplication_Hook(ICoreAp
 
 	return hrApp;
 }
-
-
-
 
 /* Hook for the WinRT RoGetActivationFactory function. */
 inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** factory)
