@@ -20,6 +20,6 @@ ICoreApplicationResourceAvailabilityX : public IInspectable
 {
 public:
 	STDMETHOD(_abi_get_ResourceAvailability)(ResourceAvailability *) PURE;
-	STDMETHOD(_abi_add_ResourceAvailabilityChanged)(__FIEventHandler_1_IInspectable *, EventRegistrationToken *) PURE;
+	STDMETHOD(_abi_add_ResourceAvailabilityChanged)(winrt::Windows::Foundation::EventHandler<IInspectable>* handler, EventRegistrationToken* token) PURE;
 	STDMETHOD(_abi_remove_ResourceAvailabilityChanged)(EventRegistrationToken) PURE;
 };

@@ -10,17 +10,17 @@ using namespace ABI::Windows::ApplicationModel::Core;
 using namespace ABI::Windows::Foundation;
 using namespace ABI::Windows::System;
 
-class ICoreApplicationX : public IInspectable
+class ICoreApplicationX : public RuntimeClass<IActivationFactory, ICoreApplicationResourceAvailabilityX>
 {
 public:
 	virtual INT32 _abi_add_Resuming(__FIEventHandler_1_IInspectable* handler, EventRegistrationToken* token) = 0;
 	virtual INT32 _abi_remove_Resuming(EventRegistrationToken token) = 0;
 	virtual INT32 _abi_add_Suspending(__FIEventHandler_1_Windows__CApplicationModel__CSuspendingEventArgs* handler, EventRegistrationToken* token) = 0;
 	virtual INT32 _abi_remove_Suspending(EventRegistrationToken token) = 0;
-	virtual INT32 _abi_get_ResourceAvailability(ResourceAvailability* resourceAvailability) = 0;
+	virtual HRESULT _abi_get_ResourceAvailability(ResourceAvailability* resourceAvailability) = 0;
 	virtual INT32 _abi_get_ResourceAvailability() = 0;
-	virtual INT32 _abi_add_ResourceAvailabilityChanged(winrt::Windows::Foundation::EventHandler<IInspectable>* handler, EventRegistrationToken* token) = 0;
-	virtual INT32 _abi_remove_ResourceAvailabilityChanged(EventRegistrationToken token) = 0;
+	virtual HRESULT _abi_add_ResourceAvailabilityChanged(winrt::Windows::Foundation::EventHandler<IInspectable>* handler, EventRegistrationToken* token) = 0;
+	virtual HRESULT _abi_remove_ResourceAvailabilityChanged(EventRegistrationToken token) = 0;
 	virtual INT32 _abi_get_CoreWindow(ABI::Windows::UI::Core::ICoreWindow**) = 0;
 	virtual INT32 _abi_add_Activated(__FITypedEventHandler_2_Windows__CApplicationModel__CCore__CCoreApplicationView_Windows__CApplicationModel__CActivation__CIActivatedEventArgs* handler, EventRegistrationToken* token) = 0;
 	virtual INT32 _abi_remove_Activated(EventRegistrationToken token) = 0;
