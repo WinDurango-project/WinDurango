@@ -1,16 +1,22 @@
 #pragma once
-#include <inspectable.h>
 #include <windows.foundation.h>
 #include <windows.ui.core.h>
 #include <windows.system.h>
+#include <wrl.h>
 
+using namespace Microsoft::WRL;
 using namespace ABI::Windows::Foundation;
 using namespace ABI::Windows::UI::Core;
 using namespace ABI::Windows::System;
 
-class ICoreWindowX : public IInspectable
+MIDL_INTERFACE("79b9d5f2-879e-4b89-b798-79e47598030c")
+ICoreWindowX : public IInspectable
 {
 public:
+	virtual HRESULT QueryInterface(const IID & riid, void** ppvObject) override = 0;
+	virtual ULONG AddRef() override = 0;
+	virtual ULONG Release() override = 0;
+
 	virtual INT32 _abi_get_Bounds(Rect* rect) = 0;
 	virtual INT32 _abi_get_Dispatcher(ICoreDispatcher** dispatcher) = 0;
 	virtual INT32 _abi_get_IsInputEnabled(boolean* value) = 0;
@@ -42,8 +48,4 @@ public:
 	virtual INT32 _abi_remove_SizeChanged(EventRegistrationToken token) = 0;
 	virtual INT32 _abi_add_VisibilityChanged(ITypedEventHandler<CoreWindow*, VisibilityChangedEventArgs*>* handler, EventRegistrationToken* token) = 0;
 	virtual INT32 _abi_remove_VisibilityChanged(EventRegistrationToken token) = 0;
-
-	virtual HRESULT QueryInterface(const IID& riid, void** ppvObject) override = 0;
-	virtual ULONG AddRef() override = 0;
-	virtual ULONG Release() override = 0;
 };

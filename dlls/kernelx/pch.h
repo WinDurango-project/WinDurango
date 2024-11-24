@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "kernelx.h"
 
-#include "CoreWindowX.h"
+#include "CoreWindowWrapperX.h"
 #include "ICoreWindowX.h"
 
 #include "../src/detours.h"
