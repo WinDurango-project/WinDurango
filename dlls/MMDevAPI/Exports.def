@@ -1,7 +1,39 @@
-LIBRARY	MMDevAPI
+LIBRARY MMDevAPI
 EXPORTS
-	ActivateAudioInterfaceAsync	 =  ActivateAudioInterfaceAsync_X		
-	DllCanUnloadNow				 =	DllCanUnloadNow_X					
-	DllGetClassObject			 =	DllGetClassObject_X					
-	RefreshWasapiDeviceList		 =	RefreshWasapiDeviceList_X			
-	SetWasapiThreadAffinityMask	 =	SetWasapiThreadAffinityMask_X		
+    CleanupDeviceAPI = MMDevAPI.#2 @2 NONAME
+    InitializeDeviceAPI = MMDevAPI.#3 @3 NONAME
+    MMDeviceCreateRegistryPropertyStore = MMDevAPI.#4 @4 NONAME
+    MMDeviceGetDeviceEnumerator = MMDevAPI.#5 @5 NONAME
+    MMDeviceGetEndpointManager = MMDevAPI.#6 @6 NONAME
+    GetClassFromEndpointId = MMDevAPI.#7 @7 NONAME
+    GetEndpointGuidFromEndpointId = MMDevAPI.#8 @8 NONAME
+    GetSessionIdFromEndpointId = MMDevAPI.#9 @9 NONAME
+    RegisterForMediaCallback = MMDevAPI.#10 @10 NONAME
+    UnregisterMediaCallback = MMDevAPI.#11 @11 NONAME
+    GenerateMediaEvent = MMDevAPI.#12 @12 NONAME
+    AETraceOutputDebugString = MMDevAPI.#13 @13 NONAME
+    MMDeviceGetPolicyConfig = MMDevAPI.#14 @14 NONAME
+    FlushDeviceTopologyCache = MMDevAPI.#15 @15 NONAME
+    GetNeverSetAsDefaultProperty = MMDevAPI.#16 @16 NONAME
+    ActivateAudioInterfaceAsync = MMDevAPI.ActivateAudioInterfaceAsync @17
+    GetEndpointIdFromDeviceInterfaceId = MMDevAPI.#18 @18 NONAME
+    mmdDevFindMmDevProperty = MMDevAPI.#19 @19 NONAME
+    mmdDevGetInterfacePropertyStore = MMDevAPI.#20 @20 NONAME
+    mmdDevGetInterfaceIdFromMMDevice = MMDevAPI.#21 @21 NONAME
+    mmdDevGetInterfaceDataFlow = MMDevAPI.#22 @22 NONAME
+    mmdDevGetMMDeviceFromInterfaceId = MMDevAPI.#23 @23 NONAME
+    mmdDevGetInterfaceClassGuid = MMDevAPI.#24 @24 NONAME
+    mmdDevGetMMDeviceIdFromInterfaceId = MMDevAPI.#25 @25 NONAME
+    mmdDevGetInstanceIdFromInterfaceId = MMDevAPI.#26 @26 NONAME
+    mmdDevGetRelatedInterfaceId = MMDevAPI.#27 @27 NONAME
+    mmdDevGetInterfaceIdFromMMDeviceId = MMDevAPI.#28 @28 NONAME
+    mmdDevGetInstanceIdFromMMDeviceId = MMDevAPI.#29 @29 NONAME
+    mmdDevGetEndpointFormFactorFromMMDeviceId = MMDevAPI.#30 @30 NONAME
+    mmdDevGetDeviceIdFromPnpInterface = MMDevAPI.#31 @31 NONAME
+    GetCategoryPath = MMDevAPI.#32 @32 NONAME
+    MMDeviceCreateRegistryPropertyStore2 = MMDevAPI.#33 @33 NONAME
+    MMDeviceCreateAudioSystemEffectsPropertyStore = MMDevAPI.#34 @34 NONAME
+    ;DllCanUnloadNow = MMDevAPI.DllCanUnloadNow @35
+    ;DllGetClassObject = MMDevAPI.DllGetClassObject @36
+    ;DllRegisterServer = MMDevAPI.DllRegisterServer @37
+    ;DllUnregisterServer = MMDevAPI.DllUnregisterServer @38
