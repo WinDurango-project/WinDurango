@@ -11,7 +11,6 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID reserved)
 		DetourTransactionBegin();
 		DetourUpdateThread(GetCurrentThread());
 		DetourAttach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
-
 		DetourTransactionCommit();
 	}
 	else if (dwReason == DLL_PROCESS_DETACH)
@@ -19,7 +18,6 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID reserved)
 		DetourTransactionBegin();
 		DetourUpdateThread(GetCurrentThread());
 		DetourDetach(&reinterpret_cast<PVOID&>(TrueRoGetActivationFactory), RoGetActivationFactory_Hook);
-		DetourDetach(&TrueGetForCurrentThread, GetForCurrentThread_Hook);
 		DetourTransactionCommit();
 	}
 

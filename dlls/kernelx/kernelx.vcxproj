@@ -94,7 +94,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CoreApplicationWrapperX.h" />
-    <ClInclude Include="CoreWindowX.h" />
+    <ClInclude Include="CoreWindowWrapperX.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="hooks.h" />
     <ClInclude Include="ICoreApplicationResourceAvailabilityX.h" />
@@ -106,7 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CoreApplicationWrapperX.cpp" />
-    <ClCompile Include="CoreWindowX.cpp" />
+    <ClCompile Include="CoreWindowWrapperX.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="kernelx.cpp" />
     <ClCompile Include="pch.cpp">

@@ -18,50 +18,77 @@ inline bool IsClassName(HSTRING classId, const char* classIdName)
 /* Function pointers for the DllGetForCurrentThread */
 typedef HRESULT(*DllGetForCurrentThreadFunc) (ICoreWindowStatic*, CoreWindow**);
 /* Function pointers for the DllGetForCurrentThread */
-typedef HRESULT(*DllGetForCurrentThreadFunc_App) (ICoreApplication*, winrt::Windows::ApplicationModel::Core::CoreApplication**);
-/* Function pointers for the CoreApplicationFactory's QueryInterface */
-typedef HRESULT(*CoreApplicationFactory_QueryInterface) (IUnknown* pFactory, REFIID iid, void** ppv);
-/* Function pointers for the DllGetActivationFactory */
-typedef HRESULT(*DllGetActivationFactoryFunc) (HSTRING, IActivationFactory**);
-
-/* Function pointers for the DllGetForCurrentThread */
 DllGetForCurrentThreadFunc pDllGetForCurrentThread = nullptr;
 /* Function pointers for the DllGetForCurrentThread */
-DllGetForCurrentThreadFunc_App pDllGetForCurrentThread_App = nullptr;
+HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread)(ICoreWindowStatic* staticWindow, CoreWindow** window);
+/* Function pointers for the DllGetActivationFactory */
+typedef HRESULT(*DllGetActivationFactoryFunc) (HSTRING, IActivationFactory**);
 /* Function pointers for the DllGetActivationFactory */
 DllGetActivationFactoryFunc pDllGetActivationFactory = nullptr;
-
-/* Function pointers for the DllGetForCurrentThread */
-HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread)(ICoreWindowStatic* staticWindow, CoreWindow** window);
-/* Function pointers for the DllGetForCurrentThread */
-HRESULT(STDMETHODCALLTYPE* TrueGetForCurrentThread_App)(ICoreApplication* application, winrt::Windows::ApplicationModel::Core::CoreApplication** Application);
 /* Function pointers for the WinRT RoGetActivationFactory function. */
 HRESULT(WINAPI* TrueRoGetActivationFactory)(HSTRING classId, REFIID iid, void** factory) = RoGetActivationFactory;
 
-/* Hook for ICoreWindowStatic's GetCurrentThread function. */
-inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(ICoreWindowStatic* paramThis, CoreWindow** window)
+// As Zombie suggested, this check if the function get called from a xbox dll or not
+BOOL IsXboxModule(HMODULE module)
 {
-	// ReSharper disable once CppLocalVariableMayBeConst
-	HRESULT hr = TrueGetForCurrentThread(paramThis, window);
+	// probably better to check for dlls in the game folder but idk this works i think
+	wchar_t moduleFilePath[MAX_PATH];
+	if (GetModuleFileNameW(module, moduleFilePath, MAX_PATH) > 0)
+	{
+		std::wstring moduleFileName(moduleFilePath);
+		wprintf(L"%ls\n", moduleFileName.c_str());
 
-	//*reinterpret_cast<void**>(window) = new CoreWindowX(*window);
-	auto p = *reinterpret_cast<void**>(window);
+		// Testing (i'll complete those)
 
-	p = new CoreWindowX(*window);
+		/*if (!(moduleFileName.find(L"CoreUIComponents") != std::wstring::npos)) // Example check for "Xbox" in the file name
+		{
+			return TRUE; // The caller is from an Xbox module
+		}*/
+	}
+
+	return FALSE;
+}
+
+
+BOOL IsXboxAddress(PVOID Address)
+{
+	HMODULE Module;
+
+	// Technically this should also use 'GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT'
+	if (!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, (LPCWSTR)Address, &Module))
+		return FALSE;
+
+	return IsXboxModule(Module);
+}
+
+
+// The hook function for GetForCurrentThread
+HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(ICoreWindowStatic* pThis, CoreWindow** ppWindow)
+{
+	HRESULT hr = TrueGetForCurrentThread(pThis, ppWindow);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
+
+	if (*ppWindow == NULL)
+		return hr;
+
+	// if GetForCurrentThread is called from xbox code we wrap it with the xbox ICoreWindow
+	if (IsXboxAddress(_ReturnAddress()))
+	{
+		*reinterpret_cast<ICoreWindowX**>(ppWindow) = new CoreWindowWrapperX(*ppWindow);
+
+		return S_OK;
+	}
 
 	return hr;
 }
 
 
-
-
-
-
 /* Hook for the WinRT RoGetActivationFactory function. */
 inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** factory)
 {
-
-
 	// Get the raw buffer from the HSTRING
 	const wchar_t* rawString = WindowsGetStringRawBuffer(classId, nullptr);
 
@@ -80,21 +107,34 @@ inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, v
 		if (FAILED(hr))
 			return hr;
 
-
-		//ComPtr<ICoreApplicationX> wrappedFactory = Make<ICoreApplicationX>(realFactory.Get());
 		ComPtr<CoreApplicationWrapperX> wrappedFactory = Make<CoreApplicationWrapperX>(realFactory);
 
 		return wrappedFactory.CopyTo(iid, factory);
 	}
 	else if (IsClassName(classId, "Windows.UI.Core.CoreWindow"))
 	{
-		/*ComPtr<ICoreWindowStatic> coreWindowStatic;
+		//
+		// for now we just hook GetForCurrentThread to get the CoreWindow but i'll change it later to
+		// wrap ICoreWindowStatic or as zombie said another thing that works is by hooking IFrameworkView::SetWindow
+		// but for now this *should* work just fine -AleBlbl
+		//
+		ComPtr<ICoreWindowStatic> coreWindowStatic;
+		hr = TrueRoGetActivationFactory(HStringReference(RuntimeClass_Windows_UI_Core_CoreWindow).Get(), IID_PPV_ARGS(&coreWindowStatic));
+		if (FAILED(hr)) {
+			return hr;
+		}
 
-		hr = RoGetActivationFactory(HStringReference(RuntimeClass_Windows_UI_Core_CoreWindow).Get(), IID_PPV_ARGS(&coreWindowStatic));
+		if (!TrueGetForCurrentThread)
+		{
+			*reinterpret_cast<void**>(&TrueGetForCurrentThread) = (*reinterpret_cast<void***>(coreWindowStatic.Get()))[6];
 
-		*reinterpret_cast<void**>(&TrueGetForCurrentThread) = (*reinterpret_cast<void***>(coreWindowStatic.Get()))[6];
+			DetourTransactionBegin();
+			DetourUpdateThread(GetCurrentThread());
+			DetourAttach(&TrueGetForCurrentThread, GetForCurrentThread_Hook);
+			DetourTransactionCommit();
+		}
 
-		DetourAttach(&TrueGetForCurrentThread, GetForCurrentThread_Hook);*/
+		return coreWindowStatic.CopyTo(iid, factory);
 	}
 
 	// After WinDurango overrides try to load the rest

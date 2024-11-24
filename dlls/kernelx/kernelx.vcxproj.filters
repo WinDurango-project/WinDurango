@@ -4,7 +4,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="kernelx.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="CoreWindowX.cpp">
+    <ClCompile Include="CoreWindowWrapperX.cpp">
       <Filter>Windows.UI.Core</Filter>
     </ClCompile>
     <ClCompile Include="CoreApplicationWrapperX.cpp">
@@ -18,7 +18,7 @@
     <ClInclude Include="ICoreWindowX.h">
       <Filter>Windows.UI.Core</Filter>
     </ClInclude>
-    <ClInclude Include="CoreWindowX.h">
+    <ClInclude Include="CoreWindowWrapperX.h">
       <Filter>Windows.UI.Core</Filter>
     </ClInclude>
     <ClInclude Include="hooks.h" />
