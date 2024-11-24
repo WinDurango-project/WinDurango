@@ -1,14 +1,16 @@
 ﻿#pragma once
 #include <winrt/Windows.ApplicationModel.h>
 
+
 #include "CoreApplicationWrapperX.h"
+
 
 /* This function is used to compare the class name of the classId with the classIdName. */
 inline bool IsClassName(HSTRING classId, const char* classIdName)
 {
 	const wchar_t* classIdString = WindowsGetStringRawBuffer(classId, nullptr);
 	std::wstring classIdWString(classIdString);
-	const std::string classIdStringUTF8(classIdWString.begin( ), classIdWString.end( ));
+	const std::string classIdStringUTF8(classIdWString.begin(), classIdWString.end());
 
 	return (classIdStringUTF8 == classIdName);
 }
@@ -50,19 +52,10 @@ inline HRESULT STDMETHODCALLTYPE GetForCurrentThread_Hook(ICoreWindowStatic* par
 	return hr;
 }
 
-/* Hook for CoreApplication's GetForCurrentThread function. */
-inline HRESULT STDMETHODCALLTYPE GetForCurrentThreadCoreApplication_Hook(ICoreApplication* paramThis, winrt::Windows::ApplicationModel::Core::CoreApplication** Application)
-{
-	wprintf(L"SAsa");
-	// ReSharper disable once CppLocalVariableMayBeConst
-	HRESULT hrApp = TrueGetForCurrentThread_App(paramThis, Application);
 
-	auto pApp = *reinterpret_cast<void**>(Application);
 
-	//pApp = new CoreApplicationWrapperX(*Application);
 
-	return hrApp;
-}
+
 
 /* Hook for the WinRT RoGetActivationFactory function. */
 inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, void** factory)
@@ -125,7 +118,7 @@ inline HRESULT WINAPI RoGetActivationFactory_Hook(HSTRING classId, REFIID iid, v
 				return hr;
 		}
 
-		
+
 		// fallback
 		ComPtr<IActivationFactory> fallbackFactory;
 		hr = pDllGetActivationFactory(classId, fallbackFactory.GetAddressOf());
